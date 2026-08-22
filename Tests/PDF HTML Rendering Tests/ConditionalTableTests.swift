@@ -13,14 +13,14 @@ struct `Conditional Table Tests` {
         struct TestTable: HTML.View {
             let showExtraRow = true
             var body: some HTML.View {
-                Table {
-                    TableBody {
-                        TableRow {
-                            TableDataCell { "Always shown" }
+                HTML.Table.Element {
+                    HTML.TableBody.Element {
+                        HTML.TableRow.Element {
+                            HTML.TableDataCell.Element { "Always shown" }
                         }
                         if showExtraRow {
-                            TableRow {
-                                TableDataCell { "Conditionally shown" }
+                            HTML.TableRow.Element {
+                                HTML.TableDataCell.Element { "Conditionally shown" }
                             }
                         }
                     }
@@ -39,10 +39,10 @@ struct `Conditional Table Tests` {
         struct TestTable: HTML.View {
             let useAlternateText = true
             var body: some HTML.View {
-                Table {
-                    TableBody {
-                        TableRow {
-                            TableDataCell {
+                HTML.Table.Element {
+                    HTML.TableBody.Element {
+                        HTML.TableRow.Element {
+                            HTML.TableDataCell.Element {
                                 if useAlternateText {
                                     "Option A"
                                 } else {
@@ -66,35 +66,35 @@ struct `Conditional Table Tests` {
         struct TestChecklist: HTML.View {
             let showSCorpRow = true
             var body: some HTML.View {
-                Table {
-                    TableHead {
-                        TableRow {
-                            TableHeader { "☐" }
-                            TableHeader { "Task" }
-                            TableHeader { "Fee" }
-                            TableHeader { "Deadline" }
-                            TableHeader { "Notes" }
+                HTML.Table.Element {
+                    HTML.TableHead.Element {
+                        HTML.TableRow.Element {
+                            HTML.TableHeader.Element { "☐" }
+                            HTML.TableHeader.Element { "Task" }
+                            HTML.TableHeader.Element { "Fee" }
+                            HTML.TableHeader.Element { "Deadline" }
+                            HTML.TableHeader.Element { "Notes" }
                         }
                     }
-                    TableBody {
-                        TableRow {
-                            TableDataCell { "☐" }
-                            TableDataCell {
-                                StrongImportance { "Apply for EIN (Form SS-4)" }
+                    HTML.TableBody.Element {
+                        HTML.TableRow.Element {
+                            HTML.TableDataCell.Element { "☐" }
+                            HTML.TableDataCell.Element {
+                                HTML.StrongImportance.Element { "Apply for EIN (Form SS-4)" }
                             }
-                            TableDataCell { "Free" }
-                            TableDataCell { "Before banking" }
-                            TableDataCell { "Apply online at www.irs.gov" }
+                            HTML.TableDataCell.Element { "Free" }
+                            HTML.TableDataCell.Element { "Before banking" }
+                            HTML.TableDataCell.Element { "Apply online at www.irs.gov" }
                         }
                         if showSCorpRow {
-                            TableRow {
-                                TableDataCell { "☐" }
-                                TableDataCell {
-                                    StrongImportance { "File Form 2553 (S-Corp Election)" }
+                            HTML.TableRow.Element {
+                                HTML.TableDataCell.Element { "☐" }
+                                HTML.TableDataCell.Element {
+                                    HTML.StrongImportance.Element { "File Form 2553 (S-Corp Election)" }
                                 }
-                                TableDataCell { "Free" }
-                                TableDataCell { "Within 75 days" }
-                                TableDataCell { "All shareholders must consent" }
+                                HTML.TableDataCell.Element { "Free" }
+                                HTML.TableDataCell.Element { "Within 75 days" }
+                                HTML.TableDataCell.Element { "All shareholders must consent" }
                             }
                         }
                     }
@@ -113,15 +113,15 @@ struct `Conditional Table Tests` {
         struct TestTable: HTML.View {
             let isSCorp = true
             var body: some HTML.View {
-                Table {
-                    TableBody {
-                        TableRow {
-                            TableDataCell {
-                                StrongImportance { "Federal Tax Return" }
+                HTML.Table.Element {
+                    HTML.TableBody.Element {
+                        HTML.TableRow.Element {
+                            HTML.TableDataCell.Element {
+                                HTML.StrongImportance.Element { "Federal Tax Return" }
                             }
-                            TableDataCell { "Annually" }
-                            TableDataCell { "Varies" }
-                            TableDataCell {
+                            HTML.TableDataCell.Element { "Annually" }
+                            HTML.TableDataCell.Element { "Varies" }
+                            HTML.TableDataCell.Element {
                                 if isSCorp {
                                     "Form 1120-S (S-Corp)"
                                 } else {
@@ -147,29 +147,29 @@ struct `Conditional Table Tests` {
             let showSection2 = false
             let showSection3 = true
             var body: some HTML.View {
-                Table {
-                    TableBody {
-                        TableRow {
-                            TableDataCell { "Header" }
+                HTML.Table.Element {
+                    HTML.TableBody.Element {
+                        HTML.TableRow.Element {
+                            HTML.TableDataCell.Element { "Header" }
                         }
                         if showSection1 {
-                            TableRow {
-                                TableDataCell {
-                                    StrongImportance { "Section 1" }
+                            HTML.TableRow.Element {
+                                HTML.TableDataCell.Element {
+                                    HTML.StrongImportance.Element { "Section 1" }
                                 }
                             }
                         }
                         if showSection2 {
-                            TableRow {
-                                TableDataCell {
-                                    Emphasis { "Section 2" }
+                            HTML.TableRow.Element {
+                                HTML.TableDataCell.Element {
+                                    HTML.Emphasis.Element { "Section 2" }
                                 }
                             }
                         }
                         if showSection3 {
-                            TableRow {
-                                TableDataCell {
-                                    StrongImportance { "Section 3" }
+                            HTML.TableRow.Element {
+                                HTML.TableDataCell.Element {
+                                    HTML.StrongImportance.Element { "Section 3" }
                                 }
                             }
                         }
@@ -185,42 +185,42 @@ struct `Conditional Table Tests` {
     }
 
     @Test
-    func `Optional TableRow inside TableBody (if without else)`() {
+    func `Optional TableRow inside HTML.TableBody.Element (if without else)`() {
         struct TestChecklist: HTML.View {
             let showSCorpRow = true
             var body: some HTML.View {
-                Table {
-                    TableHead {
-                        TableRow {
-                            TableHeader { "Task" }
-                            TableHeader { "Fee" }
-                            TableHeader { "Deadline" }
+                HTML.Table.Element {
+                    HTML.TableHead.Element {
+                        HTML.TableRow.Element {
+                            HTML.TableHeader.Element { "Task" }
+                            HTML.TableHeader.Element { "Fee" }
+                            HTML.TableHeader.Element { "Deadline" }
                         }
                     }
-                    TableBody {
-                        TableRow {
-                            TableDataCell {
-                                StrongImportance { "Apply for EIN" }
+                    HTML.TableBody.Element {
+                        HTML.TableRow.Element {
+                            HTML.TableDataCell.Element {
+                                HTML.StrongImportance.Element { "Apply for EIN" }
                             }
-                            TableDataCell { "Free" }
-                            TableDataCell { "Before banking" }
+                            HTML.TableDataCell.Element { "Free" }
+                            HTML.TableDataCell.Element { "Before banking" }
                         }
 
                         if showSCorpRow {
-                            TableRow {
-                                TableDataCell {
-                                    StrongImportance { "File Form 2553 (S-Corp Election)" }
+                            HTML.TableRow.Element {
+                                HTML.TableDataCell.Element {
+                                    HTML.StrongImportance.Element { "File Form 2553 (S-Corp Election)" }
                                 }
-                                TableDataCell { "Free" }
-                                TableDataCell { "Within 75 days" }
+                                HTML.TableDataCell.Element { "Free" }
+                                HTML.TableDataCell.Element { "Within 75 days" }
                             }
                         }
-                        TableRow {
-                            TableDataCell {
-                                StrongImportance { "Open Business Bank Account" }
+                        HTML.TableRow.Element {
+                            HTML.TableDataCell.Element {
+                                HTML.StrongImportance.Element { "Open Business Bank Account" }
                             }
-                            TableDataCell { "Varies" }
-                            TableDataCell { "After EIN" }
+                            HTML.TableDataCell.Element { "Varies" }
+                            HTML.TableDataCell.Element { "After EIN" }
                         }
                     }
                 }
@@ -238,20 +238,20 @@ struct `Conditional Table Tests` {
         struct TestTable: HTML.View {
             let showOptionalRow = false
             var body: some HTML.View {
-                Table {
-                    TableBody {
-                        TableRow {
-                            TableDataCell { "Always shown" }
+                HTML.Table.Element {
+                    HTML.TableBody.Element {
+                        HTML.TableRow.Element {
+                            HTML.TableDataCell.Element { "Always shown" }
                         }
                         if showOptionalRow {
-                            TableRow {
-                                TableDataCell {
-                                    StrongImportance { "This should not appear" }
+                            HTML.TableRow.Element {
+                                HTML.TableDataCell.Element {
+                                    HTML.StrongImportance.Element { "This should not appear" }
                                 }
                             }
                         }
-                        TableRow {
-                            TableDataCell { "Also always shown" }
+                        HTML.TableRow.Element {
+                            HTML.TableDataCell.Element { "Also always shown" }
                         }
                     }
                 }

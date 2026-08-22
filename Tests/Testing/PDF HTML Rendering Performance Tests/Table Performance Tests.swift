@@ -80,17 +80,17 @@ extension PDF.Test.Performance {
 
 private struct SimpleTable5x10: HTML.View {
     var body: some HTML.View {
-        Table {
-            TableHead {
-                TableRow {
-                    TableHeader { "H1" }
-                    TableHeader { "H2" }
-                    TableHeader { "H3" }
-                    TableHeader { "H4" }
-                    TableHeader { "H5" }
+        HTML.Table.Element {
+            HTML.TableHead.Element {
+                HTML.TableRow.Element {
+                    HTML.TableHeader.Element { "H1" }
+                    HTML.TableHeader.Element { "H2" }
+                    HTML.TableHeader.Element { "H3" }
+                    HTML.TableHeader.Element { "H4" }
+                    HTML.TableHeader.Element { "H5" }
                 }
             }
-            TableBody {
+            HTML.TableBody.Element {
                 Row5()
                 Row5()
                 Row5()
@@ -108,46 +108,46 @@ private struct SimpleTable5x10: HTML.View {
 
 private struct Row5: HTML.View {
     var body: some HTML.View {
-        TableRow {
-            TableDataCell { "C1" }
-            TableDataCell { "C2" }
-            TableDataCell { "C3" }
-            TableDataCell { "C4" }
-            TableDataCell { "C5" }
+        HTML.TableRow.Element {
+            HTML.TableDataCell.Element { "C1" }
+            HTML.TableDataCell.Element { "C2" }
+            HTML.TableDataCell.Element { "C3" }
+            HTML.TableDataCell.Element { "C4" }
+            HTML.TableDataCell.Element { "C5" }
         }
     }
 }
 
 private struct Row10: HTML.View {
     var body: some HTML.View {
-        TableRow {
-            TableDataCell { "C1" }
-            TableDataCell { "C2" }
-            TableDataCell { "C3" }
-            TableDataCell { "C4" }
-            TableDataCell { "C5" }
-            TableDataCell { "C6" }
-            TableDataCell { "C7" }
-            TableDataCell { "C8" }
-            TableDataCell { "C9" }
-            TableDataCell { "C10" }
+        HTML.TableRow.Element {
+            HTML.TableDataCell.Element { "C1" }
+            HTML.TableDataCell.Element { "C2" }
+            HTML.TableDataCell.Element { "C3" }
+            HTML.TableDataCell.Element { "C4" }
+            HTML.TableDataCell.Element { "C5" }
+            HTML.TableDataCell.Element { "C6" }
+            HTML.TableDataCell.Element { "C7" }
+            HTML.TableDataCell.Element { "C8" }
+            HTML.TableDataCell.Element { "C9" }
+            HTML.TableDataCell.Element { "C10" }
         }
     }
 }
 
 private struct Header10: HTML.View {
     var body: some HTML.View {
-        TableRow {
-            TableHeader { "H1" }
-            TableHeader { "H2" }
-            TableHeader { "H3" }
-            TableHeader { "H4" }
-            TableHeader { "H5" }
-            TableHeader { "H6" }
-            TableHeader { "H7" }
-            TableHeader { "H8" }
-            TableHeader { "H9" }
-            TableHeader { "H10" }
+        HTML.TableRow.Element {
+            HTML.TableHeader.Element { "H1" }
+            HTML.TableHeader.Element { "H2" }
+            HTML.TableHeader.Element { "H3" }
+            HTML.TableHeader.Element { "H4" }
+            HTML.TableHeader.Element { "H5" }
+            HTML.TableHeader.Element { "H6" }
+            HTML.TableHeader.Element { "H7" }
+            HTML.TableHeader.Element { "H8" }
+            HTML.TableHeader.Element { "H9" }
+            HTML.TableHeader.Element { "H10" }
         }
     }
 }
@@ -169,18 +169,18 @@ private struct Rows10x10: HTML.View {
 
 private struct SimpleTable10x1: HTML.View {
     var body: some HTML.View {
-        Table {
-            TableHead { Header10() }
-            TableBody { Row10() }
+        HTML.Table.Element {
+            HTML.TableHead.Element { Header10() }
+            HTML.TableBody.Element { Row10() }
         }
     }
 }
 
 private struct SimpleTable10x2: HTML.View {
     var body: some HTML.View {
-        Table {
-            TableHead { Header10() }
-            TableBody {
+        HTML.Table.Element {
+            HTML.TableHead.Element { Header10() }
+            HTML.TableBody.Element {
                 Row10()
                 Row10()
             }
@@ -190,9 +190,9 @@ private struct SimpleTable10x2: HTML.View {
 
 private struct SimpleTable10x5: HTML.View {
     var body: some HTML.View {
-        Table {
-            TableHead { Header10() }
-            TableBody {
+        HTML.Table.Element {
+            HTML.TableHead.Element { Header10() }
+            HTML.TableBody.Element {
                 Row10()
                 Row10()
                 Row10()
@@ -205,18 +205,18 @@ private struct SimpleTable10x5: HTML.View {
 
 private struct SimpleTable10x10: HTML.View {
     var body: some HTML.View {
-        Table {
-            TableHead { Header10() }
-            TableBody { Rows10x10() }
+        HTML.Table.Element {
+            HTML.TableHead.Element { Header10() }
+            HTML.TableBody.Element { Rows10x10() }
         }
     }
 }
 
 private struct SimpleTable10x25: HTML.View {
     var body: some HTML.View {
-        Table {
-            TableHead { Header10() }
-            TableBody {
+        HTML.Table.Element {
+            HTML.TableHead.Element { Header10() }
+            HTML.TableBody.Element {
                 Rows10x10()
                 Rows10x10()
                 Row10()
@@ -231,9 +231,9 @@ private struct SimpleTable10x25: HTML.View {
 
 private struct SimpleTable10x50: HTML.View {
     var body: some HTML.View {
-        Table {
-            TableHead { Header10() }
-            TableBody {
+        HTML.Table.Element {
+            HTML.TableHead.Element { Header10() }
+            HTML.TableBody.Element {
                 Rows10x10()
                 Rows10x10()
                 Rows10x10()
@@ -246,9 +246,9 @@ private struct SimpleTable10x50: HTML.View {
 
 private struct SimpleTable10x100: HTML.View {
     var body: some HTML.View {
-        Table {
-            TableHead { Header10() }
-            TableBody {
+        HTML.Table.Element {
+            HTML.TableHead.Element { Header10() }
+            HTML.TableBody.Element {
                 Rows10x10()
                 Rows10x10()
                 Rows10x10()
@@ -266,17 +266,17 @@ private struct SimpleTable10x100: HTML.View {
 
 private struct SimpleTable5x30: HTML.View {
     var body: some HTML.View {
-        Table {
-            TableHead {
-                TableRow {
-                    TableHeader { "H1" }
-                    TableHeader { "H2" }
-                    TableHeader { "H3" }
-                    TableHeader { "H4" }
-                    TableHeader { "H5" }
+        HTML.Table.Element {
+            HTML.TableHead.Element {
+                HTML.TableRow.Element {
+                    HTML.TableHeader.Element { "H1" }
+                    HTML.TableHeader.Element { "H2" }
+                    HTML.TableHeader.Element { "H3" }
+                    HTML.TableHeader.Element { "H4" }
+                    HTML.TableHeader.Element { "H5" }
                 }
             }
-            TableBody {
+            HTML.TableBody.Element {
                 Row5()
                 Row5()
                 Row5()
@@ -314,33 +314,33 @@ private struct SimpleTable5x30: HTML.View {
 
 private struct RowspanGroup: HTML.View {
     var body: some HTML.View {
-        TableRow {
-            TableHeader(rowspan: 3) { "Group" }
-            TableDataCell { "Item 1" }
-            TableDataCell { "100" }
+        HTML.TableRow.Element {
+            HTML.TableHeader.Element(rowspan: 3) { "Group" }
+            HTML.TableDataCell.Element { "Item 1" }
+            HTML.TableDataCell.Element { "100" }
         }
-        TableRow {
-            TableDataCell { "Item 2" }
-            TableDataCell { "200" }
+        HTML.TableRow.Element {
+            HTML.TableDataCell.Element { "Item 2" }
+            HTML.TableDataCell.Element { "200" }
         }
-        TableRow {
-            TableDataCell { "Item 3" }
-            TableDataCell { "300" }
+        HTML.TableRow.Element {
+            HTML.TableDataCell.Element { "Item 3" }
+            HTML.TableDataCell.Element { "300" }
         }
     }
 }
 
 private struct RowspanTable30: HTML.View {
     var body: some HTML.View {
-        Table {
-            TableHead {
-                TableRow {
-                    TableHeader { "Category" }
-                    TableHeader { "Item" }
-                    TableHeader { "Value" }
+        HTML.Table.Element {
+            HTML.TableHead.Element {
+                HTML.TableRow.Element {
+                    HTML.TableHeader.Element { "Category" }
+                    HTML.TableHeader.Element { "Item" }
+                    HTML.TableHeader.Element { "Value" }
                 }
             }
-            TableBody {
+            HTML.TableBody.Element {
                 RowspanGroup()
                 RowspanGroup()
                 RowspanGroup()
@@ -358,35 +358,35 @@ private struct RowspanTable30: HTML.View {
 
 private struct ComplexGroup: HTML.View {
     var body: some HTML.View {
-        TableRow {
-            TableHeader(rowspan: 3) { "Group" }
-            TableDataCell { "Sub A" }
-            TableDataCell { "Val A" }
-            TableDataCell { "OK" }
+        HTML.TableRow.Element {
+            HTML.TableHeader.Element(rowspan: 3) { "Group" }
+            HTML.TableDataCell.Element { "Sub A" }
+            HTML.TableDataCell.Element { "Val A" }
+            HTML.TableDataCell.Element { "OK" }
         }
-        TableRow {
-            TableDataCell { "Sub B" }
-            TableDataCell { "Val B" }
-            TableDataCell { "OK" }
+        HTML.TableRow.Element {
+            HTML.TableDataCell.Element { "Sub B" }
+            HTML.TableDataCell.Element { "Val B" }
+            HTML.TableDataCell.Element { "OK" }
         }
-        TableRow {
-            TableDataCell(colspan: 2) { "Combined" }
-            TableDataCell { "OK" }
+        HTML.TableRow.Element {
+            HTML.TableDataCell.Element(colspan: 2) { "Combined" }
+            HTML.TableDataCell.Element { "OK" }
         }
     }
 }
 
 private struct ComplexTable30: HTML.View {
     var body: some HTML.View {
-        Table {
-            TableHead {
-                TableRow {
-                    TableHeader { "Category" }
-                    TableHeader(colspan: 2) { "Details" }
-                    TableHeader { "Status" }
+        HTML.Table.Element {
+            HTML.TableHead.Element {
+                HTML.TableRow.Element {
+                    HTML.TableHeader.Element { "Category" }
+                    HTML.TableHeader.Element(colspan: 2) { "Details" }
+                    HTML.TableHeader.Element { "Status" }
                 }
             }
-            TableBody {
+            HTML.TableBody.Element {
                 ComplexGroup()
                 ComplexGroup()
                 ComplexGroup()
@@ -398,9 +398,9 @@ private struct ComplexTable30: HTML.View {
                 ComplexGroup()
                 ComplexGroup()
             }
-            TableFoot {
-                TableRow {
-                    TableDataCell(colspan: 4) { "Total: 30 items" }
+            HTML.TableFoot.Element {
+                HTML.TableRow.Element {
+                    HTML.TableDataCell.Element(colspan: 4) { "Total: 30 items" }
                 }
             }
         }

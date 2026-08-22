@@ -15,14 +15,14 @@ extension RowspanSnapshotTests.Snapshot {
     func `minimal rowspan`() {
         let document = PDF.Document {
             HTML.Document {
-                Table {
-                    TableBody {
-                        TableRow {
-                            TableHeader(rowspan: 2) { "Spanning" }
-                            TableDataCell { "Row 1 Data" }
+                HTML.Table.Element {
+                    HTML.TableBody.Element {
+                        HTML.TableRow.Element {
+                            HTML.TableHeader.Element(rowspan: 2) { "Spanning" }
+                            HTML.TableDataCell.Element { "Row 1 Data" }
                         }
-                        TableRow {
-                            TableDataCell { "Row 2 Data" }
+                        HTML.TableRow.Element {
+                            HTML.TableDataCell.Element { "Row 2 Data" }
                         }
                     }
                 }
@@ -36,36 +36,36 @@ extension RowspanSnapshotTests.Snapshot {
     func `multiple rowspan cells`() {
         let document = PDF.Document {
             HTML.Document {
-                Table {
-                    TableHead {
-                        TableRow {
-                            TableHeader { "Category" }
-                            TableHeader { "Item" }
-                            TableHeader { "Value" }
+                HTML.Table.Element {
+                    HTML.TableHead.Element {
+                        HTML.TableRow.Element {
+                            HTML.TableHeader.Element { "Category" }
+                            HTML.TableHeader.Element { "Item" }
+                            HTML.TableHeader.Element { "Value" }
                         }
                     }
-                    TableBody {
-                        TableRow {
-                            TableHeader(rowspan: 2) { "Group A" }
-                            TableDataCell { "Item 1" }
-                            TableDataCell { "100" }
+                    HTML.TableBody.Element {
+                        HTML.TableRow.Element {
+                            HTML.TableHeader.Element(rowspan: 2) { "Group A" }
+                            HTML.TableDataCell.Element { "Item 1" }
+                            HTML.TableDataCell.Element { "100" }
                         }
-                        TableRow {
-                            TableDataCell { "Item 2" }
-                            TableDataCell { "200" }
+                        HTML.TableRow.Element {
+                            HTML.TableDataCell.Element { "Item 2" }
+                            HTML.TableDataCell.Element { "200" }
                         }
-                        TableRow {
-                            TableHeader(rowspan: 3) { "Group B" }
-                            TableDataCell { "Item 3" }
-                            TableDataCell { "300" }
+                        HTML.TableRow.Element {
+                            HTML.TableHeader.Element(rowspan: 3) { "Group B" }
+                            HTML.TableDataCell.Element { "Item 3" }
+                            HTML.TableDataCell.Element { "300" }
                         }
-                        TableRow {
-                            TableDataCell { "Item 4" }
-                            TableDataCell { "400" }
+                        HTML.TableRow.Element {
+                            HTML.TableDataCell.Element { "Item 4" }
+                            HTML.TableDataCell.Element { "400" }
                         }
-                        TableRow {
-                            TableDataCell { "Item 5" }
-                            TableDataCell { "500" }
+                        HTML.TableRow.Element {
+                            HTML.TableDataCell.Element { "Item 5" }
+                            HTML.TableDataCell.Element { "500" }
                         }
                     }
                 }
@@ -79,15 +79,15 @@ extension RowspanSnapshotTests.Snapshot {
     func `table without rowspan`() {
         let document = PDF.Document {
             HTML.Document {
-                Table {
-                    TableBody {
-                        TableRow {
-                            TableHeader { "Header 1" }
-                            TableHeader { "Header 2" }
+                HTML.Table.Element {
+                    HTML.TableBody.Element {
+                        HTML.TableRow.Element {
+                            HTML.TableHeader.Element { "Header 1" }
+                            HTML.TableHeader.Element { "Header 2" }
                         }
-                        TableRow {
-                            TableDataCell { "Data 1" }
-                            TableDataCell { "Data 2" }
+                        HTML.TableRow.Element {
+                            HTML.TableDataCell.Element { "Data 1" }
+                            HTML.TableDataCell.Element { "Data 2" }
                         }
                     }
                 }
@@ -101,46 +101,46 @@ extension RowspanSnapshotTests.Snapshot {
     func `complex rowspan with colspan and tfoot`() {
         let document = PDF.Document {
             HTML.Document {
-                Table {
-                    TableHead {
-                        TableRow {
-                            TableHeader { "Category" }
-                            TableHeader(colspan: 2) { "Details" }
-                            TableHeader { "Status" }
+                HTML.Table.Element {
+                    HTML.TableHead.Element {
+                        HTML.TableRow.Element {
+                            HTML.TableHeader.Element { "Category" }
+                            HTML.TableHeader.Element(colspan: 2) { "Details" }
+                            HTML.TableHeader.Element { "Status" }
                         }
                     }
-                    TableBody {
-                        TableRow {
-                            TableHeader(rowspan: 2) { "Rendering" }
-                            TableDataCell { "Tables" }
-                            TableDataCell { "Full support" }
-                            TableDataCell { "OK" }
+                    HTML.TableBody.Element {
+                        HTML.TableRow.Element {
+                            HTML.TableHeader.Element(rowspan: 2) { "Rendering" }
+                            HTML.TableDataCell.Element { "Tables" }
+                            HTML.TableDataCell.Element { "Full support" }
+                            HTML.TableDataCell.Element { "OK" }
                         }
-                        TableRow {
-                            TableDataCell { "Lists" }
-                            TableDataCell { "Full support" }
-                            TableDataCell { "OK" }
+                        HTML.TableRow.Element {
+                            HTML.TableDataCell.Element { "Lists" }
+                            HTML.TableDataCell.Element { "Full support" }
+                            HTML.TableDataCell.Element { "OK" }
                         }
-                        TableRow {
-                            TableHeader(rowspan: 3) { "Typography" }
-                            TableDataCell { "Headings" }
-                            TableDataCell { "H1-H6" }
-                            TableDataCell { "OK" }
+                        HTML.TableRow.Element {
+                            HTML.TableHeader.Element(rowspan: 3) { "Typography" }
+                            HTML.TableDataCell.Element { "Headings" }
+                            HTML.TableDataCell.Element { "H1-H6" }
+                            HTML.TableDataCell.Element { "OK" }
                         }
-                        TableRow {
-                            TableDataCell { "Inline styles" }
-                            TableDataCell { "Bold, italic" }
-                            TableDataCell { "OK" }
+                        HTML.TableRow.Element {
+                            HTML.TableDataCell.Element { "Inline styles" }
+                            HTML.TableDataCell.Element { "Bold, italic" }
+                            HTML.TableDataCell.Element { "OK" }
                         }
-                        TableRow {
-                            TableDataCell { "Links" }
-                            TableDataCell { "Clickable" }
-                            TableDataCell { "OK" }
+                        HTML.TableRow.Element {
+                            HTML.TableDataCell.Element { "Links" }
+                            HTML.TableDataCell.Element { "Clickable" }
+                            HTML.TableDataCell.Element { "OK" }
                         }
                     }
-                    TableFoot {
-                        TableRow {
-                            TableDataCell(colspan: 4) { "All features implemented" }
+                    HTML.TableFoot.Element {
+                        HTML.TableRow.Element {
+                            HTML.TableDataCell.Element(colspan: 4) { "All features implemented" }
                         }
                     }
                 }

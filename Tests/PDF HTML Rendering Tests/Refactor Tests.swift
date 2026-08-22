@@ -23,7 +23,7 @@ struct `PDF.HTML.View Tests` {
     func `Paragraph transforms with spacing`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                Paragraph { "Test paragraph" }
+                HTML.Paragraph.Element { "Test paragraph" }
             }
         }
 
@@ -37,7 +37,7 @@ struct `PDF.HTML.View Tests` {
     func `Heading transforms`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                H1 { "Big Heading" }
+                HTML.H1.Element { "Big Heading" }
             }
         }
 
@@ -50,9 +50,9 @@ struct `PDF.HTML.View Tests` {
     func `Inline elements render together`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                Paragraph {
+                HTML.Paragraph.Element {
                     "Normal "
-                    StrongImportance { "bold" }
+                    HTML.StrongImportance.Element { "bold" }
                     " normal"
                 }
             }
@@ -71,8 +71,8 @@ struct `PDF.HTML.View Tests` {
     func `PDF.Document can be created from HTML`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                H1 { "Title" }
-                Paragraph { "Content" }
+                HTML.H1.Element { "Title" }
+                HTML.Paragraph.Element { "Content" }
             }
         }
 
@@ -88,7 +88,7 @@ struct `PDF.HTML.View Tests` {
     func `PDF bytes can be generated from HTML`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                Paragraph { "Hello PDF" }
+                HTML.Paragraph.Element { "Hello PDF" }
             }
         }
 
@@ -128,51 +128,51 @@ struct `Sticky Header Tests` {
         struct TestView: HTML.View {
             var body: some HTML.View {
 
-                Paragraph { "Filler 1" }
-                Paragraph { "Filler 2" }
-                Paragraph { "Filler 3" }
-                Paragraph { "Filler 4" }
-                Paragraph { "Filler 5" }
-                Paragraph { "Filler 6" }
-                Paragraph { "Filler 7" }
-                Paragraph { "Filler 8" }
-                Paragraph { "Filler 9" }
-                Paragraph { "Filler 10" }
-                Paragraph { "Filler 11" }
-                Paragraph { "Filler 12" }
-                Paragraph { "Filler 13" }
-                Paragraph { "Filler 14" }
-                Paragraph { "Filler 15" }
-                Paragraph { "Filler 16" }
-                Paragraph { "Filler 17" }
-                Paragraph { "Filler 18" }
-                Paragraph { "Filler 19" }
-                Paragraph { "Filler 20" }
-                Paragraph { "Filler 21" }
-                Paragraph { "Filler 22" }
-                Paragraph { "Filler 23" }
-                Paragraph { "Filler 24" }
-                Paragraph { "Filler 25" }
-                Paragraph { "Filler 26" }
-                Paragraph { "Filler 27" }
-                Paragraph { "Filler 28" }
-                Paragraph { "Filler 29" }
-                Paragraph { "Filler 30" }
-                Paragraph { "Filler 31" }
-                Paragraph { "Filler 32" }
-                Paragraph { "Filler 33" }
-                Paragraph { "Filler 34" }
-                Paragraph { "Filler 35" }
-                Paragraph { "Filler 36" }
-                Paragraph { "Filler 37" }
-                Paragraph { "Filler 38" }
-                Paragraph { "Filler 39" }
-                Paragraph { "Filler 40" }
+                HTML.Paragraph.Element { "Filler 1" }
+                HTML.Paragraph.Element { "Filler 2" }
+                HTML.Paragraph.Element { "Filler 3" }
+                HTML.Paragraph.Element { "Filler 4" }
+                HTML.Paragraph.Element { "Filler 5" }
+                HTML.Paragraph.Element { "Filler 6" }
+                HTML.Paragraph.Element { "Filler 7" }
+                HTML.Paragraph.Element { "Filler 8" }
+                HTML.Paragraph.Element { "Filler 9" }
+                HTML.Paragraph.Element { "Filler 10" }
+                HTML.Paragraph.Element { "Filler 11" }
+                HTML.Paragraph.Element { "Filler 12" }
+                HTML.Paragraph.Element { "Filler 13" }
+                HTML.Paragraph.Element { "Filler 14" }
+                HTML.Paragraph.Element { "Filler 15" }
+                HTML.Paragraph.Element { "Filler 16" }
+                HTML.Paragraph.Element { "Filler 17" }
+                HTML.Paragraph.Element { "Filler 18" }
+                HTML.Paragraph.Element { "Filler 19" }
+                HTML.Paragraph.Element { "Filler 20" }
+                HTML.Paragraph.Element { "Filler 21" }
+                HTML.Paragraph.Element { "Filler 22" }
+                HTML.Paragraph.Element { "Filler 23" }
+                HTML.Paragraph.Element { "Filler 24" }
+                HTML.Paragraph.Element { "Filler 25" }
+                HTML.Paragraph.Element { "Filler 26" }
+                HTML.Paragraph.Element { "Filler 27" }
+                HTML.Paragraph.Element { "Filler 28" }
+                HTML.Paragraph.Element { "Filler 29" }
+                HTML.Paragraph.Element { "Filler 30" }
+                HTML.Paragraph.Element { "Filler 31" }
+                HTML.Paragraph.Element { "Filler 32" }
+                HTML.Paragraph.Element { "Filler 33" }
+                HTML.Paragraph.Element { "Filler 34" }
+                HTML.Paragraph.Element { "Filler 35" }
+                HTML.Paragraph.Element { "Filler 36" }
+                HTML.Paragraph.Element { "Filler 37" }
+                HTML.Paragraph.Element { "Filler 38" }
+                HTML.Paragraph.Element { "Filler 39" }
+                HTML.Paragraph.Element { "Filler 40" }
 
-                H2 { "STICKY_HEADER" }
+                HTML.H2.Element { "STICKY_HEADER" }
                     .css.pageBreakAfter(.avoid)
 
-                Paragraph { "FOLLOWING_CONTENT" }
+                HTML.Paragraph.Element { "FOLLOWING_CONTENT" }
             }
         }
 
@@ -190,9 +190,9 @@ struct `Sticky Header Tests` {
     func `Sticky header at document end renders`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                Paragraph { "Some content" }
+                HTML.Paragraph.Element { "Some content" }
 
-                H2 { "ORPHAN_HEADER" }
+                HTML.H2.Element { "ORPHAN_HEADER" }
                     .css.pageBreakAfter(.avoid)
             }
         }
@@ -284,132 +284,132 @@ private func printOutline(_ items: [ISO_32000.Outline.Item], indent: Int) {
 private struct TechnicalSpecificationView: HTML.View {
     var body: some HTML.View {
 
-        H1 { "Technical Specification XYZ-2024" }
+        HTML.H1.Element { "Technical Specification XYZ-2024" }
             .css.textAlign(.center)
-        Paragraph { "A comprehensive guide to the XYZ standard." }
+        HTML.Paragraph.Element { "A comprehensive guide to the XYZ standard." }
 
-        H1 { "1 Scope" }
-        Paragraph { "This document specifies the requirements for XYZ systems." }
+        HTML.H1.Element { "1 Scope" }
+        HTML.Paragraph.Element { "This document specifies the requirements for XYZ systems." }
 
-        H1 { "2 Normative references" }
-        Paragraph { "The following documents are referred to in the text." }
+        HTML.H1.Element { "2 Normative references" }
+        HTML.Paragraph.Element { "The following documents are referred to in the text." }
 
-        H1 { "3 Terms and definitions" }
-        Paragraph { "For the purposes of this document, the following terms apply." }
+        HTML.H1.Element { "3 Terms and definitions" }
+        HTML.Paragraph.Element { "For the purposes of this document, the following terms apply." }
 
-        H1 { "4 Notation" }
-        Paragraph { "This section describes the notation used throughout the document." }
+        HTML.H1.Element { "4 Notation" }
+        HTML.Paragraph.Element { "This section describes the notation used throughout the document." }
 
-        H2 { "4.1 General" }
-        Paragraph { "General notation conventions are described here." }
+        HTML.H2.Element { "4.1 General" }
+        HTML.Paragraph.Element { "General notation conventions are described here." }
 
-        H2 { "4.2 Established notations" }
-        Paragraph { "Industry-standard notations that are adopted." }
+        HTML.H2.Element { "4.2 Established notations" }
+        HTML.Paragraph.Element { "Industry-standard notations that are adopted." }
 
-        H2 { "4.3 Special symbols" }
-        Paragraph { "Special symbols used in this specification." }
+        HTML.H2.Element { "4.3 Special symbols" }
+        HTML.Paragraph.Element { "Special symbols used in this specification." }
 
-        H3 { "4.3.1 Mathematical symbols" }
-        Paragraph { "Symbols used for mathematical expressions." }
+        HTML.H3.Element { "4.3.1 Mathematical symbols" }
+        HTML.Paragraph.Element { "Symbols used for mathematical expressions." }
 
-        H3 { "4.3.2 Logical symbols" }
-        Paragraph { "Symbols used for logical operations." }
+        HTML.H3.Element { "4.3.2 Logical symbols" }
+        HTML.Paragraph.Element { "Symbols used for logical operations." }
 
-        H1 { "5 Version designations" }
-        Paragraph { "How versions are designated in this standard." }
+        HTML.H1.Element { "5 Version designations" }
+        HTML.Paragraph.Element { "How versions are designated in this standard." }
 
-        H1 { "6 Conformance" }
-        Paragraph { "Requirements for conformance to this specification." }
+        HTML.H1.Element { "6 Conformance" }
+        HTML.Paragraph.Element { "Requirements for conformance to this specification." }
 
-        H2 { "6.1 Conformance levels" }
-        Paragraph { "Different levels of conformance are defined." }
+        HTML.H2.Element { "6.1 Conformance levels" }
+        HTML.Paragraph.Element { "Different levels of conformance are defined." }
 
-        H3 { "6.1.1 Basic conformance" }
-        Paragraph { "Minimum requirements for basic conformance." }
+        HTML.H3.Element { "6.1.1 Basic conformance" }
+        HTML.Paragraph.Element { "Minimum requirements for basic conformance." }
 
-        H3 { "6.1.2 Full conformance" }
-        Paragraph { "Requirements for full conformance." }
+        HTML.H3.Element { "6.1.2 Full conformance" }
+        HTML.Paragraph.Element { "Requirements for full conformance." }
 
-        H4 { "6.1.2.1 Mandatory features" }
-        Paragraph { "Features that must be implemented." }
+        HTML.H4.Element { "6.1.2.1 Mandatory features" }
+        HTML.Paragraph.Element { "Features that must be implemented." }
 
-        H4 { "6.1.2.2 Optional features" }
-        Paragraph { "Features that may optionally be implemented." }
+        HTML.H4.Element { "6.1.2.2 Optional features" }
+        HTML.Paragraph.Element { "Features that may optionally be implemented." }
 
-        H2 { "6.2 Conformance testing" }
-        Paragraph { "How conformance is verified." }
+        HTML.H2.Element { "6.2 Conformance testing" }
+        HTML.Paragraph.Element { "How conformance is verified." }
 
-        H1 { "7 Syntax" }
-        Paragraph { "The syntax of the XYZ language." }
+        HTML.H1.Element { "7 Syntax" }
+        HTML.Paragraph.Element { "The syntax of the XYZ language." }
 
-        H2 { "7.1 Lexical elements" }
-        Paragraph { "Basic lexical elements of the language." }
+        HTML.H2.Element { "7.1 Lexical elements" }
+        HTML.Paragraph.Element { "Basic lexical elements of the language." }
 
-        H2 { "7.2 Expressions" }
-        Paragraph { "How expressions are formed." }
+        HTML.H2.Element { "7.2 Expressions" }
+        HTML.Paragraph.Element { "How expressions are formed." }
 
-        H2 { "7.3 Statements" }
-        Paragraph { "Statement syntax and semantics." }
+        HTML.H2.Element { "7.3 Statements" }
+        HTML.Paragraph.Element { "Statement syntax and semantics." }
 
-        H1 { "8 Graphics" }
-        Paragraph { "Graphics capabilities of the system." }
+        HTML.H1.Element { "8 Graphics" }
+        HTML.Paragraph.Element { "Graphics capabilities of the system." }
 
-        H2 { "8.1 Coordinate systems" }
-        Paragraph { "How coordinates are specified." }
+        HTML.H2.Element { "8.1 Coordinate systems" }
+        HTML.Paragraph.Element { "How coordinates are specified." }
 
-        H2 { "8.2 Transformations" }
-        Paragraph { "Geometric transformations supported." }
+        HTML.H2.Element { "8.2 Transformations" }
+        HTML.Paragraph.Element { "Geometric transformations supported." }
 
-        H1 { "9 Text" }
-        Paragraph { "Text handling capabilities." }
+        HTML.H1.Element { "9 Text" }
+        HTML.Paragraph.Element { "Text handling capabilities." }
 
-        H2 { "9.1 General" }
-        Paragraph { "Overview of text handling." }
+        HTML.H2.Element { "9.1 General" }
+        HTML.Paragraph.Element { "Overview of text handling." }
 
-        H2 { "9.2 Organisation and use of fonts" }
-        Paragraph { "How fonts are organized and used." }
+        HTML.H2.Element { "9.2 Organisation and use of fonts" }
+        HTML.Paragraph.Element { "How fonts are organized and used." }
 
-        H3 { "9.2.1 Font types" }
-        Paragraph { "Different types of fonts supported." }
+        HTML.H3.Element { "9.2.1 Font types" }
+        HTML.Paragraph.Element { "Different types of fonts supported." }
 
-        H3 { "9.2.2 Font embedding" }
-        Paragraph { "How fonts are embedded in documents." }
+        HTML.H3.Element { "9.2.2 Font embedding" }
+        HTML.Paragraph.Element { "How fonts are embedded in documents." }
 
-        H2 { "9.3 Text state parameters and operators" }
-        Paragraph { "Parameters that control text rendering." }
+        HTML.H2.Element { "9.3 Text state parameters and operators" }
+        HTML.Paragraph.Element { "Parameters that control text rendering." }
 
-        H2 { "9.4 Text objects" }
-        Paragraph { "How text objects are defined." }
+        HTML.H2.Element { "9.4 Text objects" }
+        HTML.Paragraph.Element { "How text objects are defined." }
 
-        H2 { "9.5 Introduction to font data structures" }
-        Paragraph { "Overview of font data structures." }
+        HTML.H2.Element { "9.5 Introduction to font data structures" }
+        HTML.Paragraph.Element { "Overview of font data structures." }
 
-        H2 { "9.6 Simple fonts" }
-        Paragraph { "Simple font types and their properties." }
+        HTML.H2.Element { "9.6 Simple fonts" }
+        HTML.Paragraph.Element { "Simple font types and their properties." }
 
-        H3 { "9.6.1 Type 1 fonts" }
-        Paragraph { "Adobe Type 1 font format." }
+        HTML.H3.Element { "9.6.1 Type 1 fonts" }
+        HTML.Paragraph.Element { "Adobe Type 1 font format." }
 
-        H3 { "9.6.2 TrueType fonts" }
-        Paragraph { "TrueType font format." }
+        HTML.H3.Element { "9.6.2 TrueType fonts" }
+        HTML.Paragraph.Element { "TrueType font format." }
 
-        H2 { "9.7 Composite fonts" }
-        Paragraph { "Composite font architecture." }
+        HTML.H2.Element { "9.7 Composite fonts" }
+        HTML.Paragraph.Element { "Composite font architecture." }
 
-        H2 { "9.8 Font descriptors" }
-        Paragraph { "Metadata about fonts." }
+        HTML.H2.Element { "9.8 Font descriptors" }
+        HTML.Paragraph.Element { "Metadata about fonts." }
 
-        H1 { "Annex A (normative) Implementation notes" }
-        Paragraph { "Notes for implementers of this specification." }
+        HTML.H1.Element { "Annex A (normative) Implementation notes" }
+        HTML.Paragraph.Element { "Notes for implementers of this specification." }
 
-        H1 { "Annex B (informative) Examples" }
-        Paragraph { "Example implementations and use cases." }
+        HTML.H1.Element { "Annex B (informative) Examples" }
+        HTML.Paragraph.Element { "Example implementations and use cases." }
 
-        H2 { "B.1 Basic example" }
-        Paragraph { "A simple example demonstrating core features." }
+        HTML.H2.Element { "B.1 Basic example" }
+        HTML.Paragraph.Element { "A simple example demonstrating core features." }
 
-        H2 { "B.2 Advanced example" }
-        Paragraph { "A complex example showing advanced features." }
+        HTML.H2.Element { "B.2 Advanced example" }
+        HTML.Paragraph.Element { "A complex example showing advanced features." }
     }
 }
 
@@ -426,80 +426,80 @@ struct ComplexView: HTML.View {
         FigureDemo()
         NestedListDemo()
         InlineStyleDemo()
-        Paragraph { Emphasis { "End of demo." } }
+        HTML.Paragraph.Element { HTML.Emphasis.Element { "End of demo." } }
         NDADemo()
     }
 }
 
 private struct TextStylingDemo: HTML.View {
     var body: some HTML.View {
-        H1 { "All HTML Elements Demo" }
-        H2 { "1. Text Styling" }
-        Paragraph {
+        HTML.H1.Element { "All HTML Elements Demo" }
+        HTML.H2.Element { "1. Text Styling" }
+        HTML.Paragraph.Element {
             "Normal, "
-            StrongImportance { "bold" }
+            HTML.StrongImportance.Element { "bold" }
             ", "
-            Emphasis { "italic" }
+            HTML.Emphasis.Element { "italic" }
             ", "
-            Code { "code" }
+            HTML.Code.Element { "code" }
             "."
         }
-        Paragraph {
-            Mark { "highlighted" }
+        HTML.Paragraph.Element {
+            HTML.Mark.Element { "highlighted" }
             ", "
-            Strikethrough { "strikethrough" }
+            HTML.Strikethrough.Element { "strikethrough" }
             ", "
-            UnarticulatedAnnotation { "underline" }
+            HTML.UnarticulatedAnnotation.Element { "underline" }
             "."
         }
-        Paragraph {
+        HTML.Paragraph.Element {
             "H"
-            Subscript { "2" }
+            HTML.Subscript.Element { "2" }
             "O, E=mc"
-            Superscript { "2" }
+            HTML.Superscript.Element { "2" }
             "."
         }
-        Paragraph {
+        HTML.Paragraph.Element {
             "Read "
-            Cite { "1984" }
+            HTML.Cite.Element { "1984" }
             " by George Orwell."
         }
-        Paragraph {
+        HTML.Paragraph.Element {
             "Press "
-            KeyboardInput { "Ctrl+C" }
+            HTML.KeyboardInput.Element { "Ctrl+C" }
             " to copy."
         }
-        Paragraph {
+        HTML.Paragraph.Element {
             "Output: "
-            Samp { "Hello, World!" }
+            HTML.Samp.Element { "Hello, World!" }
         }
-        Paragraph {
+        HTML.Paragraph.Element {
             "Let "
-            Variable { "x" }
+            HTML.Variable.Element { "x" }
             " = 5."
         }
-        Paragraph {
+        HTML.Paragraph.Element {
             "The "
-            Definition { "DOM" }
+            HTML.Definition.Element { "DOM" }
             " is the Document Object Model."
         }
-        Paragraph {
+        HTML.Paragraph.Element {
             "The "
-            Abbreviation { "HTML" }
+            HTML.Abbreviation.Element { "HTML" }
             " specification."
         }
-        Paragraph {
+        HTML.Paragraph.Element {
             "She said, "
-            InlineQuotation { "Hello!" }
+            HTML.InlineQuotation.Element { "Hello!" }
         }
-        Paragraph {
+        HTML.Paragraph.Element {
             "Line 1"
-            BR()
+            HTML.BR.Element()
             "Line 2 (after BR)"
         }
-        Paragraph {
+        HTML.Paragraph.Element {
             "Meeting at "
-            Time { "2024-01-15" }
+            HTML.Time.Element { "2024-01-15" }
             "."
         }
     }
@@ -507,26 +507,26 @@ private struct TextStylingDemo: HTML.View {
 
 private struct LinksDemo: HTML.View {
     var body: some HTML.View {
-        H2 { "2. Links" }
-        Paragraph {
+        HTML.H2.Element { "2. Links" }
+        HTML.Paragraph.Element {
             "Visit "
-            Anchor(href: "https://example.com") { "Example Website" }
+            HTML.Anchor.Element(href: "https://example.com") { "Example Website" }
             " for more info."
         }
-        Paragraph {
+        HTML.Paragraph.Element {
             "Contact: "
-            Anchor(href: "mailto:test@example.com") { "test@example.com" }
+            HTML.Anchor.Element(href: "mailto:test@example.com") { "test@example.com" }
         }
     }
 }
 
 private struct BlockElementsDemo: HTML.View {
     var body: some HTML.View {
-        H2 { "3. Block Elements" }
-        BlockQuote {
-            Paragraph { "This is a block quotation." }
+        HTML.H2.Element { "3. Block Elements" }
+        HTML.BlockQuote.Element {
+            HTML.Paragraph.Element { "This is a block quotation." }
         }
-        PreformattedText {
+        HTML.PreformattedText.Element {
             "func hello() {\n    print(\"Hello\")\n}"
         }
 
@@ -535,461 +535,461 @@ private struct BlockElementsDemo: HTML.View {
 
 private struct ListsDemo: HTML.View {
     var body: some HTML.View {
-        H2 { "4. Lists" }
+        HTML.H2.Element { "4. Lists" }
             .css.pageBreakAfter(.avoid)
 
-        H3 { "4.1 Simple Unordered List" }
+        HTML.H3.Element { "4.1 Simple Unordered List" }
             .css.pageBreakAfter(.avoid)
 
-        UnorderedList {
-            ListItem { "First bullet point" }
-            ListItem { "Second bullet point" }
-            ListItem { "Third bullet point" }
+        HTML.UnorderedList.Element {
+            HTML.ListItem.Element { "First bullet point" }
+            HTML.ListItem.Element { "Second bullet point" }
+            HTML.ListItem.Element { "Third bullet point" }
         }
 
-        H3 { "4.2 Simple Ordered List" }
-        OrderedList {
-            ListItem { "First numbered item" }
-            ListItem { "Second numbered item" }
-            ListItem { "Third numbered item" }
+        HTML.H3.Element { "4.2 Simple Ordered List" }
+        HTML.OrderedList.Element {
+            HTML.ListItem.Element { "First numbered item" }
+            HTML.ListItem.Element { "Second numbered item" }
+            HTML.ListItem.Element { "Third numbered item" }
         }
 
-        H3 { "4.3 List Items with Wrapping Text" }
-        OrderedList {
-            ListItem {
+        HTML.H3.Element { "4.3 List Items with Wrapping Text" }
+        HTML.OrderedList.Element {
+            HTML.ListItem.Element {
                 "This is a longer list item that should wrap to multiple lines to test how the list marker aligns with multi-line content in an ordered list."
             }
-            ListItem {
+            HTML.ListItem.Element {
                 "Another lengthy item with sufficient text to cause line wrapping and verify proper indentation is maintained throughout."
             }
-            ListItem { "Short item." }
+            HTML.ListItem.Element { "Short item." }
         }
 
-        H3 { "4.4 List Items with Inline Formatting" }
-        UnorderedList {
-            ListItem {
-                StrongImportance { "Bold text" }
+        HTML.H3.Element { "4.4 List Items with Inline Formatting" }
+        HTML.UnorderedList.Element {
+            HTML.ListItem.Element {
+                HTML.StrongImportance.Element { "Bold text" }
                 " followed by normal text"
             }
-            ListItem {
+            HTML.ListItem.Element {
                 "Normal text with "
-                Emphasis { "italic" }
+                HTML.Emphasis.Element { "italic" }
                 " in the middle"
             }
-            ListItem {
-                Code { "inline code" }
+            HTML.ListItem.Element {
+                HTML.Code.Element { "inline code" }
                 " mixed with regular text"
             }
-            ListItem {
+            HTML.ListItem.Element {
                 "Link: "
-                Anchor(href: "https://example.com") { "Example Website" }
+                HTML.Anchor.Element(href: "https://example.com") { "Example Website" }
             }
         }
 
-        H3 { "4.5 Nested Lists" }
-        UnorderedList {
-            ListItem { "Level 1 - Item A" }
-            ListItem {
+        HTML.H3.Element { "4.5 Nested Lists" }
+        HTML.UnorderedList.Element {
+            HTML.ListItem.Element { "Level 1 - Item A" }
+            HTML.ListItem.Element {
                 "Level 1 - Item B with nested list:"
-                UnorderedList {
-                    ListItem { "Level 2 - Nested item 1" }
-                    ListItem { "Level 2 - Nested item 2" }
-                    ListItem {
+                HTML.UnorderedList.Element {
+                    HTML.ListItem.Element { "Level 2 - Nested item 1" }
+                    HTML.ListItem.Element { "Level 2 - Nested item 2" }
+                    HTML.ListItem.Element {
                         "Level 2 - Item with deeper nesting:"
-                        UnorderedList {
-                            ListItem { "Level 3 - Deep nested item" }
+                        HTML.UnorderedList.Element {
+                            HTML.ListItem.Element { "Level 3 - Deep nested item" }
                         }
                     }
                 }
             }
-            ListItem { "Level 1 - Item C" }
+            HTML.ListItem.Element { "Level 1 - Item C" }
         }
 
-        H3 { "4.6 Mixed Nested Lists" }
-        OrderedList {
-            ListItem { "First main item" }
-            ListItem {
+        HTML.H3.Element { "4.6 Mixed Nested Lists" }
+        HTML.OrderedList.Element {
+            HTML.ListItem.Element { "First main item" }
+            HTML.ListItem.Element {
                 "Second main item with sub-points:"
-                UnorderedList {
-                    ListItem { "Sub-point A" }
-                    ListItem { "Sub-point B" }
-                    ListItem { "Sub-point C" }
+                HTML.UnorderedList.Element {
+                    HTML.ListItem.Element { "Sub-point A" }
+                    HTML.ListItem.Element { "Sub-point B" }
+                    HTML.ListItem.Element { "Sub-point C" }
                 }
             }
-            ListItem {
+            HTML.ListItem.Element {
                 "Third main item with numbered sub-items:"
-                OrderedList {
-                    ListItem { "Sub-item 1" }
-                    ListItem { "Sub-item 2" }
+                HTML.OrderedList.Element {
+                    HTML.ListItem.Element { "Sub-item 1" }
+                    HTML.ListItem.Element { "Sub-item 2" }
                 }
             }
         }
 
-        H3 { "4.7 List with Many Items" }
-        OrderedList {
-            ListItem { "Item one" }
-            ListItem { "Item two" }
-            ListItem { "Item three" }
-            ListItem { "Item four" }
-            ListItem { "Item five" }
-            ListItem { "Item six" }
-            ListItem { "Item seven" }
-            ListItem { "Item eight" }
-            ListItem { "Item nine" }
-            ListItem { "Item ten" }
-            ListItem { "Item eleven" }
-            ListItem { "Item twelve" }
+        HTML.H3.Element { "4.7 List with Many Items" }
+        HTML.OrderedList.Element {
+            HTML.ListItem.Element { "Item one" }
+            HTML.ListItem.Element { "Item two" }
+            HTML.ListItem.Element { "Item three" }
+            HTML.ListItem.Element { "Item four" }
+            HTML.ListItem.Element { "Item five" }
+            HTML.ListItem.Element { "Item six" }
+            HTML.ListItem.Element { "Item seven" }
+            HTML.ListItem.Element { "Item eight" }
+            HTML.ListItem.Element { "Item nine" }
+            HTML.ListItem.Element { "Item ten" }
+            HTML.ListItem.Element { "Item eleven" }
+            HTML.ListItem.Element { "Item twelve" }
         }
 
-        H3 { "4.8 List Spacing" }
-        Paragraph {
+        HTML.H3.Element { "4.8 List Spacing" }
+        HTML.Paragraph.Element {
             "This paragraph comes before a list. There should be appropriate spacing between this text and the list below."
         }
-        UnorderedList {
-            ListItem { "First item after paragraph" }
-            ListItem { "Second item" }
+        HTML.UnorderedList.Element {
+            HTML.ListItem.Element { "First item after paragraph" }
+            HTML.ListItem.Element { "Second item" }
         }
-        Paragraph {
+        HTML.Paragraph.Element {
             "This paragraph comes after the list. Spacing should also be appropriate here."
         }
 
-        H3 { "4.9 Single Item Lists" }
-        UnorderedList {
-            ListItem { "Only item in unordered list" }
+        HTML.H3.Element { "4.9 Single Item Lists" }
+        HTML.UnorderedList.Element {
+            HTML.ListItem.Element { "Only item in unordered list" }
         }
-        OrderedList {
-            ListItem { "Only item in ordered list" }
+        HTML.OrderedList.Element {
+            HTML.ListItem.Element { "Only item in ordered list" }
         }
     }
 }
 
 private struct HeadingsDemo: HTML.View {
     var body: some HTML.View {
-        H2 { "5. Headings" }
-        H1 { "H1" }
-        H2 { "H2" }
-        H3 { "H3" }
-        H4 { "H4" }
-        H5 { "H5" }
-        H6 { "H6" }
+        HTML.H2.Element { "5. Headings" }
+        HTML.H1.Element { "H1" }
+        HTML.H2.Element { "H2" }
+        HTML.H3.Element { "H3" }
+        HTML.H4.Element { "H4" }
+        HTML.H5.Element { "H5" }
+        HTML.H6.Element { "H6" }
     }
 }
 
 private struct TableDemo: HTML.View {
     var body: some HTML.View {
-        H2 { "6. Tables" }
+        HTML.H2.Element { "6. Tables" }
             .css.pageBreakAfter(.avoid)
 
-        H3 { "6.1 Simple Data Table" }
+        HTML.H3.Element { "6.1 Simple Data Table" }
             .css.pageBreakAfter(.avoid)
 
-        Table {
-            Caption { "Employee Directory" }
-            TableHead {
-                TableRow {
-                    TableHeader { "Name" }
-                    TableHeader { "Age" }
-                    TableHeader { "City" }
+        HTML.Table.Element {
+            HTML.Caption.Element { "Employee Directory" }
+            HTML.TableHead.Element {
+                HTML.TableRow.Element {
+                    HTML.TableHeader.Element { "Name" }
+                    HTML.TableHeader.Element { "Age" }
+                    HTML.TableHeader.Element { "City" }
                 }
             }
-            TableBody {
-                TableRow {
-                    TableDataCell { "Alice" }
-                    TableDataCell { "30" }
-                    TableDataCell { "New York" }
+            HTML.TableBody.Element {
+                HTML.TableRow.Element {
+                    HTML.TableDataCell.Element { "Alice" }
+                    HTML.TableDataCell.Element { "30" }
+                    HTML.TableDataCell.Element { "New York" }
                 }
-                TableRow {
-                    TableDataCell { "Bob" }
-                    TableDataCell { "25" }
-                    TableDataCell { "Los Angeles" }
+                HTML.TableRow.Element {
+                    HTML.TableDataCell.Element { "Bob" }
+                    HTML.TableDataCell.Element { "25" }
+                    HTML.TableDataCell.Element { "Los Angeles" }
                 }
-                TableRow {
-                    TableDataCell { "Charlie" }
-                    TableDataCell { "35" }
-                    TableDataCell { "Chicago" }
+                HTML.TableRow.Element {
+                    HTML.TableDataCell.Element { "Charlie" }
+                    HTML.TableDataCell.Element { "35" }
+                    HTML.TableDataCell.Element { "Chicago" }
                 }
-                TableRow {
-                    TableDataCell { "Diana" }
-                    TableDataCell { "28" }
-                    TableDataCell { "Houston" }
+                HTML.TableRow.Element {
+                    HTML.TableDataCell.Element { "Diana" }
+                    HTML.TableDataCell.Element { "28" }
+                    HTML.TableDataCell.Element { "Houston" }
                 }
             }
         }
 
-        H3 { "6.2 Product Inventory" }
+        HTML.H3.Element { "6.2 Product Inventory" }
             .css.pageBreakAfter(.avoid)
 
-        Table {
-            TableHead {
-                TableRow {
-                    TableHeader { "SKU" }
-                    TableHeader { "Product Name" }
-                    TableHeader { "Category" }
-                    TableHeader { "Price" }
-                    TableHeader { "Stock" }
+        HTML.Table.Element {
+            HTML.TableHead.Element {
+                HTML.TableRow.Element {
+                    HTML.TableHeader.Element { "SKU" }
+                    HTML.TableHeader.Element { "Product Name" }
+                    HTML.TableHeader.Element { "Category" }
+                    HTML.TableHeader.Element { "Price" }
+                    HTML.TableHeader.Element { "Stock" }
                 }
             }
-            TableBody {
-                TableRow {
-                    TableDataCell { "A001" }
-                    TableDataCell { "Wireless Mouse" }
-                    TableDataCell { "Electronics" }
-                    TableDataCell { "$29.99" }
-                    TableDataCell { "150" }
+            HTML.TableBody.Element {
+                HTML.TableRow.Element {
+                    HTML.TableDataCell.Element { "A001" }
+                    HTML.TableDataCell.Element { "Wireless Mouse" }
+                    HTML.TableDataCell.Element { "Electronics" }
+                    HTML.TableDataCell.Element { "$29.99" }
+                    HTML.TableDataCell.Element { "150" }
                 }
-                TableRow {
-                    TableDataCell { "A002" }
-                    TableDataCell { "USB-C Hub" }
-                    TableDataCell { "Electronics" }
-                    TableDataCell { "$49.99" }
-                    TableDataCell { "75" }
+                HTML.TableRow.Element {
+                    HTML.TableDataCell.Element { "A002" }
+                    HTML.TableDataCell.Element { "USB-C Hub" }
+                    HTML.TableDataCell.Element { "Electronics" }
+                    HTML.TableDataCell.Element { "$49.99" }
+                    HTML.TableDataCell.Element { "75" }
                 }
-                TableRow {
-                    TableDataCell { "B001" }
-                    TableDataCell { "Ergonomic Chair" }
-                    TableDataCell { "Furniture" }
-                    TableDataCell { "$299.00" }
-                    TableDataCell { "25" }
+                HTML.TableRow.Element {
+                    HTML.TableDataCell.Element { "B001" }
+                    HTML.TableDataCell.Element { "Ergonomic Chair" }
+                    HTML.TableDataCell.Element { "Furniture" }
+                    HTML.TableDataCell.Element { "$299.00" }
+                    HTML.TableDataCell.Element { "25" }
                 }
-                TableRow {
-                    TableDataCell { "B002" }
-                    TableDataCell { "Standing Desk" }
-                    TableDataCell { "Furniture" }
-                    TableDataCell { "$450.00" }
-                    TableDataCell { "12" }
+                HTML.TableRow.Element {
+                    HTML.TableDataCell.Element { "B002" }
+                    HTML.TableDataCell.Element { "Standing Desk" }
+                    HTML.TableDataCell.Element { "Furniture" }
+                    HTML.TableDataCell.Element { "$450.00" }
+                    HTML.TableDataCell.Element { "12" }
                 }
-                TableRow {
-                    TableDataCell { "C001" }
-                    TableDataCell { "Notebook Set" }
-                    TableDataCell { "Office Supplies" }
-                    TableDataCell { "$12.99" }
-                    TableDataCell { "500" }
+                HTML.TableRow.Element {
+                    HTML.TableDataCell.Element { "C001" }
+                    HTML.TableDataCell.Element { "Notebook Set" }
+                    HTML.TableDataCell.Element { "Office Supplies" }
+                    HTML.TableDataCell.Element { "$12.99" }
+                    HTML.TableDataCell.Element { "500" }
                 }
             }
         }
 
-        H3 { "6.3 Table with Formatted Content" }
+        HTML.H3.Element { "6.3 Table with Formatted Content" }
             .css.pageBreakAfter(.avoid)
 
-        Table {
-            TableHead {
-                TableRow {
-                    TableHeader { "Feature" }
-                    TableHeader { "Status" }
-                    TableHeader { "Notes" }
+        HTML.Table.Element {
+            HTML.TableHead.Element {
+                HTML.TableRow.Element {
+                    HTML.TableHeader.Element { "Feature" }
+                    HTML.TableHeader.Element { "Status" }
+                    HTML.TableHeader.Element { "Notes" }
                 }
             }
-            TableBody {
-                TableRow {
-                    TableDataCell {
-                        StrongImportance { "Authentication" }
+            HTML.TableBody.Element {
+                HTML.TableRow.Element {
+                    HTML.TableDataCell.Element {
+                        HTML.StrongImportance.Element { "Authentication" }
                     }
-                    TableDataCell { "Complete" }
-                    TableDataCell {
+                    HTML.TableDataCell.Element { "Complete" }
+                    HTML.TableDataCell.Element {
                         "Supports "
-                        Code { "OAuth 2.0" }
+                        HTML.Code.Element { "OAuth 2.0" }
                         " and "
-                        Code { "JWT" }
+                        HTML.Code.Element { "JWT" }
                     }
                 }
-                TableRow {
-                    TableDataCell {
-                        StrongImportance { "API Gateway" }
+                HTML.TableRow.Element {
+                    HTML.TableDataCell.Element {
+                        HTML.StrongImportance.Element { "API Gateway" }
                     }
-                    TableDataCell { "In Progress" }
-                    TableDataCell {
-                        Emphasis { "Expected Q2 2025" }
+                    HTML.TableDataCell.Element { "In Progress" }
+                    HTML.TableDataCell.Element {
+                        HTML.Emphasis.Element { "Expected Q2 2025" }
                     }
                 }
-                TableRow {
-                    TableDataCell {
-                        StrongImportance { "Dashboard" }
+                HTML.TableRow.Element {
+                    HTML.TableDataCell.Element {
+                        HTML.StrongImportance.Element { "Dashboard" }
                     }
-                    TableDataCell { "Planned" }
-                    TableDataCell { "See roadmap for details" }
+                    HTML.TableDataCell.Element { "Planned" }
+                    HTML.TableDataCell.Element { "See roadmap for details" }
                 }
             }
         }
 
-        H3 { "6.4 Financial Summary with Footer" }
+        HTML.H3.Element { "6.4 Financial Summary with Footer" }
             .css.pageBreakAfter(.avoid)
 
-        Table {
-            TableHead {
-                TableRow {
-                    TableHeader { "Quarter" }
-                    TableHeader { "Revenue" }
-                    TableHeader { "Expenses" }
-                    TableHeader { "Profit" }
+        HTML.Table.Element {
+            HTML.TableHead.Element {
+                HTML.TableRow.Element {
+                    HTML.TableHeader.Element { "Quarter" }
+                    HTML.TableHeader.Element { "Revenue" }
+                    HTML.TableHeader.Element { "Expenses" }
+                    HTML.TableHeader.Element { "Profit" }
                 }
             }
-            TableBody {
-                TableRow {
-                    TableDataCell { "Q1 2024" }
-                    TableDataCell { "$125,000" }
-                    TableDataCell { "$95,000" }
-                    TableDataCell { "$30,000" }
+            HTML.TableBody.Element {
+                HTML.TableRow.Element {
+                    HTML.TableDataCell.Element { "Q1 2024" }
+                    HTML.TableDataCell.Element { "$125,000" }
+                    HTML.TableDataCell.Element { "$95,000" }
+                    HTML.TableDataCell.Element { "$30,000" }
                 }
-                TableRow {
-                    TableDataCell { "Q2 2024" }
-                    TableDataCell { "$142,000" }
-                    TableDataCell { "$98,000" }
-                    TableDataCell { "$44,000" }
+                HTML.TableRow.Element {
+                    HTML.TableDataCell.Element { "Q2 2024" }
+                    HTML.TableDataCell.Element { "$142,000" }
+                    HTML.TableDataCell.Element { "$98,000" }
+                    HTML.TableDataCell.Element { "$44,000" }
                 }
-                TableRow {
-                    TableDataCell { "Q3 2024" }
-                    TableDataCell { "$158,000" }
-                    TableDataCell { "$102,000" }
-                    TableDataCell { "$56,000" }
+                HTML.TableRow.Element {
+                    HTML.TableDataCell.Element { "Q3 2024" }
+                    HTML.TableDataCell.Element { "$158,000" }
+                    HTML.TableDataCell.Element { "$102,000" }
+                    HTML.TableDataCell.Element { "$56,000" }
                 }
-                TableRow {
-                    TableDataCell { "Q4 2024" }
-                    TableDataCell { "$175,000" }
-                    TableDataCell { "$110,000" }
-                    TableDataCell { "$65,000" }
+                HTML.TableRow.Element {
+                    HTML.TableDataCell.Element { "Q4 2024" }
+                    HTML.TableDataCell.Element { "$175,000" }
+                    HTML.TableDataCell.Element { "$110,000" }
+                    HTML.TableDataCell.Element { "$65,000" }
                 }
             }
-            TableFoot {
-                TableRow {
-                    TableHeader { "Total" }
-                    TableDataCell { "$600,000" }
-                    TableDataCell { "$405,000" }
-                    TableDataCell {
-                        StrongImportance { "$195,000" }
+            HTML.TableFoot.Element {
+                HTML.TableRow.Element {
+                    HTML.TableHeader.Element { "Total" }
+                    HTML.TableDataCell.Element { "$600,000" }
+                    HTML.TableDataCell.Element { "$405,000" }
+                    HTML.TableDataCell.Element {
+                        HTML.StrongImportance.Element { "$195,000" }
                     }
                 }
             }
         }
 
-        H3 { "6.5 Key-Value Table" }
+        HTML.H3.Element { "6.5 Key-Value Table" }
             .css.pageBreakAfter(.avoid)
 
-        Table {
-            TableBody {
-                TableRow {
-                    TableHeader { "Version" }
-                    TableDataCell { "2.4.1" }
+        HTML.Table.Element {
+            HTML.TableBody.Element {
+                HTML.TableRow.Element {
+                    HTML.TableHeader.Element { "Version" }
+                    HTML.TableDataCell.Element { "2.4.1" }
                 }
-                TableRow {
-                    TableHeader { "Release Date" }
-                    TableDataCell { "December 10, 2024" }
+                HTML.TableRow.Element {
+                    HTML.TableHeader.Element { "Release Date" }
+                    HTML.TableDataCell.Element { "December 10, 2024" }
                 }
-                TableRow {
-                    TableHeader { "License" }
-                    TableDataCell { "MIT" }
+                HTML.TableRow.Element {
+                    HTML.TableHeader.Element { "License" }
+                    HTML.TableDataCell.Element { "MIT" }
                 }
-                TableRow {
-                    TableHeader { "Author" }
-                    TableDataCell { "Coen ten Thije Boonkkamp" }
+                HTML.TableRow.Element {
+                    HTML.TableHeader.Element { "Author" }
+                    HTML.TableDataCell.Element { "Coen ten Thije Boonkkamp" }
                 }
-                TableRow {
-                    TableHeader { "Repository" }
-                    TableDataCell { "github.com/coenttb/swift-pdf-html-rendering" }
+                HTML.TableRow.Element {
+                    HTML.TableHeader.Element { "Repository" }
+                    HTML.TableDataCell.Element { "github.com/coenttb/swift-pdf-html-rendering" }
                 }
             }
         }
 
-        H3 { "6.6 Colspan/Rowspan Table" }
+        HTML.H3.Element { "6.6 Colspan/Rowspan Table" }
             .css.pageBreakAfter(.avoid)
 
-        Table {
-            TableHead {
-                TableRow {
-                    TableHeader { "Category" }
-                    TableHeader(colspan: 2) { "Details" }
-                    TableHeader { "Status" }
+        HTML.Table.Element {
+            HTML.TableHead.Element {
+                HTML.TableRow.Element {
+                    HTML.TableHeader.Element { "Category" }
+                    HTML.TableHeader.Element(colspan: 2) { "Details" }
+                    HTML.TableHeader.Element { "Status" }
                 }
             }
-            TableBody {
-                TableRow {
-                    TableHeader(rowspan: 2) { "Rendering" }
-                    TableDataCell { "Tables" }
-                    TableDataCell { "Full support" }
-                    TableDataCell { "✓" }
+            HTML.TableBody.Element {
+                HTML.TableRow.Element {
+                    HTML.TableHeader.Element(rowspan: 2) { "Rendering" }
+                    HTML.TableDataCell.Element { "Tables" }
+                    HTML.TableDataCell.Element { "Full support" }
+                    HTML.TableDataCell.Element { "✓" }
                 }
-                TableRow {
+                HTML.TableRow.Element {
 
-                    TableDataCell { "Lists" }
-                    TableDataCell { "Full support" }
-                    TableDataCell { "✓" }
+                    HTML.TableDataCell.Element { "Lists" }
+                    HTML.TableDataCell.Element { "Full support" }
+                    HTML.TableDataCell.Element { "✓" }
                 }
-                TableRow {
-                    TableHeader(rowspan: 3) { "Typography" }
-                    TableDataCell { "Headings" }
-                    TableDataCell { "H1-H6" }
-                    TableDataCell { "✓" }
+                HTML.TableRow.Element {
+                    HTML.TableHeader.Element(rowspan: 3) { "Typography" }
+                    HTML.TableDataCell.Element { "Headings" }
+                    HTML.TableDataCell.Element { "H1-H6" }
+                    HTML.TableDataCell.Element { "✓" }
                 }
-                TableRow {
-                    TableDataCell { "Inline styles" }
-                    TableDataCell { "Bold, italic, etc." }
-                    TableDataCell { "✓" }
+                HTML.TableRow.Element {
+                    HTML.TableDataCell.Element { "Inline styles" }
+                    HTML.TableDataCell.Element { "Bold, italic, etc." }
+                    HTML.TableDataCell.Element { "✓" }
                 }
-                TableRow {
-                    TableDataCell { "Links" }
-                    TableDataCell { "Clickable URLs" }
-                    TableDataCell { "✓" }
+                HTML.TableRow.Element {
+                    HTML.TableDataCell.Element { "Links" }
+                    HTML.TableDataCell.Element { "Clickable URLs" }
+                    HTML.TableDataCell.Element { "✓" }
                 }
-                TableRow {
-                    TableDataCell(colspan: 3) { "Combined colspan example spanning three columns" }
-                    TableDataCell { "OK" }
+                HTML.TableRow.Element {
+                    HTML.TableDataCell.Element(colspan: 3) { "Combined colspan example spanning three columns" }
+                    HTML.TableDataCell.Element { "OK" }
                 }
             }
-            TableFoot {
-                TableRow {
-                    TableDataCell(colspan: 4) { "All features implemented and tested" }
+            HTML.TableFoot.Element {
+                HTML.TableRow.Element {
+                    HTML.TableDataCell.Element(colspan: 4) { "All features implemented and tested" }
                 }
             }
         }
 
-        H3 { "6.7 Text Alignment (CSS)" }
+        HTML.H3.Element { "6.7 Text Alignment (CSS)" }
             .css.pageBreakAfter(.avoid)
 
-        Table {
-            TableHead {
-                TableRow {
-                    TableHeader { "Product" }
-                    TableHeader { "Quantity" }
+        HTML.Table.Element {
+            HTML.TableHead.Element {
+                HTML.TableRow.Element {
+                    HTML.TableHeader.Element { "Product" }
+                    HTML.TableHeader.Element { "Quantity" }
                         .css.textAlign(.right)
-                    TableHeader { "Price" }
+                    HTML.TableHeader.Element { "Price" }
                         .css.textAlign(.right)
-                    TableHeader { "Total" }
+                    HTML.TableHeader.Element { "Total" }
                         .css.textAlign(.right)
                 }
             }
-            TableBody {
-                TableRow {
-                    TableDataCell { "Widget A" }
-                    TableDataCell { "10" }
+            HTML.TableBody.Element {
+                HTML.TableRow.Element {
+                    HTML.TableDataCell.Element { "Widget A" }
+                    HTML.TableDataCell.Element { "10" }
                         .css.textAlign(.right)
-                    TableDataCell { "$5.00" }
+                    HTML.TableDataCell.Element { "$5.00" }
                         .css.textAlign(.right)
-                    TableDataCell { "$50.00" }
-                        .css.textAlign(.right)
-                }
-                TableRow {
-                    TableDataCell { "Widget B" }
-                    TableDataCell { "25" }
-                        .css.textAlign(.right)
-                    TableDataCell { "$3.50" }
-                        .css.textAlign(.right)
-                    TableDataCell { "$87.50" }
+                    HTML.TableDataCell.Element { "$50.00" }
                         .css.textAlign(.right)
                 }
-                TableRow {
-                    TableDataCell { "Service Fee" }
-                    TableDataCell { "—" }
+                HTML.TableRow.Element {
+                    HTML.TableDataCell.Element { "Widget B" }
+                    HTML.TableDataCell.Element { "25" }
+                        .css.textAlign(.right)
+                    HTML.TableDataCell.Element { "$3.50" }
+                        .css.textAlign(.right)
+                    HTML.TableDataCell.Element { "$87.50" }
+                        .css.textAlign(.right)
+                }
+                HTML.TableRow.Element {
+                    HTML.TableDataCell.Element { "Service Fee" }
+                    HTML.TableDataCell.Element { "—" }
                         .css.textAlign(.center)
-                    TableDataCell { "—" }
+                    HTML.TableDataCell.Element { "—" }
                         .css.textAlign(.center)
-                    TableDataCell { "$15.00" }
+                    HTML.TableDataCell.Element { "$15.00" }
                         .css.textAlign(.right)
                 }
             }
-            TableFoot {
-                TableRow {
-                    TableHeader(colspan: 3) { "Grand Total" }
+            HTML.TableFoot.Element {
+                HTML.TableRow.Element {
+                    HTML.TableHeader.Element(colspan: 3) { "Grand Total" }
                         .css.textAlign(.right)
-                    TableDataCell { "$152.50" }
+                    HTML.TableDataCell.Element { "$152.50" }
                         .css.textAlign(.right)
                 }
             }
@@ -999,28 +999,28 @@ private struct TableDemo: HTML.View {
 
 private struct DescriptionListDemo: HTML.View {
     var body: some HTML.View {
-        DescriptionList {
-            DescriptionTerm { "HTML" }
-            DescriptionDetails { "HyperText Markup Language" }
-            DescriptionTerm { "CSS" }
-            DescriptionDetails { "Cascading Style Sheets" }
-            DescriptionTerm { "PDF" }
-            DescriptionDetails { "Portable Document Format" }
+        HTML.DescriptionList.Element {
+            HTML.DescriptionTerm.Element { "HTML" }
+            HTML.DescriptionDetails.Element { "HyperText Markup Language" }
+            HTML.DescriptionTerm.Element { "CSS" }
+            HTML.DescriptionDetails.Element { "Cascading Style Sheets" }
+            HTML.DescriptionTerm.Element { "PDF" }
+            HTML.DescriptionDetails.Element { "Portable Document Format" }
         }
     }
 }
 
 private struct SemanticDemo: HTML.View {
     var body: some HTML.View {
-        Article {
-            Header {
-                H3 { "Article Title" }
+        HTML.Article.Element {
+            HTML.Header.Element {
+                HTML.H3.Element { "Article Title" }
             }
-            Section {
-                Paragraph { "Main content of the article." }
+            HTML.Section.Element {
+                HTML.Paragraph.Element { "Main content of the article." }
             }
-            Footer {
-                Paragraph { Small { "Author: Test Suite" } }
+            HTML.Footer.Element {
+                HTML.Paragraph.Element { HTML.Small.Element { "Author: Test Suite" } }
             }
         }
     }
@@ -1028,25 +1028,25 @@ private struct SemanticDemo: HTML.View {
 
 private struct FigureDemo: HTML.View {
     var body: some HTML.View {
-        Figure {
-            Paragraph { "[Image placeholder]" }
-            FigureCaption { "Figure 1: Sample figure." }
+        HTML.Figure.Element {
+            HTML.Paragraph.Element { "[Image placeholder]" }
+            HTML.FigureCaption.Element { "Figure 1: Sample figure." }
         }
     }
 }
 
 private struct NestedListDemo: HTML.View {
     var body: some HTML.View {
-        UnorderedList {
-            ListItem { "Item 1" }
-            ListItem {
+        HTML.UnorderedList.Element {
+            HTML.ListItem.Element { "Item 1" }
+            HTML.ListItem.Element {
                 "Item 2 with nested:"
-                UnorderedList {
-                    ListItem { "Nested 2.1" }
-                    ListItem { "Nested 2.2" }
+                HTML.UnorderedList.Element {
+                    HTML.ListItem.Element { "Nested 2.1" }
+                    HTML.ListItem.Element { "Nested 2.2" }
                 }
             }
-            ListItem { "Item 3" }
+            HTML.ListItem.Element { "Item 3" }
         }
     }
 }
@@ -1054,171 +1054,171 @@ private struct NestedListDemo: HTML.View {
 private struct NDADemo: HTML.View {
     var body: some HTML.View {
 
-        ContentDivision {
-            H1 { "NON-DISCLOSURE AGREEMENT" }
+        HTML.ContentDivision.Element {
+            HTML.H1.Element { "NON-DISCLOSURE AGREEMENT" }
                 .css.textAlign(.center)
         }
         .css.pageBreakBefore(.always)
 
-        Paragraph {
-            StrongImportance { "THIS NON-DISCLOSURE AGREEMENT" }
+        HTML.Paragraph.Element {
+            HTML.StrongImportance.Element { "THIS NON-DISCLOSURE AGREEMENT" }
             " (the \"Agreement\") is entered into as of "
-            ContentSpan { "[DATE]" }
+            HTML.ContentSpan.Element { "[DATE]" }
                 .css.textDecoration(.underline)
             " by and between:"
         }
 
-        Paragraph {
-            StrongImportance { "DISCLOSING PARTY:" }
-            BR()
+        HTML.Paragraph.Element {
+            HTML.StrongImportance.Element { "DISCLOSING PARTY:" }
+            HTML.BR.Element()
             "[Company Name], a [State] corporation, with its principal place of business at [Address] (\"Discloser\")"
         }
 
-        Paragraph {
-            StrongImportance { "RECEIVING PARTY:" }
-            BR()
+        HTML.Paragraph.Element {
+            HTML.StrongImportance.Element { "RECEIVING PARTY:" }
+            HTML.BR.Element()
             "[Recipient Name], an individual/entity located at [Address] (\"Recipient\")"
         }
 
-        Paragraph {
+        HTML.Paragraph.Element {
             "(Discloser and Recipient are collectively referred to as the \"Parties\")"
         }
 
-        H2 { "RECITALS" }
+        HTML.H2.Element { "RECITALS" }
             .css.pageBreakAfter(.avoid)
 
-        Paragraph {
-            StrongImportance { "WHEREAS" }
+        HTML.Paragraph.Element {
+            HTML.StrongImportance.Element { "WHEREAS" }
             ", the Discloser possesses certain confidential and proprietary information relating to [describe business/technology/project] (the \"Purpose\"); and"
         }
 
-        Paragraph {
-            StrongImportance { "WHEREAS" }
+        HTML.Paragraph.Element {
+            HTML.StrongImportance.Element { "WHEREAS" }
             ", the Recipient desires to receive certain Confidential Information for the Purpose; and"
         }
 
-        Paragraph {
-            StrongImportance { "NOW, THEREFORE" }
+        HTML.Paragraph.Element {
+            HTML.StrongImportance.Element { "NOW, THEREFORE" }
             ", in consideration of the mutual covenants and agreements set forth herein, and for other good and valuable consideration, the receipt and sufficiency of which are hereby acknowledged, the Parties agree as follows:"
         }
 
-        H2 { "ARTICLE 1: DEFINITIONS" }
+        HTML.H2.Element { "ARTICLE 1: DEFINITIONS" }
             .css.pageBreakAfter(.avoid)
 
-        Paragraph {
-            StrongImportance { "1.1 \"Confidential Information\"" }
+        HTML.Paragraph.Element {
+            HTML.StrongImportance.Element { "1.1 \"Confidential Information\"" }
             " means any and all information or data, whether oral, written, electronic, or visual, that is disclosed by the Discloser to the Recipient, including but not limited to:"
         }
 
-        OrderedList {
-            ListItem {
+        HTML.OrderedList.Element {
+            HTML.ListItem.Element {
                 "Trade secrets, inventions, ideas, processes, formulas, source code, and software;"
             }
-            ListItem { "Business plans, financial information, and customer lists;" }
-            ListItem { "Technical data, know-how, and research findings;" }
-            ListItem {
+            HTML.ListItem.Element { "Business plans, financial information, and customer lists;" }
+            HTML.ListItem.Element { "Technical data, know-how, and research findings;" }
+            HTML.ListItem.Element {
                 "Any other information designated as \"Confidential\" at the time of disclosure."
             }
         }
 
-        H2 { "ARTICLE 2: OBLIGATIONS OF RECIPIENT" }
+        HTML.H2.Element { "ARTICLE 2: OBLIGATIONS OF RECIPIENT" }
             .css.pageBreakAfter(.avoid)
 
-        Paragraph {
-            StrongImportance { "2.1 Non-Disclosure." }
+        HTML.Paragraph.Element {
+            HTML.StrongImportance.Element { "2.1 Non-Disclosure." }
             " The Recipient agrees to hold and maintain the Confidential Information in strict confidence and shall not, without the prior written approval of the Discloser:"
         }
 
-        OrderedList {
-            ListItem { "Disclose any Confidential Information to any third parties;" }
-            ListItem { "Use the Confidential Information for any purpose other than the Purpose;" }
-            ListItem {
+        HTML.OrderedList.Element {
+            HTML.ListItem.Element { "Disclose any Confidential Information to any third parties;" }
+            HTML.ListItem.Element { "Use the Confidential Information for any purpose other than the Purpose;" }
+            HTML.ListItem.Element {
                 "Copy or reproduce the Confidential Information except as necessary for the Purpose."
             }
         }
 
-        Paragraph {
-            StrongImportance { "2.2 Standard of Care." }
+        HTML.Paragraph.Element {
+            HTML.StrongImportance.Element { "2.2 Standard of Care." }
             " The Recipient shall protect the Confidential Information using the same degree of care it uses to protect its own confidential information, but in no event less than reasonable care."
         }
 
-        H2 { "ARTICLE 3: TERM AND TERMINATION" }
+        HTML.H2.Element { "ARTICLE 3: TERM AND TERMINATION" }
             .css.pageBreakAfter(.avoid)
 
-        Paragraph {
-            StrongImportance { "3.1 Term." }
+        HTML.Paragraph.Element {
+            HTML.StrongImportance.Element { "3.1 Term." }
             " This Agreement shall remain in effect for a period of "
-            ContentSpan { "[NUMBER]" }
+            HTML.ContentSpan.Element { "[NUMBER]" }
                 .css.textDecoration(.underline)
             " years from the Effective Date, unless earlier terminated in accordance with this Agreement."
         }
 
-        Paragraph {
-            StrongImportance { "3.2 Survival." }
+        HTML.Paragraph.Element {
+            HTML.StrongImportance.Element { "3.2 Survival." }
             " The confidentiality obligations under this Agreement shall survive termination and continue for a period of "
-            ContentSpan { "[NUMBER]" }
+            HTML.ContentSpan.Element { "[NUMBER]" }
                 .css.textDecoration(.underline)
             " years following termination."
         }
 
-        H2 { "ARTICLE 4: GENERAL PROVISIONS" }
+        HTML.H2.Element { "ARTICLE 4: GENERAL PROVISIONS" }
             .css.pageBreakAfter(.avoid)
 
-        Paragraph {
-            StrongImportance { "4.1 Governing Law." }
+        HTML.Paragraph.Element {
+            HTML.StrongImportance.Element { "4.1 Governing Law." }
             " This Agreement shall be governed by and construed in accordance with the laws of the State of "
-            ContentSpan { "[STATE]" }
+            HTML.ContentSpan.Element { "[STATE]" }
                 .css.textDecoration(.underline)
             ", without regard to its conflict of laws principles."
         }
 
-        Paragraph {
-            StrongImportance { "4.2 Entire Agreement." }
+        HTML.Paragraph.Element {
+            HTML.StrongImportance.Element { "4.2 Entire Agreement." }
             " This Agreement constitutes the entire agreement between the Parties with respect to the subject matter hereof and supersedes all prior negotiations, representations, or agreements relating thereto."
         }
 
-        Paragraph {
-            StrongImportance { "4.3 Amendments." }
+        HTML.Paragraph.Element {
+            HTML.StrongImportance.Element { "4.3 Amendments." }
             " This Agreement may not be amended or modified except by a written instrument signed by both Parties."
         }
 
-        H2 { "SIGNATURES" }
+        HTML.H2.Element { "SIGNATURES" }
             .css.pageBreakAfter(.avoid)
 
-        Paragraph {
-            StrongImportance { "IN WITNESS WHEREOF" }
+        HTML.Paragraph.Element {
+            HTML.StrongImportance.Element { "IN WITNESS WHEREOF" }
             ", the Parties have executed this Non-Disclosure Agreement as of the date first written above."
         }
 
-        Paragraph {
-            StrongImportance { "DISCLOSER:" }
+        HTML.Paragraph.Element {
+            HTML.StrongImportance.Element { "DISCLOSER:" }
         }
         .css.pageBreakAfter(.avoid)
 
-        Paragraph {
-            BR()
+        HTML.Paragraph.Element {
+            HTML.BR.Element()
             "________________________________"
-            BR()
+            HTML.BR.Element()
             "Name: [Authorized Representative]"
-            BR()
+            HTML.BR.Element()
             "Title: [Title]"
-            BR()
+            HTML.BR.Element()
             "Date: _______________"
         }
 
-        Paragraph {
-            StrongImportance { "RECIPIENT:" }
+        HTML.Paragraph.Element {
+            HTML.StrongImportance.Element { "RECIPIENT:" }
         }
         .css.pageBreakAfter(.avoid)
 
-        Paragraph {
-            BR()
+        HTML.Paragraph.Element {
+            HTML.BR.Element()
             "________________________________"
-            BR()
+            HTML.BR.Element()
             "Name: [Recipient Name]"
-            BR()
+            HTML.BR.Element()
             "Title: [Title]"
-            BR()
+            HTML.BR.Element()
             "Date: _______________"
         }
     }
@@ -1226,57 +1226,57 @@ private struct NDADemo: HTML.View {
 
 private struct InlineStyleDemo: HTML.View {
     var body: some HTML.View {
-        H2 { "10. CSS Styling" }
-        Paragraph {
+        HTML.H2.Element { "10. CSS Styling" }
+        HTML.Paragraph.Element {
             "Color: "
-            ContentSpan { "red" }
+            HTML.ContentSpan.Element { "red" }
                 .css.color(.red)
             ", "
-            ContentSpan { "blue" }
+            HTML.ContentSpan.Element { "blue" }
                 .css.color(.blue)
             ", "
-            ContentSpan { "green" }
+            HTML.ContentSpan.Element { "green" }
                 .css.color(.green)
             "."
         }
-        Paragraph {
+        HTML.Paragraph.Element {
             "Background: "
-            ContentSpan { " highlighted " }
+            HTML.ContentSpan.Element { " highlighted " }
                 .css.backgroundColor(.yellow)
             " text."
         }
-        Paragraph {
+        HTML.Paragraph.Element {
             "Font weight: "
-            ContentSpan { "bold" }
+            HTML.ContentSpan.Element { "bold" }
                 .css.fontWeight(.bold)
             ", "
-            ContentSpan { "normal" }
+            HTML.ContentSpan.Element { "normal" }
                 .css.fontWeight(.normal)
             "."
         }
-        Paragraph {
+        HTML.Paragraph.Element {
             "Font style: "
-            ContentSpan { "italic" }
+            HTML.ContentSpan.Element { "italic" }
                 .css.fontStyle(.italic)
             ", "
-            ContentSpan { "normal" }
+            HTML.ContentSpan.Element { "normal" }
                 .css.fontStyle(.normal)
             "."
         }
-        Paragraph {
+        HTML.Paragraph.Element {
             "Font size: "
-            ContentSpan { "small" }
+            HTML.ContentSpan.Element { "small" }
                 .css.fontSize(.absoluteSize(.small))
             ", "
-            ContentSpan { "large" }
+            HTML.ContentSpan.Element { "large" }
                 .css.fontSize(.absoluteSize(.large))
             ", "
-            ContentSpan { "x-large" }
+            HTML.ContentSpan.Element { "x-large" }
                 .css.fontSize(.absoluteSize(.xLarge))
             "."
         }
-        ContentDivision {
-            Paragraph { "Content in a div." }
+        HTML.ContentDivision.Element {
+            HTML.Paragraph.Element { "Content in a div." }
         }
     }
 }

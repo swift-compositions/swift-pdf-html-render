@@ -30,7 +30,7 @@ struct `CSSStylesheet Parser Tests` {
 
     @Test
     func `type selectors lowercase`() {
-        let sheet = PDF.HTML.CSS.Stylesheet.Parser.parse("H1 { color: red }")
+        let sheet = PDF.HTML.CSS.Stylesheet.Parser.parse("HTML.H1.Element { color: red }")
         #expect(sheet.rules.first?.selectors == [.type("h1")])
     }
 

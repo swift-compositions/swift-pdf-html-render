@@ -72,9 +72,9 @@ struct `Baseline Empirical Tests` {
     func `default cell content baseline is at top of cell padding-inset area`() throws {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                Table {
-                    TableRow {
-                        TableDataCell { "ANCHOR" }
+                HTML.Table.Element {
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "ANCHOR" }
                     }
                 }
             }
@@ -94,10 +94,10 @@ struct `Baseline Empirical Tests` {
     func `td width percent 100 yields proportional column allocation`() throws {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                Table {
-                    TableRow {
-                        TableDataCell { "LEFT" }.css.width(.percent(100))
-                        TableDataCell { "RIGHT" }
+                HTML.Table.Element {
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "LEFT" }.css.width(.percent(100))
+                        HTML.TableDataCell.Element { "RIGHT" }
                     }
                 }
             }
@@ -121,15 +121,15 @@ struct `Baseline Empirical Tests` {
     func `default border-collapse draws shared cell edges (fewer strokes than separate)`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                Table {
-                    TableBody {
-                        TableRow {
-                            TableDataCell { "A" }
-                            TableDataCell { "B" }
+                HTML.Table.Element {
+                    HTML.TableBody.Element {
+                        HTML.TableRow.Element {
+                            HTML.TableDataCell.Element { "A" }
+                            HTML.TableDataCell.Element { "B" }
                         }
-                        TableRow {
-                            TableDataCell { "C" }
-                            TableDataCell { "D" }
+                        HTML.TableRow.Element {
+                            HTML.TableDataCell.Element { "C" }
+                            HTML.TableDataCell.Element { "D" }
                         }
                     }
                 }
@@ -147,15 +147,15 @@ struct `Baseline Empirical Tests` {
     func `configuration with table border width 0 produces zero border strokes`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                Table {
-                    TableBody {
-                        TableRow {
-                            TableDataCell { "X" }
-                            TableDataCell { "Y" }
+                HTML.Table.Element {
+                    HTML.TableBody.Element {
+                        HTML.TableRow.Element {
+                            HTML.TableDataCell.Element { "X" }
+                            HTML.TableDataCell.Element { "Y" }
                         }
-                        TableRow {
-                            TableDataCell { "Z" }
-                            TableDataCell { "W" }
+                        HTML.TableRow.Element {
+                            HTML.TableDataCell.Element { "Z" }
+                            HTML.TableDataCell.Element { "W" }
                         }
                     }
                 }
@@ -175,10 +175,10 @@ struct `Baseline Empirical Tests` {
     func `discriminating: isolated 2-col table cells render side-by-side`() throws {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                Table {
-                    TableRow {
-                        TableDataCell { "ALPHA" }.css.width(.percent(60))
-                        TableDataCell { "BETA" }.css.width(.percent(40))
+                HTML.Table.Element {
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "ALPHA" }.css.width(.percent(60))
+                        HTML.TableDataCell.Element { "BETA" }.css.width(.percent(40))
                     }
                 }
             }
@@ -203,7 +203,7 @@ struct `Baseline Empirical Tests` {
         struct WideText: HTML.View {
             let nowrap: Bool
             var body: some HTML.View {
-                Paragraph {
+                HTML.Paragraph.Element {
                     "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
                 }
                 .css.whiteSpace(nowrap ? .nowrap : .normal)
@@ -227,10 +227,10 @@ struct `Baseline Empirical Tests` {
     func `outer table css width(.percent(100)) does not collapse layout box`() throws {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                Table {
-                    TableRow {
-                        TableDataCell { "LEFT" }.css.width(.percent(100))
-                        TableDataCell { "RIGHT" }
+                HTML.Table.Element {
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "LEFT" }.css.width(.percent(100))
+                        HTML.TableDataCell.Element { "RIGHT" }
                     }
                 }
                 .css.width(.percent(100))
@@ -251,16 +251,16 @@ struct `Baseline Empirical Tests` {
     func `sibling tables: second table column-width hints reach their state`() throws {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                Table {
-                    TableRow {
-                        TableDataCell { "A1" }.css.width(.percent(60))
-                        TableDataCell { "B1" }.css.width(.percent(40))
+                HTML.Table.Element {
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "A1" }.css.width(.percent(60))
+                        HTML.TableDataCell.Element { "B1" }.css.width(.percent(40))
                     }
                 }
-                Table {
-                    TableRow {
-                        TableDataCell { "A2" }.css.width(.percent(60))
-                        TableDataCell { "B2" }.css.width(.percent(40))
+                HTML.Table.Element {
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "A2" }.css.width(.percent(60))
+                        HTML.TableDataCell.Element { "B2" }.css.width(.percent(40))
                     }
                 }
             }
@@ -289,9 +289,9 @@ struct `Baseline Empirical Tests` {
     func `Void elements before sibling cell do not nil context.table`() throws {
         struct V: HTML.View {
             var body: some HTML.View {
-                Table {
-                    TableRow {
-                        TableDataCell {
+                HTML.Table.Element {
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element {
                             HTML.Tag.Element(tag: "b") { "LBOLD" }
                             HTML.Tag.Element<Never>(tag: "br")
                             "L1"
@@ -302,14 +302,14 @@ struct `Baseline Empirical Tests` {
                             HTML.Tag.Element<Never>(tag: "br")
                             "L4"
                             HTML.Tag.Element<Never>(tag: "br")
-                            Table {
-                                TableRow {
-                                    TableDataCell { "" }
-                                    TableDataCell { "" }
+                            HTML.Table.Element {
+                                HTML.TableRow.Element {
+                                    HTML.TableDataCell.Element { "" }
+                                    HTML.TableDataCell.Element { "" }
                                 }
                             }
                         }.css.verticalAlign(.top).width(.percent(100))
-                        TableDataCell {
+                        HTML.TableDataCell.Element {
                             HTML.Tag.Element(tag: "h3") { "HEADING" }
                         }.css.verticalAlign(.top)
                     }
@@ -341,138 +341,138 @@ struct `Baseline Empirical Tests` {
         struct V: HTML.View {
             var body: some HTML.View {
 
-                Table {
-                    TableRow {
-                        TableDataCell { "F01" }
-                        TableDataCell { "v01" }
+                HTML.Table.Element {
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "F01" }
+                        HTML.TableDataCell.Element { "v01" }
                     }
-                    TableRow {
-                        TableDataCell { "F02" }
-                        TableDataCell { "v02" }
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "F02" }
+                        HTML.TableDataCell.Element { "v02" }
                     }
-                    TableRow {
-                        TableDataCell { "F03" }
-                        TableDataCell { "v03" }
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "F03" }
+                        HTML.TableDataCell.Element { "v03" }
                     }
-                    TableRow {
-                        TableDataCell { "F04" }
-                        TableDataCell { "v04" }
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "F04" }
+                        HTML.TableDataCell.Element { "v04" }
                     }
-                    TableRow {
-                        TableDataCell { "F05" }
-                        TableDataCell { "v05" }
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "F05" }
+                        HTML.TableDataCell.Element { "v05" }
                     }
-                    TableRow {
-                        TableDataCell { "F06" }
-                        TableDataCell { "v06" }
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "F06" }
+                        HTML.TableDataCell.Element { "v06" }
                     }
-                    TableRow {
-                        TableDataCell { "F07" }
-                        TableDataCell { "v07" }
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "F07" }
+                        HTML.TableDataCell.Element { "v07" }
                     }
-                    TableRow {
-                        TableDataCell { "F08" }
-                        TableDataCell { "v08" }
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "F08" }
+                        HTML.TableDataCell.Element { "v08" }
                     }
-                    TableRow {
-                        TableDataCell { "F09" }
-                        TableDataCell { "v09" }
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "F09" }
+                        HTML.TableDataCell.Element { "v09" }
                     }
-                    TableRow {
-                        TableDataCell { "F10" }
-                        TableDataCell { "v10" }
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "F10" }
+                        HTML.TableDataCell.Element { "v10" }
                     }
-                    TableRow {
-                        TableDataCell { "F11" }
-                        TableDataCell { "v11" }
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "F11" }
+                        HTML.TableDataCell.Element { "v11" }
                     }
-                    TableRow {
-                        TableDataCell { "F12" }
-                        TableDataCell { "v12" }
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "F12" }
+                        HTML.TableDataCell.Element { "v12" }
                     }
-                    TableRow {
-                        TableDataCell { "F13" }
-                        TableDataCell { "v13" }
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "F13" }
+                        HTML.TableDataCell.Element { "v13" }
                     }
-                    TableRow {
-                        TableDataCell { "F14" }
-                        TableDataCell { "v14" }
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "F14" }
+                        HTML.TableDataCell.Element { "v14" }
                     }
-                    TableRow {
-                        TableDataCell { "F15" }
-                        TableDataCell { "v15" }
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "F15" }
+                        HTML.TableDataCell.Element { "v15" }
                     }
-                    TableRow {
-                        TableDataCell { "F16" }
-                        TableDataCell { "v16" }
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "F16" }
+                        HTML.TableDataCell.Element { "v16" }
                     }
-                    TableRow {
-                        TableDataCell { "F17" }
-                        TableDataCell { "v17" }
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "F17" }
+                        HTML.TableDataCell.Element { "v17" }
                     }
-                    TableRow {
-                        TableDataCell { "F18" }
-                        TableDataCell { "v18" }
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "F18" }
+                        HTML.TableDataCell.Element { "v18" }
                     }
-                    TableRow {
-                        TableDataCell { "F19" }
-                        TableDataCell { "v19" }
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "F19" }
+                        HTML.TableDataCell.Element { "v19" }
                     }
-                    TableRow {
-                        TableDataCell { "F20" }
-                        TableDataCell { "v20" }
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "F20" }
+                        HTML.TableDataCell.Element { "v20" }
                     }
-                    TableRow {
-                        TableDataCell { "F21" }
-                        TableDataCell { "v21" }
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "F21" }
+                        HTML.TableDataCell.Element { "v21" }
                     }
-                    TableRow {
-                        TableDataCell { "F22" }
-                        TableDataCell { "v22" }
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "F22" }
+                        HTML.TableDataCell.Element { "v22" }
                     }
-                    TableRow {
-                        TableDataCell { "F23" }
-                        TableDataCell { "v23" }
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "F23" }
+                        HTML.TableDataCell.Element { "v23" }
                     }
-                    TableRow {
-                        TableDataCell { "F24" }
-                        TableDataCell { "v24" }
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "F24" }
+                        HTML.TableDataCell.Element { "v24" }
                     }
-                    TableRow {
-                        TableDataCell { "F25" }
-                        TableDataCell { "v25" }
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "F25" }
+                        HTML.TableDataCell.Element { "v25" }
                     }
-                    TableRow {
-                        TableDataCell { "F26" }
-                        TableDataCell { "v26" }
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "F26" }
+                        HTML.TableDataCell.Element { "v26" }
                     }
-                    TableRow {
-                        TableDataCell { "F27" }
-                        TableDataCell { "v27" }
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "F27" }
+                        HTML.TableDataCell.Element { "v27" }
                     }
-                    TableRow {
-                        TableDataCell { "F28" }
-                        TableDataCell { "v28" }
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "F28" }
+                        HTML.TableDataCell.Element { "v28" }
                     }
                 }
                 HTML.Tag.Element<Never>(tag: "hr")
 
-                Table {
-                    TableRow {
-                        TableDataCell { HTML.Empty() }.css.width(.percent(100))
-                        TableDataCell {
-                            Table {
-                                TableRow {
-                                    TableDataCell { "Bedrag" }
-                                    TableDataCell { "€ 6000" }
+                HTML.Table.Element {
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { HTML.Empty() }.css.width(.percent(100))
+                        HTML.TableDataCell.Element {
+                            HTML.Table.Element {
+                                HTML.TableRow.Element {
+                                    HTML.TableDataCell.Element { "Bedrag" }
+                                    HTML.TableDataCell.Element { "€ 6000" }
                                 }
-                                TableRow {
-                                    TableDataCell { "BTW" }
-                                    TableDataCell { "€ 1260" }
+                                HTML.TableRow.Element {
+                                    HTML.TableDataCell.Element { "BTW" }
+                                    HTML.TableDataCell.Element { "€ 1260" }
                                 }
-                                TableRow {
-                                    TableDataCell { "TOTALMARKER" }
-                                    TableDataCell { "€ 7260" }
+                                HTML.TableRow.Element {
+                                    HTML.TableDataCell.Element { "TOTALMARKER" }
+                                    HTML.TableDataCell.Element { "€ 7260" }
                                 }
                             }
                         }
@@ -480,7 +480,7 @@ struct `Baseline Empirical Tests` {
                 }.css.borderCollapse(.collapse)
                 HTML.Tag.Element<Never>(tag: "br")
                 HTML.Tag.Element<Never>(tag: "br")
-                Paragraph { "AFTER_PAYMENT_MARKER" }
+                HTML.Paragraph.Element { "AFTER_PAYMENT_MARKER" }
             }
         }
 
@@ -511,11 +511,11 @@ struct `Baseline Empirical Tests` {
     func `Width constraint does not leak into descendant box-model resolution`() throws {
         struct V: HTML.View {
             var body: some HTML.View {
-                Table {
-                    TableRow {
-                        TableDataCell { "LEFT" }
+                HTML.Table.Element {
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "LEFT" }
                             .css.verticalAlign(.top).width(.percent(100))
-                        TableDataCell {
+                        HTML.TableDataCell.Element {
                             HTML.Tag.Element(tag: "h3") { "RIGHT" }
                                 .css.margin(top: 0).margin(bottom: 0)
                                 .textAlign(.right)
@@ -547,18 +547,18 @@ struct `Baseline Empirical Tests` {
     func `C-E1: nested 2-col table cells render side-by-side`() throws {
         struct V: HTML.View {
             var body: some HTML.View {
-                Table {
-                    TableRow {
-                        TableDataCell { "OUTER_LEFT" }
-                        TableDataCell {
-                            Table {
-                                TableRow {
-                                    TableDataCell { "LABEL1" }
-                                    TableDataCell { "VALUE1" }
+                HTML.Table.Element {
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "OUTER_LEFT" }
+                        HTML.TableDataCell.Element {
+                            HTML.Table.Element {
+                                HTML.TableRow.Element {
+                                    HTML.TableDataCell.Element { "LABEL1" }
+                                    HTML.TableDataCell.Element { "VALUE1" }
                                 }
-                                TableRow {
-                                    TableDataCell { "LABEL2" }
-                                    TableDataCell { "VALUE2" }
+                                HTML.TableRow.Element {
+                                    HTML.TableDataCell.Element { "LABEL2" }
+                                    HTML.TableDataCell.Element { "VALUE2" }
                                 }
                             }
                         }
@@ -605,35 +605,35 @@ struct `Baseline Empirical Tests` {
     func `C-E2: row height stable across rows with same visible content shape`() throws {
         struct V: HTML.View {
             var body: some HTML.View {
-                Table {
-                    TableRow {
-                        TableDataCell { "OUTER_LEFT" }.css.verticalAlign(.top)
-                        TableDataCell {
-                            Table {
-                                TableRow {
-                                    TableDataCell { HTML.Tag.Element(tag: "small") { "L1" } }
+                HTML.Table.Element {
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "OUTER_LEFT" }.css.verticalAlign(.top)
+                        HTML.TableDataCell.Element {
+                            HTML.Table.Element {
+                                HTML.TableRow.Element {
+                                    HTML.TableDataCell.Element { HTML.Tag.Element(tag: "small") { "L1" } }
                                         .css.textAlign(.right).verticalAlign(.top).padding(
                                             right: .px(10)
                                         )
-                                    TableDataCell {
+                                    HTML.TableDataCell.Element {
                                         HTML.Tag.Element(tag: "small") { "alpha beta gamma delta" }
                                     }
                                 }
-                                TableRow {
-                                    TableDataCell { HTML.Tag.Element(tag: "small") { "L2" } }
+                                HTML.TableRow.Element {
+                                    HTML.TableDataCell.Element { HTML.Tag.Element(tag: "small") { "L2" } }
                                         .css.textAlign(.right).verticalAlign(.top).padding(
                                             right: .px(10)
                                         )
-                                    TableDataCell {
+                                    HTML.TableDataCell.Element {
                                         HTML.Tag.Element(tag: "small") { "no-spaces-here" }
                                     }
                                 }
-                                TableRow {
-                                    TableDataCell { HTML.Tag.Element(tag: "small") { "L3" } }
+                                HTML.TableRow.Element {
+                                    HTML.TableDataCell.Element { HTML.Tag.Element(tag: "small") { "L3" } }
                                         .css.textAlign(.right).verticalAlign(.top).padding(
                                             right: .px(10)
                                         )
-                                    TableDataCell {
+                                    HTML.TableDataCell.Element {
                                         HTML.Tag.Element(tag: "small") { "still-no-spaces" }
                                     }
                                 }
@@ -666,15 +666,15 @@ struct `Baseline Empirical Tests` {
     func `C-E3: row height stable after preceding multi-line br-stack row`() throws {
         struct V: HTML.View {
             var body: some HTML.View {
-                Table {
-                    TableRow {
-                        TableDataCell { "OUTER_LEFT" }.css.verticalAlign(.top)
-                        TableDataCell {
-                            Table {
+                HTML.Table.Element {
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "OUTER_LEFT" }.css.verticalAlign(.top)
+                        HTML.TableDataCell.Element {
+                            HTML.Table.Element {
 
-                                TableRow {
-                                    TableDataCell { HTML.Empty() }
-                                    TableDataCell {
+                                HTML.TableRow.Element {
+                                    HTML.TableDataCell.Element { HTML.Empty() }
+                                    HTML.TableDataCell.Element {
                                         HTML.Tag.Element(tag: "small") { "ADDR1" }
                                         HTML.Tag.Element<Never>(tag: "br")
                                         HTML.Tag.Element(tag: "small") { "ADDR2" }
@@ -684,39 +684,39 @@ struct `Baseline Empirical Tests` {
                                     }
                                 }
 
-                                TableRow {
-                                    TableDataCell { HTML.Tag.Element(tag: "small") { "M1" } }
+                                HTML.TableRow.Element {
+                                    HTML.TableDataCell.Element { HTML.Tag.Element(tag: "small") { "M1" } }
                                         .css.textAlign(.right).verticalAlign(.top).padding(
                                             right: .px(10)
                                         )
-                                    TableDataCell {
+                                    HTML.TableDataCell.Element {
                                         HTML.Tag.Element(tag: "small") { "value one two three" }
                                     }
                                 }
-                                TableRow {
-                                    TableDataCell { HTML.Tag.Element(tag: "small") { "M2" } }
+                                HTML.TableRow.Element {
+                                    HTML.TableDataCell.Element { HTML.Tag.Element(tag: "small") { "M2" } }
                                         .css.textAlign(.right).verticalAlign(.top).padding(
                                             right: .px(10)
                                         )
-                                    TableDataCell {
+                                    HTML.TableDataCell.Element {
                                         HTML.Tag.Element(tag: "small") { "nospaces-here" }
                                     }
                                 }
-                                TableRow {
-                                    TableDataCell { HTML.Tag.Element(tag: "small") { "M3" } }
+                                HTML.TableRow.Element {
+                                    HTML.TableDataCell.Element { HTML.Tag.Element(tag: "small") { "M3" } }
                                         .css.textAlign(.right).verticalAlign(.top).padding(
                                             right: .px(10)
                                         )
-                                    TableDataCell {
+                                    HTML.TableDataCell.Element {
                                         HTML.Tag.Element(tag: "small") { "anothernospaces" }
                                     }
                                 }
-                                TableRow {
-                                    TableDataCell { HTML.Tag.Element(tag: "small") { "M4" } }
+                                HTML.TableRow.Element {
+                                    HTML.TableDataCell.Element { HTML.Tag.Element(tag: "small") { "M4" } }
                                         .css.textAlign(.right).verticalAlign(.top).padding(
                                             right: .px(10)
                                         )
-                                    TableDataCell { HTML.Tag.Element(tag: "small") { "fourthrow" } }
+                                    HTML.TableDataCell.Element { HTML.Tag.Element(tag: "small") { "fourthrow" } }
                                 }
                             }
                             .css.borderCollapse(.collapse)
@@ -753,17 +753,17 @@ struct `Baseline Empirical Tests` {
     func `C-E4: Letter.Header + Letter.Sender exact-shape replica`() throws {
         struct V: HTML.View {
             var body: some HTML.View {
-                Table {
-                    TableRow {
-                        TableDataCell { "RECIPIENT" }
+                HTML.Table.Element {
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "RECIPIENT" }
                             .css.verticalAlign(.top).width(.percent(100))
-                        TableDataCell {
+                        HTML.TableDataCell.Element {
                             HTML.Tag.Element(tag: "h3") { "SENDER_NAME" }
                                 .css.margin(top: 0).margin(bottom: 0).textAlign(.right)
-                            Table {
-                                TableRow {
-                                    TableDataCell { HTML.Empty() }
-                                    TableDataCell {
+                            HTML.Table.Element {
+                                HTML.TableRow.Element {
+                                    HTML.TableDataCell.Element { HTML.Empty() }
+                                    HTML.TableDataCell.Element {
                                         HTML.Tag.Element(tag: "small") { "ADDR1" }
                                         HTML.Tag.Element<Never>(tag: "br")
                                         HTML.Tag.Element(tag: "small") { "ADDR2" }
@@ -772,37 +772,37 @@ struct `Baseline Empirical Tests` {
                                         HTML.Tag.Element<Never>(tag: "br")
                                     }
                                 }
-                                TableRow {
-                                    TableDataCell { HTML.Tag.Element(tag: "small") { "M1" } }
+                                HTML.TableRow.Element {
+                                    HTML.TableDataCell.Element { HTML.Tag.Element(tag: "small") { "M1" } }
                                         .css.textAlign(.right).verticalAlign(.top).padding(
                                             right: .px(10)
                                         )
-                                    TableDataCell {
+                                    HTML.TableDataCell.Element {
                                         HTML.Tag.Element(tag: "small") { "v one two three" }
                                     }
                                 }
-                                TableRow {
-                                    TableDataCell { HTML.Tag.Element(tag: "small") { "M2" } }
+                                HTML.TableRow.Element {
+                                    HTML.TableDataCell.Element { HTML.Tag.Element(tag: "small") { "M2" } }
                                         .css.textAlign(.right).verticalAlign(.top).padding(
                                             right: .px(10)
                                         )
-                                    TableDataCell { HTML.Tag.Element(tag: "small") { "nospaces" } }
+                                    HTML.TableDataCell.Element { HTML.Tag.Element(tag: "small") { "nospaces" } }
                                 }
-                                TableRow {
-                                    TableDataCell { HTML.Tag.Element(tag: "small") { "M3" } }
+                                HTML.TableRow.Element {
+                                    HTML.TableDataCell.Element { HTML.Tag.Element(tag: "small") { "M3" } }
                                         .css.textAlign(.right).verticalAlign(.top).padding(
                                             right: .px(10)
                                         )
-                                    TableDataCell {
+                                    HTML.TableDataCell.Element {
                                         HTML.Tag.Element(tag: "small") { "anothernospaces" }
                                     }
                                 }
-                                TableRow {
-                                    TableDataCell { HTML.Tag.Element(tag: "small") { "M4" } }
+                                HTML.TableRow.Element {
+                                    HTML.TableDataCell.Element { HTML.Tag.Element(tag: "small") { "M4" } }
                                         .css.textAlign(.right).verticalAlign(.top).padding(
                                             right: .px(10)
                                         )
-                                    TableDataCell { HTML.Tag.Element(tag: "small") { "fourthrow" } }
+                                    HTML.TableDataCell.Element { HTML.Tag.Element(tag: "small") { "fourthrow" } }
                                 }
                             }
                             .css.borderCollapse(.collapse)
@@ -838,7 +838,7 @@ struct `Baseline Empirical Tests` {
     func `C-E5: paragraph wraps despite nowrap child in middle`() throws {
         struct V: HTML.View {
             var body: some HTML.View {
-                Paragraph {
+                HTML.Paragraph.Element {
                     "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
                     HTML.Text("NOWRAP_TOKEN").css.whiteSpace(.nowrap)
                     " Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
@@ -857,12 +857,12 @@ struct `Baseline Empirical Tests` {
     func `css.borderBottom on TR emits one horizontal stroke at row bottom`() throws {
         struct V: HTML.View {
             var body: some HTML.View {
-                Table {
-                    TableRow {
-                        TableDataCell { "TOPCELL" }
+                HTML.Table.Element {
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "TOPCELL" }
                     }.css.borderBottom(.init(.px(1), .solid, .hex("000000")))
-                    TableRow {
-                        TableDataCell { "BOTTOMCELL" }
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "BOTTOMCELL" }
                     }
                 }.css.borderCollapse(.separate)
             }
@@ -883,9 +883,9 @@ struct `Baseline Empirical Tests` {
     func `css.borderBottom with double style emits two parallel strokes`() throws {
         struct V: HTML.View {
             var body: some HTML.View {
-                Table {
-                    TableRow {
-                        TableDataCell { "CELL" }
+                HTML.Table.Element {
+                    HTML.TableRow.Element {
+                        HTML.TableDataCell.Element { "CELL" }
                             .css.borderBottom(.init(.px(3), .double, .hex("000000")))
                     }
                 }.css.borderCollapse(.separate)

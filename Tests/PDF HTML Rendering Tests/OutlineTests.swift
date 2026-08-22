@@ -13,13 +13,13 @@ struct H<let N: Int> {
         @HTML.Builder _ content: () -> some HTML.View
     ) -> some HTML.View {
         switch N {
-        case 1: H1 { content() }.css.pageBreakAfter(.avoid)
-        case 2: H2 { content() }.css.pageBreakAfter(.avoid)
-        case 3: H3 { content() }.css.pageBreakAfter(.avoid)
-        case 4: H4 { content() }.css.pageBreakAfter(.avoid)
-        case 5: H5 { content() }.css.pageBreakAfter(.avoid)
-        case 6: H6 { content() }.css.pageBreakAfter(.avoid)
-        default: H1 { content() }.css.pageBreakAfter(.avoid)
+        case 1: HTML.H1.Element { content() }.css.pageBreakAfter(.avoid)
+        case 2: HTML.H2.Element { content() }.css.pageBreakAfter(.avoid)
+        case 3: HTML.H3.Element { content() }.css.pageBreakAfter(.avoid)
+        case 4: HTML.H4.Element { content() }.css.pageBreakAfter(.avoid)
+        case 5: HTML.H5.Element { content() }.css.pageBreakAfter(.avoid)
+        case 6: HTML.H6.Element { content() }.css.pageBreakAfter(.avoid)
+        default: HTML.H1.Element { content() }.css.pageBreakAfter(.avoid)
         }
     }
 }
@@ -30,8 +30,8 @@ struct `Outline Generation Tests` {
     @Test
     func `Raw H1 headings appear in outline`() throws {
         let result = PDF.HTML.render {
-            H1 { "Main Title" }
-            Paragraph { "Some content after the title." }
+            HTML.H1.Element { "Main Title" }
+            HTML.Paragraph.Element { "Some content after the title." }
         }
 
         print("DEBUG TEST: Raw H1 - collected \(result.headings.count) headings")
@@ -47,7 +47,7 @@ struct `Outline Generation Tests` {
     func `H wrapper headings appear in outline`() throws {
         let result = PDF.HTML.render {
             H<1> { "Wrapped Title" }
-            Paragraph { "Some content after the wrapped title." }
+            HTML.Paragraph.Element { "Some content after the wrapped title." }
         }
 
         print("DEBUG TEST: H<1> wrapper - collected \(result.headings.count) headings")
@@ -65,11 +65,11 @@ struct `Outline Generation Tests` {
     @Test
     func `Raw H1 inside Header container appears in outline`() throws {
         let result = PDF.HTML.render {
-            Header {
-                H1 { "Header Title" }
-                Paragraph { "(A subtitle)" }
+            HTML.Header.Element {
+                HTML.H1.Element { "Header Title" }
+                HTML.Paragraph.Element { "(A subtitle)" }
             }
-            Paragraph { "Body content." }
+            HTML.Paragraph.Element { "Body content." }
         }
 
         print("DEBUG TEST: Raw H1 inside Header - collected \(result.headings.count) headings")
@@ -91,21 +91,21 @@ struct `Outline Generation Tests` {
     func `Mixed raw and wrapped headings all appear in outline`() throws {
         let result = PDF.HTML.render {
 
-            Header {
-                H1 { "DOCUMENT TITLE" }
-                Paragraph { "(A Corporation)" }
+            HTML.Header.Element {
+                HTML.H1.Element { "DOCUMENT TITLE" }
+                HTML.Paragraph.Element { "(A Corporation)" }
             }
 
-            Section {
+            HTML.Section.Element {
                 H<3> { "ARTICLE I" }
                 H<4> { "NAME" }
-                Paragraph { "The name of this corporation is Test Corp." }
+                HTML.Paragraph.Element { "The name of this corporation is Test Corp." }
             }
 
-            Section {
+            HTML.Section.Element {
                 H<3> { "ARTICLE II" }
                 H<4> { "PURPOSE" }
-                Paragraph { "The purpose of this corporation is testing." }
+                HTML.Paragraph.Element { "The purpose of this corporation is testing." }
             }
         }
 
@@ -131,19 +131,19 @@ struct `Outline Generation Tests` {
             info: .init(title: "Outline Test"),
             generateOutline: true
         ) {
-            Header {
-                H1 { "MAIN DOCUMENT TITLE" }
-                Paragraph { "(Subtitle)" }
+            HTML.Header.Element {
+                HTML.H1.Element { "MAIN DOCUMENT TITLE" }
+                HTML.Paragraph.Element { "(Subtitle)" }
             }
 
-            Section {
+            HTML.Section.Element {
                 H<3> { "SECTION ONE" }
-                Paragraph { "Content for section one." }
+                HTML.Paragraph.Element { "Content for section one." }
             }
 
-            Section {
+            HTML.Section.Element {
                 H<3> { "SECTION TWO" }
-                Paragraph { "Content for section two." }
+                HTML.Paragraph.Element { "Content for section two." }
             }
         }
 
@@ -168,16 +168,16 @@ struct `Outline Generation Tests` {
     @Test
     func `H1 with BR elements inside`() throws {
         let result = PDF.HTML.render {
-            Header {
-                H1 {
+            HTML.Header.Element {
+                HTML.H1.Element {
                     "ARTICLES OF INCORPORATION"
-                    BR()
+                    HTML.BR.Element()
                     "OF"
-                    BR()
+                    HTML.BR.Element()
                     "TEST CORPORATION"
                 }.css.textAlign(.center)
             }
-            Paragraph { "Body content." }
+            HTML.Paragraph.Element { "Body content." }
         }
 
         print("DEBUG TEST: H1 with BR - collected \(result.headings.count) headings")
@@ -203,35 +203,35 @@ struct `Outline Generation Tests` {
             generateOutline: true
         ) {
 
-            Header {
-                H1 {
+            HTML.Header.Element {
+                HTML.H1.Element {
                     "ARTICLES OF INCORPORATION"
-                    BR()
+                    HTML.BR.Element()
                     "OF"
-                    BR()
+                    HTML.BR.Element()
                     "TEST CORPORATION, INC."
                 }.css.textAlign(.center)
-                Paragraph { "(A Nevada Corporation)" }.css.textAlign(.center)
-                Paragraph { "(Pursuant to Chapter 78 of the Nevada Revised Statutes)" }.css
+                HTML.Paragraph.Element { "(A Nevada Corporation)" }.css.textAlign(.center)
+                HTML.Paragraph.Element { "(Pursuant to Chapter 78 of the Nevada Revised Statutes)" }.css
                     .textAlign(.center)
             }
 
-            Section {
+            HTML.Section.Element {
                 H<3> { "ARTICLE I" }
                 H<4> { "NAME" }
-                Paragraph { "The name of this corporation is TEST CORPORATION, INC." }
+                HTML.Paragraph.Element { "The name of this corporation is TEST CORPORATION, INC." }
             }
 
-            Section {
+            HTML.Section.Element {
                 H<3> { "ARTICLE II" }
                 H<4> { "REGISTERED AGENT" }
-                Paragraph { "The registered agent is located at 123 Main Street." }
+                HTML.Paragraph.Element { "The registered agent is located at 123 Main Street." }
             }
 
-            Section {
+            HTML.Section.Element {
                 H<3> { "ARTICLE III" }
                 H<4> { "PURPOSE" }
-                Paragraph { "The purpose is to engage in any lawful activity." }
+                HTML.Paragraph.Element { "The purpose is to engage in any lawful activity." }
             }
         }
 
@@ -297,21 +297,21 @@ struct `Single vs Multiple H1 Diagnostic Tests` {
             generateOutline: true
         ) {
 
-            H1 { "DOCUMENT TITLE" }
+            HTML.H1.Element { "DOCUMENT TITLE" }
 
-            Section {
-                H3 { "Section 1" }
-                Paragraph { "Content for section 1." }
+            HTML.Section.Element {
+                HTML.H3.Element { "Section 1" }
+                HTML.Paragraph.Element { "Content for section 1." }
             }
 
-            Section {
-                H3 { "Section 2" }
-                Paragraph { "Content for section 2." }
+            HTML.Section.Element {
+                HTML.H3.Element { "Section 2" }
+                HTML.Paragraph.Element { "Content for section 2." }
             }
 
-            Section {
-                H3 { "Section 3" }
-                Paragraph { "Content for section 3." }
+            HTML.Section.Element {
+                HTML.H3.Element { "Section 3" }
+                HTML.Paragraph.Element { "Content for section 3." }
             }
         }
 
@@ -335,28 +335,28 @@ struct `Single vs Multiple H1 Diagnostic Tests` {
             generateOutline: true
         ) {
 
-            H1 { "FIRST DOCUMENT" }
+            HTML.H1.Element { "FIRST DOCUMENT" }
 
-            Section {
-                H3 { "First Section 1" }
-                Paragraph { "Content." }
+            HTML.Section.Element {
+                HTML.H3.Element { "First Section 1" }
+                HTML.Paragraph.Element { "Content." }
             }
 
-            Section {
-                H3 { "First Section 2" }
-                Paragraph { "Content." }
+            HTML.Section.Element {
+                HTML.H3.Element { "First Section 2" }
+                HTML.Paragraph.Element { "Content." }
             }
 
-            H1 { "SECOND DOCUMENT" }
+            HTML.H1.Element { "SECOND DOCUMENT" }
 
-            Section {
-                H3 { "Second Section 1" }
-                Paragraph { "Content." }
+            HTML.Section.Element {
+                HTML.H3.Element { "Second Section 1" }
+                HTML.Paragraph.Element { "Content." }
             }
 
-            Section {
-                H3 { "Second Section 2" }
-                Paragraph { "Content." }
+            HTML.Section.Element {
+                HTML.H3.Element { "Second Section 2" }
+                HTML.Paragraph.Element { "Content." }
             }
         }
 

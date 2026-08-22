@@ -11,37 +11,37 @@ struct `PDFOutput Tests` {
     func `Writes Basic HTMLTo PDF`() throws {
         struct SampleDocument: HTML.View {
             var body: some HTML.View {
-                ContentDivision {
-                    H1 { "HTML to PDF Test Document" }
+                HTML.ContentDivision.Element {
+                    HTML.H1.Element { "HTML to PDF Test Document" }
 
-                    Paragraph {
+                    HTML.Paragraph.Element {
                         "This document demonstrates basic HTML to PDF rendering."
                     }
 
-                    H2 { "Text Formatting" }
+                    HTML.H2.Element { "Text Formatting" }
 
-                    Paragraph {
+                    HTML.Paragraph.Element {
                         "Normal text with "
-                        StrongImportance { "bold" }
+                        HTML.StrongImportance.Element { "bold" }
                         " and "
-                        Emphasis { "italic" }
+                        HTML.Emphasis.Element { "italic" }
                         " formatting."
                     }
 
-                    H2 { "Lists" }
+                    HTML.H2.Element { "Lists" }
 
-                    UnorderedList {
-                        ListItem { "First item" }
-                        ListItem { "Second item" }
-                        ListItem { "Third item" }
+                    HTML.UnorderedList.Element {
+                        HTML.ListItem.Element { "First item" }
+                        HTML.ListItem.Element { "Second item" }
+                        HTML.ListItem.Element { "Third item" }
                     }
 
-                    H2 { "Ordered List" }
+                    HTML.H2.Element { "Ordered List" }
 
-                    OrderedList {
-                        ListItem { "Step one" }
-                        ListItem { "Step two" }
-                        ListItem { "Step three" }
+                    HTML.OrderedList.Element {
+                        HTML.ListItem.Element { "Step one" }
+                        HTML.ListItem.Element { "Step two" }
+                        HTML.ListItem.Element { "Step three" }
                     }
                 }
             }
@@ -64,32 +64,32 @@ struct `PDFOutput Tests` {
     func `Writes Table To PDF`() throws {
         struct TableDocument: HTML.View {
             var body: some HTML.View {
-                ContentDivision {
-                    H1 { "Table Test" }
+                HTML.ContentDivision.Element {
+                    HTML.H1.Element { "Table Test" }
 
-                    Table {
-                        TableHead {
-                            TableRow {
-                                TableHeader { "Name" }
-                                TableHeader { "Age" }
-                                TableHeader { "City" }
+                    HTML.Table.Element {
+                        HTML.TableHead.Element {
+                            HTML.TableRow.Element {
+                                HTML.TableHeader.Element { "Name" }
+                                HTML.TableHeader.Element { "Age" }
+                                HTML.TableHeader.Element { "City" }
                             }
                         }
-                        TableBody {
-                            TableRow {
-                                TableDataCell { "Alice" }
-                                TableDataCell { "30" }
-                                TableDataCell { "New York" }
+                        HTML.TableBody.Element {
+                            HTML.TableRow.Element {
+                                HTML.TableDataCell.Element { "Alice" }
+                                HTML.TableDataCell.Element { "30" }
+                                HTML.TableDataCell.Element { "New York" }
                             }
-                            TableRow {
-                                TableDataCell { "Bob" }
-                                TableDataCell { "25" }
-                                TableDataCell { "Los Angeles" }
+                            HTML.TableRow.Element {
+                                HTML.TableDataCell.Element { "Bob" }
+                                HTML.TableDataCell.Element { "25" }
+                                HTML.TableDataCell.Element { "Los Angeles" }
                             }
-                            TableRow {
-                                TableDataCell { "Charlie" }
-                                TableDataCell { "35" }
-                                TableDataCell { "Chicago" }
+                            HTML.TableRow.Element {
+                                HTML.TableDataCell.Element { "Charlie" }
+                                HTML.TableDataCell.Element { "35" }
+                                HTML.TableDataCell.Element { "Chicago" }
                             }
                         }
                     }
@@ -114,11 +114,11 @@ struct `PDFOutput Tests` {
     func `Writes Multi Page To PDF`() throws {
         struct MultiPageDocument: HTML.View {
             var body: some HTML.View {
-                ContentDivision {
-                    H1 { "Multi-Page Document" }
+                HTML.ContentDivision.Element {
+                    HTML.H1.Element { "Multi-Page Document" }
 
                     for i in 1...30 {
-                        Paragraph {
+                        HTML.Paragraph.Element {
                             "Paragraph \(i): This is some sample content that helps fill the page. When enough paragraphs accumulate, the content will flow onto subsequent pages. This tests the page break handling in the HTML to PDF renderer."
                         }
                     }
@@ -143,20 +143,20 @@ struct `PDFOutput Tests` {
     func `Writes Styled HTMLTo PDF`() throws {
         struct StyledDocument: HTML.View {
             var body: some HTML.View {
-                ContentDivision {
-                    H1 { "Styled Document" }
+                HTML.ContentDivision.Element {
+                    HTML.H1.Element { "Styled Document" }
                         .css
                         .color(.hex("#333"))
 
-                    Paragraph {
+                    HTML.Paragraph.Element {
                         "This paragraph has custom styling applied."
                     }
                     .css
                     .padding(.px(10))
                     .backgroundColor(.hex("#f0f0f0"))
 
-                    ContentDivision {
-                        Paragraph { "Box with border" }
+                    HTML.ContentDivision.Element {
+                        HTML.Paragraph.Element { "Box with border" }
                     }
                     .css
 

@@ -13,12 +13,12 @@ struct `Margin Tests` {
     func `marginTop advances Y position`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                ContentDivision {
-                    Paragraph { "FIRST_PARAGRAPH" }
+                HTML.ContentDivision.Element {
+                    HTML.Paragraph.Element { "FIRST_PARAGRAPH" }
                 }
                 .css.marginTop(.px(20))
 
-                Paragraph { "SECOND_PARAGRAPH" }
+                HTML.Paragraph.Element { "SECOND_PARAGRAPH" }
             }
         }
 
@@ -34,12 +34,12 @@ struct `Margin Tests` {
     func `marginBottom advances Y position after content`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                ContentDivision {
-                    Paragraph { "CONTENT_WITH_MARGIN" }
+                HTML.ContentDivision.Element {
+                    HTML.Paragraph.Element { "CONTENT_WITH_MARGIN" }
                 }
                 .css.marginBottom(.px(20))
 
-                Paragraph { "FOLLOWING_CONTENT" }
+                HTML.Paragraph.Element { "FOLLOWING_CONTENT" }
             }
         }
 
@@ -55,8 +55,8 @@ struct `Margin Tests` {
     func `marginLeft insets content`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                ContentDivision {
-                    Paragraph { "INDENTED_CONTENT" }
+                HTML.ContentDivision.Element {
+                    HTML.Paragraph.Element { "INDENTED_CONTENT" }
                 }
                 .css.marginLeft(.px(30))
             }
@@ -73,8 +73,8 @@ struct `Margin Tests` {
     func `marginRight restricts content width`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                ContentDivision {
-                    Paragraph { "CONTENT_WITH_RIGHT_MARGIN" }
+                HTML.ContentDivision.Element {
+                    HTML.Paragraph.Element { "CONTENT_WITH_RIGHT_MARGIN" }
                 }
                 .css.marginRight(.px(30))
             }
@@ -91,8 +91,8 @@ struct `Margin Tests` {
     func `margin shorthand applies all sides`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                ContentDivision {
-                    Paragraph { "FULLY_MARGINED_CONTENT" }
+                HTML.ContentDivision.Element {
+                    HTML.Paragraph.Element { "FULLY_MARGINED_CONTENT" }
                 }
                 .css.margin(.px(10))
             }
@@ -109,8 +109,8 @@ struct `Margin Tests` {
     func `margin with em units scales with font size`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                ContentDivision {
-                    Paragraph { "EM_MARGIN_CONTENT" }
+                HTML.ContentDivision.Element {
+                    HTML.Paragraph.Element { "EM_MARGIN_CONTENT" }
                 }
                 .css.marginTop(.em(1.5))
             }
@@ -131,8 +131,8 @@ struct `Padding Tests` {
     func `paddingTop advances Y position inside element`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                ContentDivision {
-                    Paragraph { "PADDED_TOP_CONTENT" }
+                HTML.ContentDivision.Element {
+                    HTML.Paragraph.Element { "PADDED_TOP_CONTENT" }
                 }
                 .css.paddingTop(.px(15))
             }
@@ -149,12 +149,12 @@ struct `Padding Tests` {
     func `paddingBottom advances Y position after content`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                ContentDivision {
-                    Paragraph { "PADDED_BOTTOM_CONTENT" }
+                HTML.ContentDivision.Element {
+                    HTML.Paragraph.Element { "PADDED_BOTTOM_CONTENT" }
                 }
                 .css.paddingBottom(.px(15))
 
-                Paragraph { "FOLLOWING_ELEMENT" }
+                HTML.Paragraph.Element { "FOLLOWING_ELEMENT" }
             }
         }
 
@@ -170,8 +170,8 @@ struct `Padding Tests` {
     func `paddingLeft insets content from left edge`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                ContentDivision {
-                    Paragraph { "LEFT_PADDED_CONTENT" }
+                HTML.ContentDivision.Element {
+                    HTML.Paragraph.Element { "LEFT_PADDED_CONTENT" }
                 }
                 .css.paddingLeft(.px(25))
             }
@@ -188,8 +188,8 @@ struct `Padding Tests` {
     func `paddingRight insets content from right edge`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                ContentDivision {
-                    Paragraph { "RIGHT_PADDED_CONTENT" }
+                HTML.ContentDivision.Element {
+                    HTML.Paragraph.Element { "RIGHT_PADDED_CONTENT" }
                 }
                 .css.paddingRight(.px(25))
             }
@@ -206,8 +206,8 @@ struct `Padding Tests` {
     func `padding shorthand applies all sides`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                ContentDivision {
-                    Paragraph { "FULLY_PADDED_CONTENT" }
+                HTML.ContentDivision.Element {
+                    HTML.Paragraph.Element { "FULLY_PADDED_CONTENT" }
                 }
                 .css.padding(.px(12))
             }
@@ -224,8 +224,8 @@ struct `Padding Tests` {
     func `padding with percentage uses parent width`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                ContentDivision {
-                    Paragraph { "PERCENTAGE_PADDED_CONTENT" }
+                HTML.ContentDivision.Element {
+                    HTML.Paragraph.Element { "PERCENTAGE_PADDED_CONTENT" }
                 }
                 .css.padding(.percent(5))
             }
@@ -246,8 +246,8 @@ struct `Width Tests` {
     func `explicit width constrains content area`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                ContentDivision {
-                    Paragraph { "WIDTH_CONSTRAINED_CONTENT" }
+                HTML.ContentDivision.Element {
+                    HTML.Paragraph.Element { "WIDTH_CONSTRAINED_CONTENT" }
                 }
                 .css.width(.px(200))
             }
@@ -264,8 +264,8 @@ struct `Width Tests` {
     func `width auto uses available space`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                ContentDivision {
-                    Paragraph { "AUTO_WIDTH_CONTENT" }
+                HTML.ContentDivision.Element {
+                    HTML.Paragraph.Element { "AUTO_WIDTH_CONTENT" }
                 }
                 .css.width(.auto)
             }
@@ -282,8 +282,8 @@ struct `Width Tests` {
     func `width percentage uses parent width`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                ContentDivision {
-                    Paragraph { "PERCENT_WIDTH_CONTENT" }
+                HTML.ContentDivision.Element {
+                    HTML.Paragraph.Element { "PERCENT_WIDTH_CONTENT" }
                 }
                 .css.width(.percent(50))
             }
@@ -304,8 +304,8 @@ struct `Height Tests` {
     func `explicit height does not break content`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                ContentDivision {
-                    Paragraph { "HEIGHT_CONSTRAINED_CONTENT" }
+                HTML.ContentDivision.Element {
+                    HTML.Paragraph.Element { "HEIGHT_CONSTRAINED_CONTENT" }
                 }
                 .css.height(.px(100))
             }
@@ -322,8 +322,8 @@ struct `Height Tests` {
     func `height auto computes from content`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                ContentDivision {
-                    Paragraph { "AUTO_HEIGHT_CONTENT" }
+                HTML.ContentDivision.Element {
+                    HTML.Paragraph.Element { "AUTO_HEIGHT_CONTENT" }
                 }
                 .css.height(.auto)
             }
@@ -344,8 +344,8 @@ struct `Combined Box Model Tests` {
     func `margin and padding combine correctly`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                ContentDivision {
-                    Paragraph { "MARGIN_AND_PADDING_CONTENT" }
+                HTML.ContentDivision.Element {
+                    HTML.Paragraph.Element { "MARGIN_AND_PADDING_CONTENT" }
                 }
                 .css.margin(.px(10))
                 .css.padding(.px(15))
@@ -363,9 +363,9 @@ struct `Combined Box Model Tests` {
     func `nested elements with box model`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                ContentDivision {
-                    ContentDivision {
-                        Paragraph { "DEEPLY_NESTED_CONTENT" }
+                HTML.ContentDivision.Element {
+                    HTML.ContentDivision.Element {
+                        HTML.Paragraph.Element { "DEEPLY_NESTED_CONTENT" }
                     }
                     .css.padding(.px(10))
                 }
@@ -384,8 +384,8 @@ struct `Combined Box Model Tests` {
     func `width with padding computes content area correctly`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                ContentDivision {
-                    Paragraph { "WIDTH_WITH_PADDING_CONTENT" }
+                HTML.ContentDivision.Element {
+                    HTML.Paragraph.Element { "WIDTH_WITH_PADDING_CONTENT" }
                 }
                 .css.width(.px(300))
                 .css.padding(.px(20))
@@ -403,8 +403,8 @@ struct `Combined Box Model Tests` {
     func `margin with width centers element`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                ContentDivision {
-                    Paragraph { "MARGIN_AUTO_CENTERED_CONTENT" }
+                HTML.ContentDivision.Element {
+                    HTML.Paragraph.Element { "MARGIN_AUTO_CENTERED_CONTENT" }
                 }
                 .css.width(.px(400))
                 .css.marginLeft(.auto)
@@ -427,8 +427,8 @@ struct `Box Model with Text Flow Tests` {
     func `padding affects text wrapping`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                ContentDivision {
-                    Paragraph {
+                HTML.ContentDivision.Element {
+                    HTML.Paragraph.Element {
                         "This is a longer paragraph that should wrap differently when padding is applied because the content area is reduced by the padding values on the left and right sides."
                     }
                 }
@@ -447,8 +447,8 @@ struct `Box Model with Text Flow Tests` {
     func `width constraint affects text wrapping`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                ContentDivision {
-                    Paragraph {
+                HTML.ContentDivision.Element {
+                    HTML.Paragraph.Element {
                         "This is content that will wrap more aggressively due to the narrow width constraint applied to its container."
                     }
                 }

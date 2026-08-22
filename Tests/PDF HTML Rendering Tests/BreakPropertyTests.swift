@@ -15,13 +15,13 @@ struct `PageBreakAfter Tests` {
             var body: some HTML.View {
 
                 for i in 1...40 {
-                    Paragraph { "Filler \(i)" }
+                    HTML.Paragraph.Element { "Filler \(i)" }
                 }
 
-                H2 { "STICKY_HEADER" }
+                HTML.H2.Element { "STICKY_HEADER" }
                     .css.pageBreakAfter(.avoid)
 
-                Paragraph { "FOLLOWING_CONTENT" }
+                HTML.Paragraph.Element { "FOLLOWING_CONTENT" }
             }
         }
 
@@ -37,10 +37,10 @@ struct `PageBreakAfter Tests` {
     func `pageBreakAfter always forces page break`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                Paragraph { "PAGE_ONE_CONTENT" }
+                HTML.Paragraph.Element { "PAGE_ONE_CONTENT" }
                     .css.pageBreakAfter(.always)
 
-                Paragraph { "PAGE_TWO_CONTENT" }
+                HTML.Paragraph.Element { "PAGE_TWO_CONTENT" }
             }
         }
 
@@ -53,10 +53,10 @@ struct `PageBreakAfter Tests` {
     func `pageBreakAfter auto allows natural flow`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                Paragraph { "SHORT_CONTENT" }
+                HTML.Paragraph.Element { "SHORT_CONTENT" }
                     .css.pageBreakAfter(.auto)
 
-                Paragraph { "MORE_CONTENT" }
+                HTML.Paragraph.Element { "MORE_CONTENT" }
             }
         }
 
@@ -73,9 +73,9 @@ struct `PageBreakBefore Tests` {
     func `pageBreakBefore always forces page break`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                Paragraph { "PAGE_ONE_CONTENT" }
+                HTML.Paragraph.Element { "PAGE_ONE_CONTENT" }
 
-                Paragraph { "PAGE_TWO_CONTENT" }
+                HTML.Paragraph.Element { "PAGE_TWO_CONTENT" }
                     .css.pageBreakBefore(.always)
             }
         }
@@ -89,8 +89,8 @@ struct `PageBreakBefore Tests` {
     func `pageBreakBefore auto allows natural flow`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                Paragraph { "FIRST" }
-                Paragraph { "SECOND" }
+                HTML.Paragraph.Element { "FIRST" }
+                HTML.Paragraph.Element { "SECOND" }
                     .css.pageBreakBefore(.auto)
             }
         }
@@ -110,12 +110,12 @@ struct `PageBreakInside Tests` {
             var body: some HTML.View {
 
                 for i in 1...35 {
-                    Paragraph { "Filler \(i)" }
+                    HTML.Paragraph.Element { "Filler \(i)" }
                 }
 
-                ContentDivision {
-                    Paragraph { "KEEP_TOGETHER_START" }
-                    Paragraph { "KEEP_TOGETHER_END" }
+                HTML.ContentDivision.Element {
+                    HTML.Paragraph.Element { "KEEP_TOGETHER_START" }
+                    HTML.Paragraph.Element { "KEEP_TOGETHER_END" }
                 }
                 .css.pageBreakInside(.avoid)
             }
@@ -139,13 +139,13 @@ struct `BreakAfter Tests` {
             var body: some HTML.View {
 
                 for i in 1...40 {
-                    Paragraph { "Filler \(i)" }
+                    HTML.Paragraph.Element { "Filler \(i)" }
                 }
 
-                H2 { "MODERN_STICKY_HEADER" }
+                HTML.H2.Element { "MODERN_STICKY_HEADER" }
                     .css.breakAfter(.avoid)
 
-                Paragraph { "MODERN_FOLLOWING_CONTENT" }
+                HTML.Paragraph.Element { "MODERN_FOLLOWING_CONTENT" }
             }
         }
 
@@ -162,13 +162,13 @@ struct `BreakAfter Tests` {
         struct TestView: HTML.View {
             var body: some HTML.View {
                 for i in 1...40 {
-                    Paragraph { "Filler \(i)" }
+                    HTML.Paragraph.Element { "Filler \(i)" }
                 }
 
-                H2 { "AVOID_PAGE_HEADER" }
+                HTML.H2.Element { "AVOID_PAGE_HEADER" }
                     .css.breakAfter(.avoidPage)
 
-                Paragraph { "AVOID_PAGE_CONTENT" }
+                HTML.Paragraph.Element { "AVOID_PAGE_CONTENT" }
             }
         }
 
@@ -184,10 +184,10 @@ struct `BreakAfter Tests` {
     func `breakAfter always forces page break`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                Paragraph { "BEFORE_BREAK" }
+                HTML.Paragraph.Element { "BEFORE_BREAK" }
                     .css.breakAfter(.always)
 
-                Paragraph { "AFTER_BREAK" }
+                HTML.Paragraph.Element { "AFTER_BREAK" }
             }
         }
 
@@ -200,10 +200,10 @@ struct `BreakAfter Tests` {
     func `breakAfter page forces page break`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                Paragraph { "BEFORE_PAGE_BREAK" }
+                HTML.Paragraph.Element { "BEFORE_PAGE_BREAK" }
                     .css.breakAfter(.page)
 
-                Paragraph { "AFTER_PAGE_BREAK" }
+                HTML.Paragraph.Element { "AFTER_PAGE_BREAK" }
             }
         }
 
@@ -220,9 +220,9 @@ struct `BreakBefore Tests` {
     func `breakBefore always forces page break`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                Paragraph { "BEFORE_CONTENT" }
+                HTML.Paragraph.Element { "BEFORE_CONTENT" }
 
-                Paragraph { "AFTER_BREAK_CONTENT" }
+                HTML.Paragraph.Element { "AFTER_BREAK_CONTENT" }
                     .css.breakBefore(.always)
             }
         }
@@ -236,9 +236,9 @@ struct `BreakBefore Tests` {
     func `breakBefore page forces page break`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                Paragraph { "FIRST_PAGE" }
+                HTML.Paragraph.Element { "FIRST_PAGE" }
 
-                Paragraph { "SECOND_PAGE" }
+                HTML.Paragraph.Element { "SECOND_PAGE" }
                     .css.breakBefore(.page)
             }
         }
@@ -252,8 +252,8 @@ struct `BreakBefore Tests` {
     func `breakBefore auto allows natural flow`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                Paragraph { "A" }
-                Paragraph { "B" }
+                HTML.Paragraph.Element { "A" }
+                HTML.Paragraph.Element { "B" }
                     .css.breakBefore(.auto)
             }
         }
@@ -272,12 +272,12 @@ struct `BreakInside Tests` {
         struct TestView: HTML.View {
             var body: some HTML.View {
                 for i in 1...35 {
-                    Paragraph { "Filler \(i)" }
+                    HTML.Paragraph.Element { "Filler \(i)" }
                 }
 
-                ContentDivision {
-                    Paragraph { "MODERN_KEEP_START" }
-                    Paragraph { "MODERN_KEEP_END" }
+                HTML.ContentDivision.Element {
+                    HTML.Paragraph.Element { "MODERN_KEEP_START" }
+                    HTML.Paragraph.Element { "MODERN_KEEP_END" }
                 }
                 .css.breakInside(.avoid)
             }
@@ -296,12 +296,12 @@ struct `BreakInside Tests` {
         struct TestView: HTML.View {
             var body: some HTML.View {
                 for i in 1...35 {
-                    Paragraph { "Filler \(i)" }
+                    HTML.Paragraph.Element { "Filler \(i)" }
                 }
 
-                ContentDivision {
-                    Paragraph { "AVOID_PAGE_START" }
-                    Paragraph { "AVOID_PAGE_END" }
+                HTML.ContentDivision.Element {
+                    HTML.Paragraph.Element { "AVOID_PAGE_START" }
+                    HTML.Paragraph.Element { "AVOID_PAGE_END" }
                 }
                 .css.breakInside(.avoidPage)
             }
@@ -324,16 +324,16 @@ struct `Consecutive Sticky Headers Tests` {
         struct TestView: HTML.View {
             var body: some HTML.View {
                 for i in 1...40 {
-                    Paragraph { "Filler \(i)" }
+                    HTML.Paragraph.Element { "Filler \(i)" }
                 }
 
-                H3 { "ARTICLE_HEADER" }
+                HTML.H3.Element { "ARTICLE_HEADER" }
                     .css.pageBreakAfter(.avoid)
 
-                H4 { "SECTION_HEADER" }
+                HTML.H4.Element { "SECTION_HEADER" }
                     .css.pageBreakAfter(.avoid)
 
-                Paragraph { "SECTION_CONTENT" }
+                HTML.Paragraph.Element { "SECTION_CONTENT" }
             }
         }
 
@@ -351,16 +351,16 @@ struct `Consecutive Sticky Headers Tests` {
         struct TestView: HTML.View {
             var body: some HTML.View {
                 for i in 1...40 {
-                    Paragraph { "Filler \(i)" }
+                    HTML.Paragraph.Element { "Filler \(i)" }
                 }
 
-                H3 { "MODERN_ARTICLE" }
+                HTML.H3.Element { "MODERN_ARTICLE" }
                     .css.breakAfter(.avoid)
 
-                H4 { "MODERN_SECTION" }
+                HTML.H4.Element { "MODERN_SECTION" }
                     .css.breakAfter(.avoid)
 
-                Paragraph { "MODERN_CONTENT" }
+                HTML.Paragraph.Element { "MODERN_CONTENT" }
             }
         }
 
@@ -382,14 +382,14 @@ struct `Section Wrapper Tests` {
         struct TestView: HTML.View {
             var body: some HTML.View {
                 for i in 1...40 {
-                    Paragraph { "Filler \(i)" }
+                    HTML.Paragraph.Element { "Filler \(i)" }
                 }
 
-                Section {
-                    H3 { "SECTION_WRAPPED_HEADER" }
+                HTML.Section.Element {
+                    HTML.H3.Element { "SECTION_WRAPPED_HEADER" }
                         .css.pageBreakAfter(.avoid)
 
-                    Paragraph { "SECTION_WRAPPED_CONTENT" }
+                    HTML.Paragraph.Element { "SECTION_WRAPPED_CONTENT" }
                 }
             }
         }
@@ -407,14 +407,14 @@ struct `Section Wrapper Tests` {
         struct TestView: HTML.View {
             var body: some HTML.View {
                 for i in 1...40 {
-                    Paragraph { "Filler \(i)" }
+                    HTML.Paragraph.Element { "Filler \(i)" }
                 }
 
-                Section {
-                    H3 { "MODERN_SECTION_HEADER" }
+                HTML.Section.Element {
+                    HTML.H3.Element { "MODERN_SECTION_HEADER" }
                         .css.breakAfter(.avoid)
 
-                    Paragraph { "MODERN_SECTION_CONTENT" }
+                    HTML.Paragraph.Element { "MODERN_SECTION_CONTENT" }
                 }
             }
         }
@@ -436,23 +436,23 @@ struct `Sticky Header with Table Tests` {
         struct TestView: HTML.View {
             var body: some HTML.View {
                 for i in 1...38 {
-                    Paragraph { "Filler \(i)" }
+                    HTML.Paragraph.Element { "Filler \(i)" }
                 }
 
-                H3 { "TABLE_HEADER" }
+                HTML.H3.Element { "TABLE_HEADER" }
                     .css.pageBreakAfter(.avoid)
 
-                Table {
-                    TableHead {
-                        TableRow {
-                            TableHeader { "Column A" }
-                            TableHeader { "Column B" }
+                HTML.Table.Element {
+                    HTML.TableHead.Element {
+                        HTML.TableRow.Element {
+                            HTML.TableHeader.Element { "Column A" }
+                            HTML.TableHeader.Element { "Column B" }
                         }
                     }
-                    TableBody {
-                        TableRow {
-                            TableDataCell { "DATA_A" }
-                            TableDataCell { "DATA_B" }
+                    HTML.TableBody.Element {
+                        HTML.TableRow.Element {
+                            HTML.TableDataCell.Element { "DATA_A" }
+                            HTML.TableDataCell.Element { "DATA_B" }
                         }
                     }
                 }
