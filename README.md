@@ -43,7 +43,7 @@ let document = PDF.Document(generateOutline: true) {
 let bytes = [UInt8](document)   // a complete PDF file, ready to write to disk
 ```
 
-The HTML element vocabulary (`H1`, `Paragraph`, `Table`, …) comes from the `HTML Rendering` product of [swift-html-render](https://github.com/swift-foundations/swift-html-render); add it alongside this package (see Installation).
+The HTML element vocabulary (`H1`, `Paragraph`, `Table`, …) comes from the `HTML Rendering` product of [swift-html-render](https://github.com/swift-compositions/swift-html-render); add it alongside this package (see Installation).
 
 ---
 
@@ -51,7 +51,7 @@ The HTML element vocabulary (`H1`, `Paragraph`, `Table`, …) comes from the `HT
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/swift-foundations/swift-pdf-html-render.git", branch: "main")
+    .package(url: "https://github.com/swift-compositions/swift-pdf-html-render.git", branch: "main")
 ]
 ```
 
@@ -68,8 +68,8 @@ Authoring HTML uses the element DSL from swift-html-render, so add its `HTML Ren
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/swift-foundations/swift-pdf-html-render.git", branch: "main"),
-    .package(url: "https://github.com/swift-foundations/swift-html-render.git", branch: "main")
+    .package(url: "https://github.com/swift-compositions/swift-pdf-html-render.git", branch: "main"),
+    .package(url: "https://github.com/swift-compositions/swift-html-render.git", branch: "main")
 ]
 ```
 

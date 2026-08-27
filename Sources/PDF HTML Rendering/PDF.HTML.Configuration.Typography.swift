@@ -1,25 +1,25 @@
-import Dimension_Primitives
+import Dimension
 
 extension PDF.HTML.Configuration {
 
     public struct Typography: Sendable, Equatable {
 
-        public var subscriptScale: Dimension_Primitives.Scale<1, Double>
+        public var subscriptScale: Dimension.Scale<1, Double>
 
-        public var superscriptScale: Dimension_Primitives.Scale<1, Double>
+        public var superscriptScale: Dimension.Scale<1, Double>
 
-        public var smallScale: Dimension_Primitives.Scale<1, Double>
+        public var smallScale: Dimension.Scale<1, Double>
 
-        public var subscriptOffset: Dimension_Primitives.Scale<1, Double>
+        public var subscriptOffset: Dimension.Scale<1, Double>
 
-        public var superscriptOffset: Dimension_Primitives.Scale<1, Double>
+        public var superscriptOffset: Dimension.Scale<1, Double>
 
         public init(
-            subscriptScale: Dimension_Primitives.Scale<1, Double> = 0.83,
-            superscriptScale: Dimension_Primitives.Scale<1, Double> = 0.83,
-            smallScale: Dimension_Primitives.Scale<1, Double> = 0.83,
-            subscriptOffset: Dimension_Primitives.Scale<1, Double> = 0.2,
-            superscriptOffset: Dimension_Primitives.Scale<1, Double> = 0.4
+            subscriptScale: Dimension.Scale<1, Double> = 0.83,
+            superscriptScale: Dimension.Scale<1, Double> = 0.83,
+            smallScale: Dimension.Scale<1, Double> = 0.83,
+            subscriptOffset: Dimension.Scale<1, Double> = 0.2,
+            superscriptOffset: Dimension.Scale<1, Double> = 0.4
         ) {
             self.subscriptScale = subscriptScale
             self.superscriptScale = superscriptScale

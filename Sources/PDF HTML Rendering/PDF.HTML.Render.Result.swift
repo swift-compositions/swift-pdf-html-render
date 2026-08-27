@@ -17,7 +17,7 @@ extension PDF.HTML {
         pdfContext.style.font = configuration.defaultFont
         pdfContext.style.fontSize = configuration.defaultFontSize
         pdfContext.style.color = configuration.defaultColor
-        pdfContext.style.lineHeight = Dimension_Primitives.Scale(
+        pdfContext.style.lineHeight = Dimension.Scale(
             configuration.resolveLineHeight(
                 for: configuration.defaultFont,
                 fontSize: configuration.defaultFontSize

@@ -1,5 +1,5 @@
 import Byte_Primitive
-import Byte_Primitives_Standard_Library_Integration
+import Byte_Standard_Library_Integration
 import CSS
 import Foundation
 import HTML_Rendering

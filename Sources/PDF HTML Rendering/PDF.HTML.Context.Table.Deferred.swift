@@ -1,6 +1,6 @@
-import Layout_Primitives
+import Layout
 import PDF_Rendering
-import Render_Primitives
+import Render
 
 extension PDF.HTML.Context.Table {
 

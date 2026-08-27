@@ -1,6 +1,6 @@
-import Dimension_Primitives
-import Geometry_Primitives
-import Layout_Primitives
+import Dimension
+import Geometry
+import Layout
 import PDF_Rendering
 import PDF_Standard
 
@@ -27,15 +27,15 @@ extension PDF.HTML {
 
         public var lineHeight: LineHeight
 
-        public var paragraphSpacing: Dimension_Primitives.Scale<1, Double>
+        public var paragraphSpacing: Dimension.Scale<1, Double>
 
-        public var headingSpacing: Dimension_Primitives.Scale<1, Double>
+        public var headingSpacing: Dimension.Scale<1, Double>
 
         public var typography: Typography
 
         public var indent: Indent
 
-        public var horizontalGapEm: Dimension_Primitives.Scale<1, Double>
+        public var horizontalGapEm: Dimension.Scale<1, Double>
 
         public var table: Table
 
@@ -58,11 +58,11 @@ extension PDF.HTML {
             defaultFontSize: PDF.UserSpace.Size<1> = 12,
             defaultColor: PDF.Color = .black,
             lineHeight: LineHeight = .normal,
-            paragraphSpacing: Dimension_Primitives.Scale<1, Double> = 0.5,
-            headingSpacing: Dimension_Primitives.Scale<1, Double> = 0.8,
+            paragraphSpacing: Dimension.Scale<1, Double> = 0.5,
+            headingSpacing: Dimension.Scale<1, Double> = 0.8,
             typography: Typography = .init(),
             indent: Indent = .init(),
-            horizontalGapEm: Dimension_Primitives.Scale<1, Double> = 0.5,
+            horizontalGapEm: Dimension.Scale<1, Double> = 0.5,
             table: Table = .init(),
             outline: Outline = .init(),
             link: Link = .init(),
@@ -161,7 +161,7 @@ extension PDF.HTML.Configuration {
         }
     }
 
-    public func headingMarginEm(for tag: String) -> Dimension_Primitives.Scale<1, Double> {
+    public func headingMarginEm(for tag: String) -> Dimension.Scale<1, Double> {
         switch tag {
         case "h1": return 0.67
         case "h2": return 0.83

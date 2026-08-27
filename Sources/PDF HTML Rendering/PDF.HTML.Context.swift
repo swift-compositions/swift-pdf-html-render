@@ -1,13 +1,13 @@
 public import Buffer_Linear_Primitive
-import Column_Primitives
+import Column
 import Copy_on_Write
-public import Dictionary_Ordered_Primitives
-import Dictionary_Primitives
+public import Dictionary_Ordered
+import Dictionary
 public import HTML_Rendering_Core
 import Hash_Indexed_Primitive
-import Hash_Primitives
+import Hash
 import Ownership_Shared_Primitive
-import Render_Primitives
+import Render
 
 extension PDF.HTML {
 
@@ -43,7 +43,7 @@ extension PDF.HTML {
 
         public var speculativeSnapshot: PDF.HTML.Context?
 
-        public var speculativeActions: [Render_Primitives.Render.Action]?
+        public var speculativeActions: [Render.Render.Action]?
 
         public var section: Section = .init()
 

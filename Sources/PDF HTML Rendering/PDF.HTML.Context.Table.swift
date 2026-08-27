@@ -1,8 +1,8 @@
-import Dictionary_Primitives
+import Dictionary
 import HTML_Rendering_Core
-import Layout_Primitives
+import Layout
 import PDF_Rendering
-import Render_Primitives
+import Render
 
 extension PDF.HTML.Context {
 

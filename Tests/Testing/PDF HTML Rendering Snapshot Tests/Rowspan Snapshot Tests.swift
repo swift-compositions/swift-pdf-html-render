@@ -1,7 +1,7 @@
 import HTML_Rendering
 import PDF_HTML_Rendering
 import PDF_Rendering
-import Test_Snapshot_Primitives
+import Test_Snapshot
 import Testing
 import Tests_Inline_Snapshot
 

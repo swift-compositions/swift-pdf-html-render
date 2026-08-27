@@ -1,10 +1,10 @@
-import Byte_Primitives
+import Byte
 import Dictionary_Ordered_Primitive
-import Dictionary_Ordered_Primitives
+import Dictionary_Ordered
 import HTML_Rendering_Core
-import Layout_Primitives
+import Layout
 import PDF_Rendering
-import Render_Primitives
+import Render
 
 extension PDF.HTML.Context {
 
@@ -301,8 +301,8 @@ extension PDF.HTML.Context {
 
     public static func _pushBlock(
         _ context: inout Self,
-        role: Render_Primitives.Render.Semantic.Block?,
-        style: Render_Primitives.Render.Style
+        role: Render.Render.Semantic.Block?,
+        style: Render.Render.Style
     ) {
         if record(.pushBlock(role: role, style: style), context: &context) { return }
         if context.pdf.inline.hasRuns {
@@ -321,8 +321,8 @@ extension PDF.HTML.Context {
 
     public static func _pushInline(
         _ context: inout Self,
-        role: Render_Primitives.Render.Semantic.Inline?,
-        style: Render_Primitives.Render.Style
+        role: Render.Render.Semantic.Inline?,
+        style: Render.Render.Style
     ) {
         if record(.pushInline(role: role, style: style), context: &context) { return }
         PDF.Context._pushInline(&context.pdf, role: role, style: style)
@@ -335,7 +335,7 @@ extension PDF.HTML.Context {
 
     public static func _pushList(
         _ context: inout Self,
-        kind: Render_Primitives.Render.Semantic.List,
+        kind: Render.Render.Semantic.List,
         start: Int?
     ) {
         if record(.pushList(kind: kind, start: start), context: &context) { return }
@@ -1177,7 +1177,7 @@ extension PDF.HTML.Context {
                 }
             } else {
                 for raw in rawWidths {
-                    let w = totalWidth * Dimension_Primitives.Scale(raw / max(rawSum, .ulpOfOne))
+                    let w = totalWidth * Dimension.Scale(raw / max(rawSum, .ulpOfOne))
                     columnWidths.append(w)
                 }
             }
@@ -1196,7 +1196,7 @@ extension PDF.HTML.Context {
             }
             (0..<n).forEach { i in
                 let w =
-                    totalWidth * Dimension_Primitives.Scale(weights[i] / max(weightSum, .ulpOfOne))
+                    totalWidth * Dimension.Scale(weights[i] / max(weightSum, .ulpOfOne))
                 columnWidths.append(w)
             }
         }

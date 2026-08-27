@@ -1,8 +1,8 @@
-import Render_Primitives
+import Render
 
 extension PDF.HTML.Context {
 
-    public mutating func interpret(_ action: Render_Primitives.Render.Action) {
+    public mutating func interpret(_ action: Render.Render.Action) {
         switch action {
         case .text(let content): text(content)
 

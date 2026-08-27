@@ -1,8 +1,8 @@
-import Byte_Primitives_Standard_Library_Integration
+import Byte_Standard_Library_Integration
 import Foundation
 import HTML_Rendering
-import Ownership_Mutable_Primitives
-import Render_Primitives
+import Ownership_Mutable
+import Render
 import Testing
 
 @testable import PDF_HTML_Rendering

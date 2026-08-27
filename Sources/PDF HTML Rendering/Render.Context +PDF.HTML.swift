@@ -1,8 +1,8 @@
 import HTML_Rendering_Core
-import Layout_Primitives
-public import Ownership_Mutable_Primitives
+import Layout
+public import Ownership_Mutable
 import PDF_Rendering
-import Render_Primitives
+import Render
 
 extension Render.Context {
 

@@ -1,7 +1,7 @@
-import Binary_Serializable_Primitives
+import Binary_Serializable
 import Byte_Primitive
 import PDF_Rendering
-import Test_Snapshot_Primitives
+import Test_Snapshot
 
 extension Test.Snapshot.Strategy where Value == PDF.Document, Format == [Byte] {
     static var pdf: Self {
