@@ -2,87 +2,6 @@
 
 import PackageDescription
 
-extension String {
-    static let pdfHTMLRendering: Self = "PDF HTML Rendering"
-    var tests: Self { self + " Tests" }
-}
-
-extension Target.Dependency {
-    static var pdfHTMLRendering: Self { .target(name: .pdfHTMLRendering) }
-}
-
-extension Target.Dependency {
-    static var htmlRenderingCore: Self {
-        .product(name: "HTML Rendering Core", package: "swift-html-render")
-    }
-    static var htmlRendering: Self {
-        .product(name: "HTML Rendering", package: "swift-html-render")
-    }
-    static var htmlRenderingCoreTestSupport: Self {
-        .product(name: "HTML Rendering Core Test Support", package: "swift-html-render")
-    }
-    static var pdfRenderingTestSupport: Self {
-        .product(name: "PDF Rendering Test Support", package: "swift-pdf-render")
-    }
-    static var pdfRendering: Self {
-        .product(name: "PDF Rendering", package: "swift-pdf-render")
-    }
-    static var copyOnWrite: Self {
-        .product(name: "Copy on Write", package: "swift-copy-on-write")
-    }
-    static var css: Self {
-        .product(name: "CSS", package: "swift-css")
-    }
-    static var htmlStandard: Self {
-        .product(name: "HTML Standard", package: "swift-html-standard")
-    }
-    static var rfc4648: Self {
-        .product(name: "RFC 4648", package: "swift-rfc-4648")
-    }
-    static var layoutPrimitives: Self {
-        .product(name: "Layout", package: "swift-layout")
-    }
-    static var dictionaryPrimitives: Self {
-        .product(name: "Dictionary", package: "swift-dictionary")
-    }
-    static var stackPrimitives: Self {
-        .product(name: "Stack", package: "swift-stack")
-    }
-    static var propertyPrimitives: Self {
-        .product(name: "Property", package: "swift-property")
-    }
-    static var standardLibraryExtensions: Self {
-        .product(name: "Standard Library Extensions", package: "swift-standard-library-extensions")
-    }
-    static var ownershipMutablePrimitives: Self {
-        .product(name: "Ownership Mutable", package: "swift-ownership")
-    }
-    static var sharedPrimitive: Self {
-        .product(name: "Ownership Shared Primitive", package: "swift-ownership-shared")
-    }
-    static var hashIndexedPrimitive: Self {
-        .product(name: "Hash Indexed Primitive", package: "swift-hash-table")
-    }
-    static var hashPrimitives: Self {
-        .product(name: "Hash", package: "swift-hash")
-    }
-    static var columnPrimitives: Self {
-        .product(name: "Column", package: "swift-column")
-    }
-    static var bufferLinearPrimitive: Self {
-        .product(name: "Buffer Linear Primitive", package: "swift-buffer-linear")
-    }
-    static var dictionaryOrderedPrimitive: Self {
-        .product(
-            name: "Dictionary Ordered Primitive",
-            package: "swift-dictionary-ordered"
-        )
-    }
-    static var bytePrimitives: Self {
-        .product(name: "Byte", package: "swift-byte")
-    }
-}
-
 let package = Package(
     name: "swift-pdf-html-render",
     platforms: [
@@ -93,7 +12,7 @@ let package = Package(
         .visionOS(.v27),
     ],
     products: [
-        .library(name: .pdfHTMLRendering, targets: [.pdfHTMLRendering]),
+        .library(name: "PDF HTML Rendering", targets: ["PDF HTML Rendering"]),
         .library(
             name: "PDF HTML Rendering Test Support",
             targets: ["PDF HTML Rendering Test Support"]
@@ -164,48 +83,48 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: .pdfHTMLRendering,
+            name: "PDF HTML Rendering",
             dependencies: [
-                .htmlRenderingCore,
-                .pdfRendering,
-                .copyOnWrite,
-                .css,
-                .htmlStandard,
-                .rfc4648,
-                .layoutPrimitives,
-                .dictionaryPrimitives,
+                .product(name: "HTML Rendering Core", package: "swift-html-render"),
+                .product(name: "PDF Rendering", package: "swift-pdf-render"),
+                .product(name: "Copy on Write", package: "swift-copy-on-write"),
+                .product(name: "CSS", package: "swift-css"),
+                .product(name: "HTML Standard", package: "swift-html-standard"),
+                .product(name: "RFC 4648", package: "swift-rfc-4648"),
+                .product(name: "Layout", package: "swift-layout"),
+                .product(name: "Dictionary", package: "swift-dictionary"),
                 .product(
                     name: "Dictionary Ordered",
                     package: "swift-dictionary-ordered"
                 ),
-                .dictionaryOrderedPrimitive,
-                .bytePrimitives,
-                .stackPrimitives,
-                .propertyPrimitives,
-                .standardLibraryExtensions,
-                .ownershipMutablePrimitives,
-                .sharedPrimitive,
-                .hashIndexedPrimitive,
-                .hashPrimitives,
-                .columnPrimitives,
-                .bufferLinearPrimitive,
+                .product(name: "Dictionary Ordered Primitive", package: "swift-dictionary-ordered"),
+                .product(name: "Byte", package: "swift-byte"),
+                .product(name: "Stack", package: "swift-stack"),
+                .product(name: "Property", package: "swift-property"),
+                .product(name: "Standard Library Extensions", package: "swift-standard-library-extensions"),
+                .product(name: "Ownership Mutable", package: "swift-ownership"),
+                .product(name: "Ownership Shared Primitive", package: "swift-ownership-shared"),
+                .product(name: "Hash Indexed Primitive", package: "swift-hash-table"),
+                .product(name: "Hash", package: "swift-hash"),
+                .product(name: "Column", package: "swift-column"),
+                .product(name: "Buffer Linear Primitive", package: "swift-buffer-linear"),
             ]
         ),
         .target(
             name: "PDF HTML Rendering Test Support",
             dependencies: [
-                .pdfHTMLRendering,
-                .htmlRenderingCoreTestSupport,
-                .pdfRenderingTestSupport,
+                .target(name: "PDF HTML Rendering"),
+                .product(name: "HTML Rendering Core Test Support", package: "swift-html-render"),
+                .product(name: "PDF Rendering Test Support", package: "swift-pdf-render"),
             ],
             path: "Tests/Support"
         ),
         .testTarget(
-            name: .pdfHTMLRendering.tests,
+            name: "PDF HTML Rendering Tests",
             dependencies: [
-                .pdfHTMLRendering,
-                .htmlRendering,
-                "PDF HTML Rendering Test Support",
+                .target(name: "PDF HTML Rendering"),
+                .product(name: "HTML Rendering", package: "swift-html-render"),
+                .target(name: "PDF HTML Rendering Test Support"),
             ],
             path: "Tests/PDF HTML Rendering Tests"
         ),
