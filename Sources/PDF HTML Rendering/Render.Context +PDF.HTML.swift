@@ -1,6 +1,6 @@
 import HTML_Rendering_Core
 import Layout
-public import Ownership_Mutable
+public import Ownership
 import PDF_Rendering
 import Render
 

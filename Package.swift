@@ -102,7 +102,7 @@ let package = Package(
                 .product(name: "Stack", package: "swift-stack"),
                 .product(name: "Property", package: "swift-property"),
                 .product(name: "Standard Library Extensions", package: "swift-standard-library-extensions"),
-                .product(name: "Ownership Mutable", package: "swift-ownership"),
+                .product(name: "Ownership", package: "swift-ownership"),
                 .product(name: "Ownership Shared Primitive", package: "swift-ownership-shared"),
                 .product(name: "Hash Indexed Primitive", package: "swift-hash-table"),
                 .product(name: "Hash", package: "swift-hash"),
