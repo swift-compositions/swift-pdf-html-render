@@ -65,10 +65,6 @@ let package = Package(
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-molecules/swift-hash.git",
-            branch: "main"
-        ),
-        .package(
             url: "https://github.com/swift-molecules/swift-column.git",
             branch: "main"
         ),
@@ -105,7 +101,6 @@ let package = Package(
                 .product(name: "Ownership", package: "swift-ownership"),
                 .product(name: "Ownership Shared Primitive", package: "swift-ownership-shared"),
                 .product(name: "Hash Indexed Primitive", package: "swift-hash-table"),
-                .product(name: "Hash", package: "swift-hash"),
                 .product(name: "Column", package: "swift-column"),
                 .product(name: "Buffer Linear Primitive", package: "swift-buffer-linear"),
             ]

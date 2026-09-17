@@ -5,7 +5,6 @@ public import Dictionary_Ordered
 import Dictionary
 public import HTML_Rendering_Core
 import Hash_Indexed_Primitive
-import Hash
 import Ownership_Shared_Primitive
 import Render
 
