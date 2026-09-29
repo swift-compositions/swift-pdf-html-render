@@ -301,8 +301,8 @@ extension PDF.HTML.Context {
 
     public static func _pushBlock(
         _ context: inout Self,
-        role: Renderer.Document.Render.Semantic.Block?,
-        style: Renderer.Document.Render.Style
+        role: Renderer::Renderer.Document.Semantic.Block?,
+        style: Renderer::Renderer.Document.Style
     ) {
         if record(.pushBlock(role: role, style: style), context: &context) { return }
         if context.pdf.inline.hasRuns {
@@ -321,8 +321,8 @@ extension PDF.HTML.Context {
 
     public static func _pushInline(
         _ context: inout Self,
-        role: Renderer.Document.Render.Semantic.Inline?,
-        style: Renderer.Document.Render.Style
+        role: Renderer::Renderer.Document.Semantic.Inline?,
+        style: Renderer::Renderer.Document.Style
     ) {
         if record(.pushInline(role: role, style: style), context: &context) { return }
         PDF.Context._pushInline(&context.pdf, role: role, style: style)
@@ -335,7 +335,7 @@ extension PDF.HTML.Context {
 
     public static func _pushList(
         _ context: inout Self,
-        kind: Renderer.Document.Render.Semantic.List,
+        kind: Renderer::Renderer.Document.Semantic.List,
         start: Int?
     ) {
         if record(.pushList(kind: kind, start: start), context: &context) { return }
@@ -1177,7 +1177,7 @@ extension PDF.HTML.Context {
                 }
             } else {
                 for raw in rawWidths {
-                    let w = totalWidth * Dimension.Scale(raw / max(rawSum, .ulpOfOne))
+                    let w = totalWidth * Scale::Scale(raw / max(rawSum, .ulpOfOne))
                     columnWidths.append(w)
                 }
             }
@@ -1196,7 +1196,7 @@ extension PDF.HTML.Context {
             }
             (0..<n).forEach { i in
                 let w =
-                    totalWidth * Dimension.Scale(weights[i] / max(weightSum, .ulpOfOne))
+                    totalWidth * Scale::Scale(weights[i] / max(weightSum, .ulpOfOne))
                 columnWidths.append(w)
             }
         }

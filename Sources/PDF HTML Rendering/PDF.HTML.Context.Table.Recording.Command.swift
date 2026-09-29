@@ -17,16 +17,16 @@ extension PDF.HTML.Context.Table.Recording {
         case inlineStyle(Any)
 
         case pushBlock(
-            role: Renderer.Document.Render.Semantic.Block?,
-            style: Renderer.Document.Render.Style
+            role: Renderer::Renderer.Document.Semantic.Block?,
+            style: Renderer::Renderer.Document.Style
         )
         case popBlock
         case pushInline(
-            role: Renderer.Document.Render.Semantic.Inline?,
-            style: Renderer.Document.Render.Style
+            role: Renderer::Renderer.Document.Semantic.Inline?,
+            style: Renderer::Renderer.Document.Style
         )
         case popInline
-        case pushList(kind: Renderer.Document.Render.Semantic.List, start: Int?)
+        case pushList(kind: Renderer::Renderer.Document.Semantic.List, start: Int?)
         case popList
         case pushItem
         case popItem

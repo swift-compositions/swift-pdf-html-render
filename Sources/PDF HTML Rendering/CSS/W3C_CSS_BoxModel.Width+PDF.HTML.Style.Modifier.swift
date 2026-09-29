@@ -1,4 +1,4 @@
-import Dimension
+import Spatial
 import PDF_Rendering
 import PDF_Standard
 
@@ -9,7 +9,7 @@ extension W3C_CSS_BoxModel.Width: PDF.HTML.Style.Modifier {
 
             context.constraint.width =
                 context.layout.box.width
-                * Dimension.Scale(percentage.value / 100.0)
+                * Scale::Scale(percentage.value / 100.0)
 
         case .lengthPercentage(let lp):
 

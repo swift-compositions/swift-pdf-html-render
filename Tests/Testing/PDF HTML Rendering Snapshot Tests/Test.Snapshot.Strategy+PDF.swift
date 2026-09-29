@@ -1,5 +1,5 @@
 import Binary
-import Byte_Primitive
+import Byte
 import PDF_Rendering
 import Test_Snapshot
 

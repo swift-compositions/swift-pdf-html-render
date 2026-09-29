@@ -1,4 +1,4 @@
-import Dimension
+import Spatial
 import PDF_Rendering
 import Standard_Library_Extensions
 import W3C_CSS_Fonts

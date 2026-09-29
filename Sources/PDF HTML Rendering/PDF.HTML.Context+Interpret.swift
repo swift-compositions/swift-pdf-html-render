@@ -2,7 +2,7 @@ import Renderer
 
 extension PDF.HTML.Context {
 
-    public mutating func interpret(_ action: Renderer.Document.Render.Action) {
+    public mutating func interpret(_ action: Renderer::Renderer.Document.Action) {
         switch action {
         case .text(let content): text(content)
 

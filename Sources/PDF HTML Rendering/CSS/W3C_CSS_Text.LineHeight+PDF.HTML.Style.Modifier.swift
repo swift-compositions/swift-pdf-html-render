@@ -1,4 +1,4 @@
-import Dimension
+import Spatial
 import PDF_Rendering
 import PDF_Standard
 
@@ -11,12 +11,12 @@ extension W3C_CSS_Text.LineHeight: PDF.HTML.Style.Modifier {
 
         case .multiple(let value):
 
-            context.style.lineHeight = Dimension.Scale(value)
+            context.style.lineHeight = Scale::Scale(value)
 
         case .lengthPercentage(let lp):
             switch lp {
             case .percentage(let percentage):
-                context.style.lineHeight = Dimension.Scale(percentage.value / 100.0)
+                context.style.lineHeight = Scale::Scale(percentage.value / 100.0)
 
             case .length:
 

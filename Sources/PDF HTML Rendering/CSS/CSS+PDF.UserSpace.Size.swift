@@ -1,4 +1,4 @@
-import Dimension
+import Spatial
 import PDF_Rendering
 import PDF_Standard
 
@@ -65,7 +65,7 @@ extension PDF.UserSpace.Size where N == 1 {
 
         case .percentage(let percentage):
 
-            self = currentSize * Dimension.Scale(percentage.value / 100.0)
+            self = currentSize * Scale::Scale(percentage.value / 100.0)
 
         case .calc:
 
@@ -92,10 +92,10 @@ extension PDF.UserSpace.Size where N == 1 {
                 self = Self(value * 0.75)
 
             case .em:
-                self = currentSize * Dimension.Scale(value)
+                self = currentSize * Scale::Scale(value)
 
             case .rem:
-                self = baseFontSize * Dimension.Scale(value)
+                self = baseFontSize * Scale::Scale(value)
 
             case .in:
                 self = Self(value * 72.0)
@@ -112,15 +112,15 @@ extension PDF.UserSpace.Size where N == 1 {
 
             case .ex:
 
-                self = currentSize * Dimension.Scale(value * 0.5)
+                self = currentSize * Scale::Scale(value * 0.5)
 
             case .ch:
 
-                self = currentSize * Dimension.Scale(value * 0.5)
+                self = currentSize * Scale::Scale(value * 0.5)
 
             case .lh:
 
-                self = currentSize * Dimension.Scale(value * 1.2)
+                self = currentSize * Scale::Scale(value * 1.2)
 
             case .vw, .vh, .vmin, .vmax:
 
@@ -136,15 +136,15 @@ extension PDF.UserSpace.Size where N == 1 {
 
             case .cap:
 
-                self = currentSize * Dimension.Scale(value * 0.7)
+                self = currentSize * Scale::Scale(value * 0.7)
 
             case .ic:
 
-                self = currentSize * Dimension.Scale(value)
+                self = currentSize * Scale::Scale(value)
 
             case .rlh:
 
-                self = baseFontSize * Dimension.Scale(value * 1.2)
+                self = baseFontSize * Scale::Scale(value * 1.2)
             }
 
         case .keyword:

@@ -51,7 +51,7 @@ extension PDF.HTML {
 
         public var speculativeSnapshot: PDF.HTML.Context?
 
-        public var speculativeActions: [Renderer.Document.Render.Action]?
+        public var speculativeActions: [Renderer::Renderer.Document.Action]?
 
         public var section: Section = .init()
 

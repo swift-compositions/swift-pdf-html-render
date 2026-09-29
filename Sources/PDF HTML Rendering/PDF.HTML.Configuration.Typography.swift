@@ -1,25 +1,25 @@
-import Dimension
+import Spatial
 
 extension PDF.HTML.Configuration {
 
     public struct Typography: Sendable, Equatable {
 
-        public var subscriptScale: Dimension.Scale<1, Double>
+        public var subscriptScale: Scale::Scale<1, Double>
 
-        public var superscriptScale: Dimension.Scale<1, Double>
+        public var superscriptScale: Scale::Scale<1, Double>
 
-        public var smallScale: Dimension.Scale<1, Double>
+        public var smallScale: Scale::Scale<1, Double>
 
-        public var subscriptOffset: Dimension.Scale<1, Double>
+        public var subscriptOffset: Scale::Scale<1, Double>
 
-        public var superscriptOffset: Dimension.Scale<1, Double>
+        public var superscriptOffset: Scale::Scale<1, Double>
 
         public init(
-            subscriptScale: Dimension.Scale<1, Double> = 0.83,
-            superscriptScale: Dimension.Scale<1, Double> = 0.83,
-            smallScale: Dimension.Scale<1, Double> = 0.83,
-            subscriptOffset: Dimension.Scale<1, Double> = 0.2,
-            superscriptOffset: Dimension.Scale<1, Double> = 0.4
+            subscriptScale: Scale::Scale<1, Double> = 0.83,
+            superscriptScale: Scale::Scale<1, Double> = 0.83,
+            smallScale: Scale::Scale<1, Double> = 0.83,
+            subscriptOffset: Scale::Scale<1, Double> = 0.2,
+            superscriptOffset: Scale::Scale<1, Double> = 0.4
         ) {
             self.subscriptScale = subscriptScale
             self.superscriptScale = superscriptScale

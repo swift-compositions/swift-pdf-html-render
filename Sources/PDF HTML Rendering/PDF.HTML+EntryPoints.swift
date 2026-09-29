@@ -5,12 +5,12 @@ import Renderer
 
 extension PDF.HTML {
 
-    public static func render<H: Renderer.Document.Render.View>(
+    public static func render<H: Renderer::Renderer.Document.View>(
         configuration: PDF.HTML.Configuration = .init(),
         @HTML.Builder html: () -> H
     ) -> Renderer.Document.Result {
         let state = Ownership.Mutable(prepareContext(configuration: configuration))
-        var renderCtx = Renderer.Document.Render.Context.pdfHTML(state: state)
+        var renderCtx = Renderer::Renderer.Document.Context.pdfHTML(state: state)
         renderCtx.render(html())
         return finalizeRendering(context: &state.value)
     }
@@ -19,17 +19,17 @@ extension PDF.HTML {
 extension PDF.HTML {
 
     public static func pages<
-        Content: Renderer.Document.Render.View,
-        Header: Renderer.Document.Render.View,
-        Footer: Renderer.Document.Render.View
+        Content: Renderer::Renderer.Document.View,
+        Header: Renderer::Renderer.Document.View,
+        Footer: Renderer::Renderer.Document.View
     >(
         configuration: PDF.HTML.Configuration = .init(),
         @HTML.Builder content: () -> Content,
         @HTML.Builder header: @escaping (Page.Info) -> Header = { _ in
-            Renderer.Document.Render.Empty()
+            Renderer::Renderer.Document.Empty()
         },
         @HTML.Builder footer: @escaping (Page.Info) -> Footer = { _ in
-            Renderer.Document.Render.Empty()
+            Renderer::Renderer.Document.Empty()
         }
     ) -> [PDF.Page] {
 
@@ -45,7 +45,7 @@ extension PDF.HTML {
 
         let pass1State = Ownership.Mutable(prepareContext(configuration: pass1Config))
         let contentView = content()
-        var pass1RenderCtx = Renderer.Document.Render.Context.pdfHTML(state: pass1State)
+        var pass1RenderCtx = Renderer::Renderer.Document.Context.pdfHTML(state: pass1State)
         pass1RenderCtx.render(contentView)
 
         pass1State.value.pdf.flush.inline()
@@ -79,7 +79,7 @@ extension PDF.HTML {
             let headerState = Ownership.Mutable(
                 Self.Context(pdf: headerContext, configuration: configuration)
             )
-            var headerRenderCtx = Renderer.Document.Render.Context.pdfHTML(state: headerState)
+            var headerRenderCtx = Renderer::Renderer.Document.Context.pdfHTML(state: headerState)
             headerRenderCtx.render(header(pageInfo))
             headerState.value.pdf.flush.inline()
 
@@ -98,7 +98,7 @@ extension PDF.HTML {
             let footerState = Ownership.Mutable(
                 Self.Context(pdf: footerContext, configuration: configuration)
             )
-            var footerRenderCtx = Renderer.Document.Render.Context.pdfHTML(state: footerState)
+            var footerRenderCtx = Renderer::Renderer.Document.Context.pdfHTML(state: footerState)
             footerRenderCtx.render(footer(pageInfo))
             footerState.value.pdf.flush.inline()
 
