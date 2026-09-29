@@ -22,7 +22,7 @@ let package = Package(
         .package(url: "https://github.com/swift-compositions/swift-html-render.git", branch: "main"),
         .package(url: "https://github.com/swift-compositions/swift-pdf-render.git", branch: "main"),
         .package(
-            url: "https://github.com/swift-compositions/swift-copy-on-write.git",
+            url: "https://github.com/swift-molecules/swift-copy-on-write.git",
             branch: "main"
         ),
         .package(url: "https://github.com/swift-compositions/swift-css.git", branch: "main"),
@@ -45,7 +45,7 @@ let package = Package(
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-molecules/swift-property.git",
+            url: "https://github.com/swift-atoms/swift-property.git",
             branch: "main"
         ),
         .package(
@@ -53,7 +53,7 @@ let package = Package(
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-molecules/swift-ownership.git",
+            url: "https://github.com/swift-atoms/swift-ownership.git",
             branch: "main"
         ),
         .package(
@@ -65,17 +65,19 @@ let package = Package(
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-molecules/swift-column.git",
-            branch: "main"
-        ),
-        .package(
             url: "https://github.com/swift-molecules/swift-buffer-linear.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-molecules/swift-byte.git",
+            url: "https://github.com/swift-atoms/swift-byte.git",
             branch: "main"
         ),
+        .package(url: "https://github.com/swift-atoms/swift-buffer.git", branch: "main"),
+        .package(url: "https://github.com/swift-molecules/swift-buffer-ring.git", branch: "main"),
+        .package(url: "https://github.com/swift-atoms/swift-memory.git", branch: "main"),
+        .package(url: "https://github.com/swift-molecules/swift-memory-allocation.git", branch: "main"),
+        .package(url: "https://github.com/swift-atoms/swift-storage.git", branch: "main", traits: ["Generational", "Memory"]),
+        .package(url: "https://github.com/swift-atoms/swift-store.git", branch: "main"),
     ],
     targets: [
         .target(
@@ -83,7 +85,7 @@ let package = Package(
             dependencies: [
                 .product(name: "HTML Rendering Core", package: "swift-html-render"),
                 .product(name: "PDF Rendering", package: "swift-pdf-render"),
-                .product(name: "Copy on Write", package: "swift-copy-on-write"),
+                .product(name: "Copy on Write Macro", package: "swift-copy-on-write"),
                 .product(name: "CSS", package: "swift-css"),
                 .product(name: "HTML Standard", package: "swift-html-standard"),
                 .product(name: "RFC 4648", package: "swift-rfc-4648"),
@@ -101,8 +103,16 @@ let package = Package(
                 .product(name: "Ownership", package: "swift-ownership"),
                 .product(name: "Ownership Shared Primitive", package: "swift-ownership-shared"),
                 .product(name: "Hash Indexed Primitive", package: "swift-hash-table"),
-                .product(name: "Column", package: "swift-column"),
                 .product(name: "Buffer Linear Primitive", package: "swift-buffer-linear"),
+                .product(name: "Buffer", package: "swift-buffer"),
+                .product(name: "Buffer Linear Bounded Primitive", package: "swift-buffer-linear"),
+                .product(name: "Buffer Ring Primitive", package: "swift-buffer-ring"),
+                .product(name: "Memory Allocator Pool", package: "swift-memory-allocation"),
+                .product(name: "Memory Pool", package: "swift-memory-allocation"),
+                .product(name: "Memory Allocator", package: "swift-memory-allocation"),
+                .product(name: "Memory", package: "swift-memory"),
+                .product(name: "Storage", package: "swift-storage"),
+                .product(name: "Store", package: "swift-store"),
             ]
         ),
         .target(

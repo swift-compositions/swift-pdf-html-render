@@ -101,10 +101,10 @@ extension PDF.HTML.Configuration {
 
     public var content: PDF.UserSpace.Rectangle {
         PDF.UserSpace.Rectangle(
-            x: .zero + margins.leading,
-            y: .zero + margins.top,
-            width: paperSize.width - margins.horizontal,
-            height: paperSize.height - margins.vertical
+            x: .zero + PDF.UserSpace.Width(_unchecked: margins.leading),
+            y: .zero + PDF.UserSpace.Height(_unchecked: margins.top),
+            width: paperSize.width - PDF.UserSpace.Width(_unchecked: margins.horizontal),
+            height: paperSize.height - PDF.UserSpace.Height(_unchecked: margins.vertical)
         )
     }
 

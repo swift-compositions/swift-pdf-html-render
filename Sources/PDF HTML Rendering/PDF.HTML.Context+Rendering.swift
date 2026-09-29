@@ -4,7 +4,7 @@ import Dictionary_Ordered
 import HTML_Rendering_Core
 import Layout
 import PDF_Rendering
-import Render
+import Renderer
 
 extension PDF.HTML.Context {
 
@@ -301,8 +301,8 @@ extension PDF.HTML.Context {
 
     public static func _pushBlock(
         _ context: inout Self,
-        role: Render.Render.Semantic.Block?,
-        style: Render.Render.Style
+        role: Renderer.Document.Render.Semantic.Block?,
+        style: Renderer.Document.Render.Style
     ) {
         if record(.pushBlock(role: role, style: style), context: &context) { return }
         if context.pdf.inline.hasRuns {
@@ -321,8 +321,8 @@ extension PDF.HTML.Context {
 
     public static func _pushInline(
         _ context: inout Self,
-        role: Render.Render.Semantic.Inline?,
-        style: Render.Render.Style
+        role: Renderer.Document.Render.Semantic.Inline?,
+        style: Renderer.Document.Render.Style
     ) {
         if record(.pushInline(role: role, style: style), context: &context) { return }
         PDF.Context._pushInline(&context.pdf, role: role, style: style)
@@ -335,7 +335,7 @@ extension PDF.HTML.Context {
 
     public static func _pushList(
         _ context: inout Self,
-        kind: Render.Render.Semantic.List,
+        kind: Renderer.Document.Render.Semantic.List,
         start: Int?
     ) {
         if record(.pushList(kind: kind, start: start), context: &context) { return }

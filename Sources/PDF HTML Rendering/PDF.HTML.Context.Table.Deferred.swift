@@ -1,6 +1,6 @@
 import Layout
 import PDF_Rendering
-import Render
+import Renderer
 
 extension PDF.HTML.Context.Table {
 

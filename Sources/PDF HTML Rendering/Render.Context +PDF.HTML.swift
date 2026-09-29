@@ -2,13 +2,13 @@ import HTML_Rendering_Core
 import Layout
 public import Ownership
 import PDF_Rendering
-import Render
+import Renderer
 
-extension Render.Context {
+extension Renderer.Document.Context {
 
     public static func pdfHTML(state: Ownership.Mutable<PDF.HTML.Context>) -> Self {
 
-        func record(_ action: Render.Action) {
+        func record(_ action: Renderer.Document.Action) {
             if state.value.speculativeActions != nil {
                 state.value.speculativeActions!.append(action)
             }
@@ -45,7 +45,7 @@ extension Render.Context {
                 record(.text($0))
                 state.value.text($0)
             },
-            break: Render.Break(
+            break: Renderer.Document.Break(
                 line: {
                     record(.break(.line))
                     state.value.lineBreak()
@@ -63,7 +63,7 @@ extension Render.Context {
                 record(.image(source: $0, alt: $1))
                 state.value.image(source: $0, alt: $1)
             },
-            push: Render.Push(
+            push: Renderer.Document.Push(
                 block: {
                     record(.push(.block(role: $0, style: $1)))
                     PDF.HTML.Context._pushBlock(&state.value, role: $0, style: $1)
@@ -136,7 +136,7 @@ extension Render.Context {
                     PDF.HTML.Context._pushStyle(&state.value)
                 }
             ),
-            pop: Render.Pop(
+            pop: Renderer.Document.Pop(
                 block: {
                     record(.pop(.block))
                     PDF.HTML.Context._popBlock(&state.value)
@@ -195,7 +195,7 @@ extension Render.Context {
                 }
                 return handled
             },
-            speculative: Render.Speculative(
+            speculative: Renderer.Document.Speculative(
                 begin: {
                     guard state.value.speculativeSnapshot == nil else { return }
                     state.value.speculativeSnapshot = state.value

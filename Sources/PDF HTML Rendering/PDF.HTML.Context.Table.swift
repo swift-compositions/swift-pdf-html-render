@@ -2,7 +2,7 @@ import Dictionary
 import HTML_Rendering_Core
 import Layout
 import PDF_Rendering
-import Render
+import Renderer
 
 extension PDF.HTML.Context {
 

@@ -1,4 +1,4 @@
-import Binary_Serializable
+import Binary
 import Byte_Primitive
 import PDF_Rendering
 import Test_Snapshot

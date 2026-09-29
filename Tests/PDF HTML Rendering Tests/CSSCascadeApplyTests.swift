@@ -1,7 +1,7 @@
-import Byte_Standard_Library_Integration
+import Byte
 import HTML_Rendering
 import Ownership
-import Render
+import Renderer
 import Testing
 
 @testable import PDF_HTML_Rendering
@@ -13,7 +13,7 @@ struct `CSSCascade Apply Tests` {
         let state = Ownership.Mutable(
             PDF.HTML.prepareContext(configuration: .init(defaultFontSize: 14))
         )
-        var renderCtx = Render.Context.pdfHTML(state: state)
+        var renderCtx = Renderer.Document.Context.pdfHTML(state: state)
         renderCtx.render(doc)
         _ = PDF.HTML.finalizeRendering(context: &state.value)
         return state.value
