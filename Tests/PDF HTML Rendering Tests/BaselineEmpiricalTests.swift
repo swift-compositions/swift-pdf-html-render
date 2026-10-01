@@ -871,7 +871,7 @@ struct `Baseline Empirical Tests` {
         config.table.border.width = 0
         let bytes = pageBytes(PDF.HTML.pages(configuration: config) { V() })
 
-        let s = String(decoding: bytes + [0x0A], as: UTF8.self)
+        let s = String(decoding: bytes.map(\.bitPattern) + [0x0A], as: UTF8.self)
         let strokes = s.components(separatedBy: "\nS\n").count - 1
         #expect(
             strokes == 1,
@@ -895,7 +895,7 @@ struct `Baseline Empirical Tests` {
         config.table.border.width = 0
         let bytes = pageBytes(PDF.HTML.pages(configuration: config) { V() })
 
-        let s = String(decoding: bytes + [0x0A], as: UTF8.self)
+        let s = String(decoding: bytes.map(\.bitPattern) + [0x0A], as: UTF8.self)
         let strokes = s.components(separatedBy: "\nS\n").count - 1
         #expect(
             strokes == 2,
