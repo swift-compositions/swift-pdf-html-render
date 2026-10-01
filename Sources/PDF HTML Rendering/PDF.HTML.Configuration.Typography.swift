@@ -1,4 +1,4 @@
-import Spatial
+import Space
 
 extension PDF.HTML.Configuration {
 

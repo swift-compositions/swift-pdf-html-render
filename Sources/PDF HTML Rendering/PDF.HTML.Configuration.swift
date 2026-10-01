@@ -1,4 +1,4 @@
-import Spatial
+import Space
 import Geometry
 import Layout
 import PDF_Rendering
