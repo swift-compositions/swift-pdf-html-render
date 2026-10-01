@@ -1,3 +1,4 @@
+import Binary
 import Byte
 import Foundation
 import HTML_Rendering

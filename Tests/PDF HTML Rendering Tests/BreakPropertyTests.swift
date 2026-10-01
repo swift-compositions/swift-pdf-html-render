@@ -1,3 +1,4 @@
+import Binary
 import CSS
 import Foundation
 import HTML_Rendering

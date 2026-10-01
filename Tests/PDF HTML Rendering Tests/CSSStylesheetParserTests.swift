@@ -1,3 +1,4 @@
+import Binary
 import Testing
 
 @testable import PDF_HTML_Rendering

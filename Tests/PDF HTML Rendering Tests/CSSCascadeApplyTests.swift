@@ -1,3 +1,4 @@
+import Binary
 import Byte
 import HTML_Rendering
 import Ownership
