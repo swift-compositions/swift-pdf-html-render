@@ -28,7 +28,7 @@ extension PDF.HTML {
 
     static func finalizeRendering(
         context: inout PDF.HTML.Context
-    ) -> Renderer.Document.Result {
+    ) -> PDF.HTML.Render.Result {
         context.pdf.flush.inline()
 
         let resolvedPages = PDF.Context.resolveInternalLinks(
@@ -38,7 +38,7 @@ extension PDF.HTML {
                 (pageNumber: dest.pageNumber, yPosition: dest.yPosition)
             }
         )
-        return Renderer.Document.Result(
+        return PDF.HTML.Render.Result(
             pages: resolvedPages,
             headings: context.section.headings,
             namedDestinations: context.link.destinations

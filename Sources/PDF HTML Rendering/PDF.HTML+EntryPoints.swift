@@ -8,7 +8,7 @@ extension PDF.HTML {
     public static func render<H: Renderer::Renderer.Document.View>(
         configuration: PDF.HTML.Configuration = .init(),
         @HTML.Builder html: () -> H
-    ) -> Renderer.Document.Result {
+    ) -> PDF.HTML.Render.Result {
         let state = Ownership.Mutable(prepareContext(configuration: configuration))
         var renderCtx = Renderer::Renderer.Document.Context.pdfHTML(state: state)
         renderCtx.render(html())
