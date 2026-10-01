@@ -150,9 +150,7 @@ struct `Outline Generation Tests` {
 
         let bytes = [UInt8](doc)
 
-        let url = FileManager.default.temporaryDirectory.appendingPathComponent("outline-test.pdf")
-        try Data(bytes).write(to: url)
-        print("DEBUG TEST: PDF written to: \(url.path)")
+        #expect(!bytes.isEmpty)
 
         #expect(doc.pages.count >= 1)
         #expect(doc.outline != nil, "Document should have outline")
@@ -238,11 +236,7 @@ struct `Outline Generation Tests` {
 
         let bytes = [UInt8](doc)
 
-        let url = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "articles-of-incorporation-test.pdf"
-        )
-        try Data(bytes).write(to: url)
-        print("DEBUG TEST: PDF written to: \(url.path)")
+        #expect(!bytes.isEmpty)
 
         #expect(doc.outline != nil, "Document should have outline")
 
@@ -316,11 +310,7 @@ struct `Single vs Multiple H1 Diagnostic Tests` {
             }
         }
 
-        let url = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "single-h1-parent-test.pdf"
-        )
-        try Data([UInt8](doc)).write(to: url)
-        print("Single H1 PDF written to: \(url.path)")
+        #expect(![UInt8](doc).isEmpty)
 
         if let outline = doc.outline {
             print("Single H1 outline structure:")
@@ -361,11 +351,7 @@ struct `Single vs Multiple H1 Diagnostic Tests` {
             }
         }
 
-        let url = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "multiple-h1-parents-test.pdf"
-        )
-        try Data([UInt8](doc)).write(to: url)
-        print("Multiple H1 PDF written to: \(url.path)")
+        #expect(![UInt8](doc).isEmpty)
 
         if let outline = doc.outline {
             print("Multiple H1 outline structure:")

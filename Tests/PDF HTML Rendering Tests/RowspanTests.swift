@@ -34,12 +34,7 @@ struct `Rowspan Tests` {
             }
         }
 
-        let url = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "rowspan-minimal-test.pdf"
-        )
-        try Data([UInt8](document)).write(to: url)
-
-        print("Minimal rowspan test PDF written to: \(url.path)")
+        #expect(![UInt8](document).isEmpty)
     }
 
     @Test
@@ -88,12 +83,7 @@ struct `Rowspan Tests` {
             }
         }
 
-        let url = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "rowspan-multiple-test.pdf"
-        )
-        try Data([UInt8](document)).write(to: url)
-
-        print("Multiple rowspan test PDF written to: \(url.path)")
+        #expect(![UInt8](document).isEmpty)
     }
 
     @Test
@@ -121,12 +111,7 @@ struct `Rowspan Tests` {
             }
         }
 
-        let url = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "rowspan-control-test.pdf"
-        )
-        try Data([UInt8](document)).write(to: url)
-
-        print("Control test (no rowspan) PDF written to: \(url.path)")
+        #expect(![UInt8](document).isEmpty)
     }
 
     @Test
@@ -185,11 +170,6 @@ struct `Rowspan Tests` {
             }
         }
 
-        let url = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "rowspan-complex-test.pdf"
-        )
-        try Data([UInt8](document)).write(to: url)
-
-        print("Complex rowspan test (matching 6.6) PDF written to: \(url.path)")
+        #expect(![UInt8](document).isEmpty)
     }
 }

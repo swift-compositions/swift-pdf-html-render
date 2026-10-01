@@ -223,11 +223,7 @@ struct `Comprehensive PDF.HTML.View Tests` {
 
         let bytes = [UInt8](doc)
 
-        let url = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "html-to-pdf-refactor-test.pdf"
-        )
-        try Data(bytes).write(to: url)
-        print("PDF written to: \(url.path)")
+        #expect(!bytes.isEmpty)
 
         #expect(doc.pages.count >= 1)
         #expect(bytes.count > 1000, "Complex document should have substantial content")
@@ -252,11 +248,7 @@ struct `Comprehensive PDF.HTML.View Tests` {
 
         let bytes = [UInt8](doc)
 
-        let url = FileManager.default.temporaryDirectory.appendingPathComponent(
-            "nested-outline-test.pdf"
-        )
-        try Data(bytes).write(to: url)
-        print("PDF with nested outline written to: \(url.path)")
+        #expect(!bytes.isEmpty)
 
         #expect(doc.pages.count >= 1)
 
