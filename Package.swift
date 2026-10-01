@@ -155,6 +155,7 @@ let package = Package(
                 .target(name: "PDF HTML Rendering"),
                 .product(name: "HTML Rendering", package: "swift-html-render"),
                 .target(name: "PDF HTML Rendering Test Support"),
+                .product(name: "Binary", package: "swift-binary"),
             ],
             path: "Tests/PDF HTML Rendering Tests"
         ),

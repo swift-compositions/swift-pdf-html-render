@@ -1,3 +1,4 @@
+import Binary
 import HTML_Rendering
 import PDF_Rendering
 import Testing
