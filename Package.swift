@@ -101,6 +101,7 @@ let package = Package(
         .package(url: "https://github.com/swift-atoms/swift-text.git", branch: "main", traits: ["Byte", "Casing"]),
         .package(url: "https://github.com/swift-atoms/swift-time.git", branch: "main", traits: ["Affine"]),
         .package(url: "https://github.com/swift-atoms/swift-translation.git", branch: "main", traits: ["Affine"]),
+        .package(url: "https://github.com/swift-atoms/swift-direction.git", branch: "main"),
     ],
     targets: [
         .target(
@@ -113,6 +114,7 @@ let package = Package(
                 .product(name: "HTML Standard", package: "swift-html-standard"),
                 .product(name: "RFC 4648", package: "swift-rfc-4648"),
                 .product(name: "Layout", package: "swift-layout"),
+                .product(name: "Direction", package: "swift-direction"),
                 .product(name: "Dictionary", package: "swift-dictionary"),
                 .product(
                     name: "Dictionary Ordered",

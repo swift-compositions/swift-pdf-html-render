@@ -1,3 +1,4 @@
+import Direction
 import Layout
 
 extension PDF.HTML.Context.Table {
