@@ -1083,7 +1083,7 @@ extension PDF.HTML.Context {
         if tagName == "q" {
 
             let openQuote = PDF.Context.Text.Run(
-                bytes: [0x93],
+                bytes: [Byte(bitPattern: 0x93)],
                 font: context.pdf.style.font,
                 fontSize: context.pdf.style.fontSize,
                 color: context.pdf.style.color,
@@ -1101,7 +1101,7 @@ extension PDF.HTML.Context {
         if tagName == "q" {
 
             let closeQuote = PDF.Context.Text.Run(
-                bytes: [0x94],
+                bytes: [Byte(bitPattern: 0x94)],
                 font: context.pdf.style.font,
                 fontSize: context.pdf.style.fontSize,
                 color: context.pdf.style.color,
