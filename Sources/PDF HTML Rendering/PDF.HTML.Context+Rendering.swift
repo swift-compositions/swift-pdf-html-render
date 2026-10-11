@@ -39,7 +39,7 @@ extension PDF.HTML.Context {
                 for run in runs {
                     var tokenStart = 0
                     for (i, byte) in run.bytes.enumerated() {
-                        if byte.underlying.ascii.isWhitespace {
+                        if ASCII.Code(unchecked: byte).isWhitespace {
                             if i > tokenStart {
                                 let tokenBytes = Array(run.bytes[tokenStart..<i])
                                 let w = run.font.winAnsi.width(of: tokenBytes, atSize: run.fontSize)
