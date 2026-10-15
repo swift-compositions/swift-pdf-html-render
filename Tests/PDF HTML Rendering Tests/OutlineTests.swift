@@ -1,4 +1,5 @@
 import Binary
+import Byte
 import CSS
 import Foundation
 import HTML_Rendering
@@ -148,7 +149,7 @@ struct `Outline Generation Tests` {
             }
         }
 
-        let bytes = [UInt8](doc)
+        let bytes = [Byte](doc)
 
         #expect(!bytes.isEmpty)
 
@@ -234,7 +235,7 @@ struct `Outline Generation Tests` {
             }
         }
 
-        let bytes = [UInt8](doc)
+        let bytes = [Byte](doc)
 
         #expect(!bytes.isEmpty)
 
@@ -310,7 +311,7 @@ struct `Single vs Multiple H1 Diagnostic Tests` {
             }
         }
 
-        #expect(![UInt8](doc).isEmpty)
+        #expect(![Byte](doc).isEmpty)
 
         if let outline = doc.outline {
             print("Single H1 outline structure:")
@@ -351,7 +352,7 @@ struct `Single vs Multiple H1 Diagnostic Tests` {
             }
         }
 
-        #expect(![UInt8](doc).isEmpty)
+        #expect(![Byte](doc).isEmpty)
 
         if let outline = doc.outline {
             print("Multiple H1 outline structure:")

@@ -1,4 +1,5 @@
 import Binary
+import Byte
 import CSS
 import Foundation
 import HTML_Rendering
@@ -94,7 +95,7 @@ struct `PDF.HTML.View Tests` {
         }
 
         let doc = PDF.Document { TestView() }
-        let bytes = [UInt8](doc)
+        let bytes = [Byte](doc)
 
         #expect(!bytes.isEmpty)
         #expect(bytes.starts(with: [.ascii.percentSign, .ascii.P, .ascii.D, .ascii.F]))
@@ -221,7 +222,7 @@ struct `Comprehensive PDF.HTML.View Tests` {
             ComplexView()
         }
 
-        let bytes = [UInt8](doc)
+        let bytes = [Byte](doc)
 
         #expect(!bytes.isEmpty)
 
@@ -246,7 +247,7 @@ struct `Comprehensive PDF.HTML.View Tests` {
             TechnicalSpecificationView()
         }
 
-        let bytes = [UInt8](doc)
+        let bytes = [Byte](doc)
 
         #expect(!bytes.isEmpty)
 

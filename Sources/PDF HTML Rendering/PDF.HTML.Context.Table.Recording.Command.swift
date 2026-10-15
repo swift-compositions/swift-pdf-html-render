@@ -1,3 +1,4 @@
+import Byte
 import Renderer
 
 extension PDF.HTML.Context.Table.Recording {
@@ -12,7 +13,7 @@ extension PDF.HTML.Context.Table.Recording {
 
         case setAttribute(name: String, value: String?)
         case addClass(String)
-        case writeRaw([UInt8])
+        case writeRaw([Byte])
 
         case inlineStyle(Any)
 

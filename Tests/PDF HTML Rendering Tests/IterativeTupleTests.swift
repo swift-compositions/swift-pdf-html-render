@@ -1,4 +1,5 @@
 import Binary
+import Byte
 import HTML_Rendering
 import PDF_Rendering
 import Testing
@@ -8,11 +9,11 @@ import Testing
 @Suite
 struct `Iterative Tuple Tests` {
 
-    private func render<V: HTML.View>(_ view: V) -> [UInt8] {
+    private func render<V: HTML.View>(_ view: V) -> [Byte] {
         let document = PDF.Document {
             HTML.Document { view }
         }
-        return [UInt8](document)
+        return [Byte](document)
     }
 
     @Test

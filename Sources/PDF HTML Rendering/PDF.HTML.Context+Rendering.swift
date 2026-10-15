@@ -1,6 +1,6 @@
-import Byte
-import Dictionary_Ordered_Primitive
+public import Byte
 import Dictionary_Ordered
+import Dictionary_Ordered_Primitive
 import HTML_Rendering_Core
 import Layout
 import PDF_Rendering
@@ -172,7 +172,7 @@ extension PDF.HTML.Context {
 
     }
 
-    public mutating func write(raw bytes: [UInt8]) {
+    public mutating func write(raw bytes: [Byte]) {
         if table?.recording != nil {
             table!.recording!.commands.append(.writeRaw(bytes))
             return
@@ -614,13 +614,7 @@ extension PDF.HTML.Context {
                 return
             }
             context.table!.recording!.elementDepth -= 1
-            if context.table!.recording!.elementDepth < 0 {
-
-                let recording = context.table!.recording!
-                context.table!.recording = nil
-                finalizeFirstRow(recording, context: &context)
-
-            } else {
+            guard context.table!.recording!.elementDepth < 0 else {
 
                 if context.table!.recording!.elementDepth == 1,
                     let col = context.table!.recording!.currentCellColumn
@@ -660,6 +654,10 @@ extension PDF.HTML.Context {
                 context.table!.recording!.commands.append(.popElement(isBlock: isBlock))
                 return
             }
+
+            let recording = context.table!.recording!
+            context.table!.recording = nil
+            finalizeFirstRow(recording, context: &context)
         }
 
         guard let scope = context.elementStack.popLast() else { return }

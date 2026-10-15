@@ -1,4 +1,5 @@
 import Binary
+import Byte
 import Foundation
 import HTML_Rendering
 import PDF_Rendering
@@ -34,7 +35,7 @@ struct `Rowspan Tests` {
             }
         }
 
-        #expect(![UInt8](document).isEmpty)
+        #expect(![Byte](document).isEmpty)
     }
 
     @Test
@@ -83,7 +84,7 @@ struct `Rowspan Tests` {
             }
         }
 
-        #expect(![UInt8](document).isEmpty)
+        #expect(![Byte](document).isEmpty)
     }
 
     @Test
@@ -111,7 +112,7 @@ struct `Rowspan Tests` {
             }
         }
 
-        #expect(![UInt8](document).isEmpty)
+        #expect(![Byte](document).isEmpty)
     }
 
     @Test
@@ -170,6 +171,6 @@ struct `Rowspan Tests` {
             }
         }
 
-        #expect(![UInt8](document).isEmpty)
+        #expect(![Byte](document).isEmpty)
     }
 }

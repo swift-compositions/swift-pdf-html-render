@@ -1,4 +1,5 @@
 import Binary
+import Byte
 import Foundation
 import HTML_Rendering
 import PDF_Rendering
@@ -32,7 +33,7 @@ struct `Conditional Table Tests` {
         let document = PDF.Document {
             HTML.Document { TestTable() }
         }
-        let _ = [UInt8](document)
+        let _ = [Byte](document)
     }
 
     @Test
@@ -59,7 +60,7 @@ struct `Conditional Table Tests` {
         let document = PDF.Document {
             HTML.Document { TestTable() }
         }
-        let _ = [UInt8](document)
+        let _ = [Byte](document)
     }
 
     @Test
@@ -106,7 +107,7 @@ struct `Conditional Table Tests` {
         let document = PDF.Document {
             HTML.Document { TestChecklist() }
         }
-        let _ = [UInt8](document)
+        let _ = [Byte](document)
     }
 
     @Test
@@ -138,7 +139,7 @@ struct `Conditional Table Tests` {
         let document = PDF.Document {
             HTML.Document { TestTable() }
         }
-        let _ = [UInt8](document)
+        let _ = [Byte](document)
     }
 
     @Test
@@ -182,7 +183,7 @@ struct `Conditional Table Tests` {
         let document = PDF.Document {
             HTML.Document { TestTable() }
         }
-        let _ = [UInt8](document)
+        let _ = [Byte](document)
     }
 
     @Test
@@ -231,7 +232,7 @@ struct `Conditional Table Tests` {
         let document = PDF.Document {
             HTML.Document { TestChecklist() }
         }
-        let _ = [UInt8](document)
+        let _ = [Byte](document)
     }
 
     @Test
@@ -262,6 +263,6 @@ struct `Conditional Table Tests` {
         let document = PDF.Document {
             HTML.Document { TestTable() }
         }
-        let _ = [UInt8](document)
+        let _ = [Byte](document)
     }
 }

@@ -1,4 +1,5 @@
 import Binary
+import Byte
 import Foundation
 import HTML_Rendering
 import PDF_Rendering
@@ -54,7 +55,7 @@ struct `PDFOutput Tests` {
             }
         }
 
-        let bytes = [UInt8](document)
+        let bytes = [Byte](document)
         #expect(!bytes.isEmpty)
     }
 
@@ -101,7 +102,7 @@ struct `PDFOutput Tests` {
             }
         }
 
-        let bytes = [UInt8](document)
+        let bytes = [Byte](document)
         #expect(!bytes.isEmpty)
     }
 
@@ -127,7 +128,7 @@ struct `PDFOutput Tests` {
             }
         }
 
-        let bytes = [UInt8](document)
+        let bytes = [Byte](document)
         #expect(!bytes.isEmpty)
     }
 
@@ -164,7 +165,7 @@ struct `PDFOutput Tests` {
             }
         }
 
-        let bytes = [UInt8](document)
+        let bytes = [Byte](document)
         #expect(!bytes.isEmpty)
     }
 }

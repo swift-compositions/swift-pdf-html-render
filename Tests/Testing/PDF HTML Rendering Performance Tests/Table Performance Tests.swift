@@ -1,3 +1,4 @@
+import Byte
 import HTML_Rendering
 import PDF_Rendering
 import Testing
@@ -12,7 +13,7 @@ private func render<V: HTML.View>(_ view: V) {
     let document = PDF.Document {
         HTML.Document { view }
     }
-    let _ = [UInt8](document)
+    let _ = [Byte](document)
 }
 
 extension PDF.Test.Performance {
