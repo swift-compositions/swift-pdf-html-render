@@ -331,11 +331,10 @@ extension PDF.HTML.CSS.Stylesheet.Parser {
     private mutating func skipInlineSpaces() {
         while index < input.count {
             let c = input[index]
-            if c == " " || c == "\t" {
-                index += 1
-            } else {
+            guard c == " " || c == "\t" else {
                 break
             }
+            index += 1
         }
     }
 

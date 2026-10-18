@@ -1,21 +1,21 @@
-public import Buffer_Linear_Primitive
 import Buffer
-import Buffer_Linear_Primitive
 import Buffer_Linear_Bounded_Primitive
+public import Buffer_Linear_Primitive
+import Buffer_Linear_Primitive
 import Buffer_Ring_Primitive
-import Memory_Allocator_Pool
-import Memory_Pool
-import Memory_Allocator
-import Memory
-import Ownership_Shared_Primitive
-import Storage
-import Store
 import Copy_on_Write_Macro
-public import Dictionary_Ordered
 import Dictionary
+public import Dictionary_Ordered
 public import HTML_Rendering_Core
 import Hash_Indexed_Primitive
+import Memory
+import Memory_Allocator
+import Memory_Allocator_Pool
+import Memory_Pool
+import Ownership_Shared_Primitive
 import Renderer
+import Storage
+import Store
 
 extension PDF.HTML {
 

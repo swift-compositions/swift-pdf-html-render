@@ -1,6 +1,6 @@
-import Space
 import PDF_Rendering
 import PDF_Standard
+import Space
 
 extension W3C_CSS_Text.LineHeight: PDF.HTML.Style.Modifier {
     public func apply(to context: inout PDF.Context, configuration: PDF.HTML.Configuration) {
