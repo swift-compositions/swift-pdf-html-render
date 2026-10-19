@@ -221,8 +221,7 @@ extension PDF.HTML.CSS.Stylesheet.Parser {
         let valueStart = index
         var parenDepth = 0
         var inString: Character? = nil
-        while index < input.count {
-            let c = peek()!
+        while let c = peek() {
             if let quote = inString {
                 if c == quote {
                     inString = nil

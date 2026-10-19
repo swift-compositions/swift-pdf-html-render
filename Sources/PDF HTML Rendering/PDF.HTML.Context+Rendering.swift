@@ -20,10 +20,10 @@ extension PDF.HTML.Context {
 
         let copy = copy content
 
-        if table?.recording != nil {
-            table!.recording!.commands.append(.text(copy))
+        if var recording = table?.recording.take() {
+            recording.commands.append(.text(copy))
 
-            if table!.recording!.currentCellColumn != nil {
+            if recording.currentCellColumn != nil {
                 let runs = PDF.Context.Text.Run.runsWithSymbolSupport(
                     text: copy,
                     font: pdf.style.font,
@@ -57,21 +57,20 @@ extension PDF.HTML.Context {
                         lineWidth += w
                     }
                 }
-                if maxToken > table!.recording!.currentCellMinWidth {
-                    table!.recording!.currentCellMinWidth = maxToken
+                if maxToken > recording.currentCellMinWidth {
+                    recording.currentCellMinWidth = maxToken
                 }
 
-                table!.recording!.currentLineWidth += lineWidth
+                recording.currentLineWidth += lineWidth
             }
+            table?.recording = recording
             return
         }
 
-        if section.activeHeading != nil {
-            if !section.activeHeading!.text.isEmpty {
-                section.activeHeading!.text += " "
-            }
-            section.activeHeading!.text += copy
+        if section.activeHeading?.text.isEmpty == false {
+            section.activeHeading?.text += " "
         }
+        section.activeHeading?.text += copy
 
         let linkURL = link.currentURL ?? link.currentInternalId.map { "#\($0)" }
         let runs = PDF.Context.Text.Run.runsWithSymbolSupport(
@@ -89,16 +88,17 @@ extension PDF.HTML.Context {
     }
 
     public mutating func lineBreak() {
-        if table?.recording != nil {
-            table!.recording!.commands.append(.lineBreak)
+        if var recording = table?.recording.take() {
+            recording.commands.append(.lineBreak)
 
-            if table!.recording!.currentCellColumn != nil {
-                let lw = table!.recording!.currentLineWidth
-                if lw > table!.recording!.currentCellMaxWidth {
-                    table!.recording!.currentCellMaxWidth = lw
+            if recording.currentCellColumn != nil {
+                let lw = recording.currentLineWidth
+                if lw > recording.currentCellMaxWidth {
+                    recording.currentCellMaxWidth = lw
                 }
-                table!.recording!.currentLineWidth = .init(0)
+                recording.currentLineWidth = .init(0)
             }
+            table?.recording = recording
             return
         }
         pdf.flush.inline()
@@ -107,7 +107,7 @@ extension PDF.HTML.Context {
 
     public mutating func thematicBreak() {
         if table?.recording != nil {
-            table!.recording!.commands.append(.thematicBreak)
+            table?.recording?.commands.append(.thematicBreak)
             return
         }
         pdf.flush.inline()
@@ -125,7 +125,7 @@ extension PDF.HTML.Context {
 
     public mutating func image(source: String, alt: String) {
         if table?.recording != nil {
-            table!.recording!.commands.append(.image(source: source, alt: alt))
+            table?.recording?.commands.append(.image(source: source, alt: alt))
             return
         }
         pdf.flush.inline()
@@ -141,7 +141,7 @@ extension PDF.HTML.Context {
 
     public mutating func pageBreak() {
         if table?.recording != nil {
-            table!.recording!.commands.append(.pageBreak)
+            table?.recording?.commands.append(.pageBreak)
             return
         }
         pdf.flush.inline()
@@ -151,9 +151,9 @@ extension PDF.HTML.Context {
 
     public mutating func set(attribute name: String, _ value: String?) {
         if table?.recording != nil {
-            table!.recording!.commands.append(.setAttribute(name: name, value: value))
+            table?.recording?.commands.append(.setAttribute(name: name, value: value))
             if name == "colspan" {
-                table!.recording!.pendingColspan = Int(value ?? "1") ?? 1
+                table?.recording?.pendingColspan = Int(value ?? "1") ?? 1
             }
             return
         }
@@ -166,7 +166,7 @@ extension PDF.HTML.Context {
 
     public mutating func add(class name: String) {
         if table?.recording != nil {
-            table!.recording!.commands.append(.addClass(name))
+            table?.recording?.commands.append(.addClass(name))
             return
         }
 
@@ -174,7 +174,7 @@ extension PDF.HTML.Context {
 
     public mutating func write(raw bytes: [Byte]) {
         if table?.recording != nil {
-            table!.recording!.commands.append(.writeRaw(bytes))
+            table?.recording?.commands.append(.writeRaw(bytes))
             return
         }
 
@@ -191,13 +191,14 @@ extension PDF.HTML.Context {
     }
 
     public mutating func apply(inlineStyle property: Any) -> Bool {
-        if table?.recording != nil {
-            table!.recording!.commands.append(.inlineStyle(property))
+        if var recording = table?.recording.take() {
+            recording.commands.append(.inlineStyle(property))
 
-            if table!.recording!.elementDepth == 1 {
-                Self.captureCellWidthHint(from: property, into: &table!.recording!)
-                Self.captureCellPaddingHint(from: property, into: &table!.recording!)
+            if recording.elementDepth == 1 {
+                Self.captureCellWidthHint(from: property, into: &recording)
+                Self.captureCellPaddingHint(from: property, into: &recording)
             }
+            table?.recording = recording
             return true
         }
 
@@ -244,7 +245,7 @@ extension PDF.HTML.Context {
         context: inout Self
     ) -> Bool {
         guard context.table?.recording != nil else { return false }
-        context.table!.recording!.commands.append(command)
+        context.table?.recording?.commands.append(command)
         return true
     }
 
@@ -362,7 +363,7 @@ extension PDF.HTML.Context {
         destination: borrowing String
     ) {
         if context.table?.recording != nil {
-            context.table!.recording!.commands.append(.pushLink(destination: copy destination))
+            context.table?.recording?.commands.append(.pushLink(destination: copy destination))
             return
         }
         PDF.Context._pushLink(&context.pdf, destination: destination)
@@ -408,8 +409,8 @@ extension PDF.HTML.Context {
         isPreElement: Bool
     ) {
 
-        if context.table?.recording != nil {
-            context.table!.recording!.commands.append(
+        if var recording = context.table?.recording.take() {
+            recording.commands.append(
                 .pushElement(
                     tagName: tagName,
                     isBlock: isBlock,
@@ -424,52 +425,53 @@ extension PDF.HTML.Context {
                 || tagName == "tbody"
                 || tagName == "tfoot"
 
-            context.table!.recording!.pushedIsVoid.append(isTransparent)
+            recording.pushedIsVoid.append(isTransparent)
             if !isTransparent {
 
-                if context.table!.recording!.elementDepth == 0 && tagName == "tr" {
-                    context.table!.recording!.cellsPushedInCurrentRow = 0
+                if recording.elementDepth == 0 && tagName == "tr" {
+                    recording.cellsPushedInCurrentRow = 0
                 }
 
-                if context.table!.recording!.elementDepth == 1
+                if recording.elementDepth == 1
                     && (tagName == "td" || tagName == "th")
                 {
-                    let columnIdx = context.table!.recording!.cellsPushedInCurrentRow
-                    if let weight = context.table!.recording!.pendingCellWidthPercent {
-                        context.table!.recording!.columnWidthWeights[columnIdx] = weight
-                        context.table!.recording!.pendingCellWidthPercent = nil
+                    let columnIdx = recording.cellsPushedInCurrentRow
+                    if let weight = recording.pendingCellWidthPercent {
+                        recording.columnWidthWeights[columnIdx] = weight
+                        recording.pendingCellWidthPercent = nil
                     }
-                    let colspan = context.table!.recording!.pendingColspan
-                    context.table!.recording!.pendingColspan = 1
-                    context.table!.recording!.cellsPushedInCurrentRow += colspan
+                    let colspan = recording.pendingColspan
+                    recording.pendingColspan = 1
+                    recording.cellsPushedInCurrentRow += colspan
 
-                    if context.table!.recording!.topLevelRowIndex == 0 {
-                        context.table!.recording!.columnCount = max(
-                            context.table!.recording!.columnCount,
-                            context.table!.recording!.cellsPushedInCurrentRow
+                    if recording.topLevelRowIndex == 0 {
+                        recording.columnCount = max(
+                            recording.columnCount,
+                            recording.cellsPushedInCurrentRow
                         )
                     }
-                    context.table!.recording!.currentCellColumn = columnIdx
-                    context.table!.recording!.currentCellMinWidth = .init(0)
-                    context.table!.recording!.currentCellMaxWidth = .init(0)
-                    context.table!.recording!.currentLineWidth = .init(0)
-                    context.table!.recording!.currentCellPadding =
-                        context.table!.recording!.pendingCellHorizontalPadding
-                    context.table!.recording!.pendingCellHorizontalPadding = 0
+                    recording.currentCellColumn = columnIdx
+                    recording.currentCellMinWidth = .init(0)
+                    recording.currentCellMaxWidth = .init(0)
+                    recording.currentLineWidth = .init(0)
+                    recording.currentCellPadding =
+                        recording.pendingCellHorizontalPadding
+                    recording.pendingCellHorizontalPadding = 0
                 }
 
-                if context.table!.recording!.elementDepth > 1
+                if recording.elementDepth > 1
                     && tagName == "tr"
-                    && context.table!.recording!.currentCellColumn != nil
+                    && recording.currentCellColumn != nil
                 {
-                    let lw = context.table!.recording!.currentLineWidth
-                    if lw > context.table!.recording!.currentCellMaxWidth {
-                        context.table!.recording!.currentCellMaxWidth = lw
+                    let lw = recording.currentLineWidth
+                    if lw > recording.currentCellMaxWidth {
+                        recording.currentCellMaxWidth = lw
                     }
-                    context.table!.recording!.currentLineWidth = .init(0)
+                    recording.currentLineWidth = .init(0)
                 }
-                context.table!.recording!.elementDepth += 1
+                recording.elementDepth += 1
             }
+            context.table?.recording = recording
             return
         }
 
@@ -607,56 +609,55 @@ extension PDF.HTML.Context {
 
     public static func _popElement(_ context: inout Self, isBlock: Bool) {
 
-        if context.table?.recording != nil {
-            let wasVoid = context.table!.recording!.pushedIsVoid.popLast() ?? false
+        if var recording = context.table?.recording.take() {
+            let wasVoid = recording.pushedIsVoid.popLast() ?? false
             if wasVoid {
-                context.table!.recording!.commands.append(.popElement(isBlock: isBlock))
+                recording.commands.append(.popElement(isBlock: isBlock))
+                context.table?.recording = recording
                 return
             }
-            context.table!.recording!.elementDepth -= 1
-            guard context.table!.recording!.elementDepth < 0 else {
+            recording.elementDepth -= 1
+            guard recording.elementDepth < 0 else {
 
-                if context.table!.recording!.elementDepth == 1,
-                    let col = context.table!.recording!.currentCellColumn
+                if recording.elementDepth == 1,
+                    let col = recording.currentCellColumn
                 {
 
-                    let lw = context.table!.recording!.currentLineWidth
-                    if lw > context.table!.recording!.currentCellMaxWidth {
-                        context.table!.recording!.currentCellMaxWidth = lw
+                    let lw = recording.currentLineWidth
+                    if lw > recording.currentCellMaxWidth {
+                        recording.currentCellMaxWidth = lw
                     }
-                    context.table!.recording!.currentLineWidth = .init(0)
+                    recording.currentLineWidth = .init(0)
 
-                    let pad = context.table!.recording!.currentCellPadding
+                    let pad = recording.currentCellPadding
                     if pad > 0 {
-                        context.table!.recording!.currentCellMaxWidth +=
+                        recording.currentCellMaxWidth +=
                             PDF.UserSpace.Width(pad)
-                        context.table!.recording!.currentCellMinWidth +=
+                        recording.currentCellMinWidth +=
                             PDF.UserSpace.Width(pad)
                     }
-                    let r = context.table!.recording!
-                    let prevMin = r.columnMinContentWidths[col] ?? .init(0)
-                    let prevMax = r.columnMaxContentWidths[col] ?? .init(0)
-                    if r.currentCellMinWidth > prevMin {
-                        context.table!.recording!.columnMinContentWidths[col] =
-                            r.currentCellMinWidth
+                    let prevMin = recording.columnMinContentWidths[col] ?? .init(0)
+                    let prevMax = recording.columnMaxContentWidths[col] ?? .init(0)
+                    if recording.currentCellMinWidth > prevMin {
+                        recording.columnMinContentWidths[col] =
+                            recording.currentCellMinWidth
                     }
-                    if r.currentCellMaxWidth > prevMax {
-                        context.table!.recording!.columnMaxContentWidths[col] =
-                            r.currentCellMaxWidth
+                    if recording.currentCellMaxWidth > prevMax {
+                        recording.columnMaxContentWidths[col] =
+                            recording.currentCellMaxWidth
                     }
-                    context.table!.recording!.currentCellColumn = nil
+                    recording.currentCellColumn = nil
                 }
 
-                if context.table!.recording!.elementDepth == 0 {
+                if recording.elementDepth == 0 {
 
-                    context.table!.recording!.topLevelRowIndex += 1
+                    recording.topLevelRowIndex += 1
                 }
-                context.table!.recording!.commands.append(.popElement(isBlock: isBlock))
+                recording.commands.append(.popElement(isBlock: isBlock))
+                context.table?.recording = recording
                 return
             }
 
-            let recording = context.table!.recording!
-            context.table!.recording = nil
             finalizeFirstRow(recording, context: &context)
         }
 
@@ -842,7 +843,7 @@ extension PDF.HTML.Context {
             context.table?.currentFragmentEndY = tableStartY
             context.table?.hasExplicitWidth = explicit
 
-            if !context.table!.columnsInitialized {
+            if context.table?.columnsInitialized == false {
                 context.table?.recording = .init(savedY: tableStartY)
             }
             context.resetMarginCollapsing()

@@ -9,9 +9,7 @@ extension Renderer.Document.Context {
     public static func pdfHTML(state: Ownership.Mutable<PDF.HTML.Context>) -> Self {
 
         func record(_ action: Renderer.Document.Action) {
-            if state.value.speculativeActions != nil {
-                state.value.speculativeActions!.append(action)
-            }
+            state.value.speculativeActions?.append(action)
         }
 
         func resolveSpeculative(minimumRequired: PDF.UserSpace.Height) {

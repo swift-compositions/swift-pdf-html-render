@@ -73,8 +73,7 @@ extension HTML.Tag.Element {
 
         case "small":
 
-            context.pdf.style.fontSize =
-                context.pdf.style.fontSize * context.configuration.typography.smallScale
+            context.pdf.style.fontSize *= context.configuration.typography.smallScale
 
         case "a":
             context.pdf.style.color = .blue
