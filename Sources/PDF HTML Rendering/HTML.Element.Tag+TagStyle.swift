@@ -72,8 +72,9 @@ extension HTML.Tag.Element {
                 (currentSize * context.configuration.typography.superscriptOffset).height
 
         case "small":
-
-            context.pdf.style.fontSize *= context.configuration.typography.smallScale
+            let currentSize = context.pdf.style.fontSize
+            context.pdf.style.fontSize =
+                currentSize * context.configuration.typography.smallScale
 
         case "a":
             context.pdf.style.color = .blue
