@@ -1,7 +1,6 @@
 import Buffer
 import Buffer_Linear_Bounded_Primitive
 public import Buffer_Linear_Primitive
-import Buffer_Linear_Primitive
 import Buffer_Ring_Primitive
 import Copy_on_Write_Macro
 import Dictionary
