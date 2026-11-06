@@ -17,6 +17,8 @@ extension PDF.HTML {
 
         public var documentTitle: String?
 
+        // swift-linter:disable:next raw concept
+        // REASON: the document date as display text for a page header or footer, in the author's own wording; looked at ISO_8601.CalendarDate and Gregorian.Date, which would refuse or reformat it.
         public var documentDate: String?
 
         public var defaultFont: PDF.Font
@@ -53,6 +55,8 @@ extension PDF.HTML {
             header: Header = .init(),
             footer: Footer = .init(),
             documentTitle: String? = nil,
+            // swift-linter:disable:next raw concept
+            // REASON: the document date as display text for a page header or footer, in the author's own wording; looked at ISO_8601.CalendarDate and Gregorian.Date, which would refuse or reformat it.
             documentDate: String? = nil,
             defaultFont: PDF.Font = .times,
             defaultFontSize: PDF.UserSpace.Size<1> = 12,
