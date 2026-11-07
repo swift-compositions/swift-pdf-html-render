@@ -317,154 +317,162 @@ struct `BreakInside Tests` {
     }
 }
 
-@Suite
-struct `Consecutive Sticky Headers Tests` {
+enum `BreakProperty Tests` {}
 
-    @Test
-    func `Consecutive sticky headers chain together`() {
-        struct TestView: HTML.View {
-            var body: some HTML.View {
-                for i in 1...40 {
-                    HTML.Paragraph.Element { "Filler \(i)" }
-                }
+extension `BreakProperty Tests` {
+    @Suite
+    struct `Consecutive Sticky Headers Tests` {
 
-                HTML.H3.Element { "ARTICLE_HEADER" }
-                    .css.pageBreakAfter(.avoid)
+        @Test
+        func `Consecutive sticky headers chain together`() {
+            struct TestView: HTML.View {
+                var body: some HTML.View {
+                    for i in 1...40 {
+                        HTML.Paragraph.Element { "Filler \(i)" }
+                    }
 
-                HTML.H4.Element { "SECTION_HEADER" }
-                    .css.pageBreakAfter(.avoid)
-
-                HTML.Paragraph.Element { "SECTION_CONTENT" }
-            }
-        }
-
-        let pages = PDF.HTML.pages { TestView() }
-
-        let allContent = pages.flatMap { $0.contents }.flatMap { $0.data }
-        let contentString = String(decoding: allContent, as: UTF8.self)
-        #expect(contentString.contains("ARTICLE_HEADER"))
-        #expect(contentString.contains("SECTION_HEADER"))
-        #expect(contentString.contains("SECTION_CONTENT"))
-    }
-
-    @Test
-    func `Modern consecutive sticky headers chain together`() {
-        struct TestView: HTML.View {
-            var body: some HTML.View {
-                for i in 1...40 {
-                    HTML.Paragraph.Element { "Filler \(i)" }
-                }
-
-                HTML.H3.Element { "MODERN_ARTICLE" }
-                    .css.breakAfter(.avoid)
-
-                HTML.H4.Element { "MODERN_SECTION" }
-                    .css.breakAfter(.avoid)
-
-                HTML.Paragraph.Element { "MODERN_CONTENT" }
-            }
-        }
-
-        let pages = PDF.HTML.pages { TestView() }
-
-        let allContent = pages.flatMap { $0.contents }.flatMap { $0.data }
-        let contentString = String(decoding: allContent, as: UTF8.self)
-        #expect(contentString.contains("MODERN_ARTICLE"))
-        #expect(contentString.contains("MODERN_SECTION"))
-        #expect(contentString.contains("MODERN_CONTENT"))
-    }
-}
-
-@Suite
-struct `Section Wrapper Tests` {
-
-    @Test
-    func `Sticky header inside Section wrapper works`() {
-        struct TestView: HTML.View {
-            var body: some HTML.View {
-                for i in 1...40 {
-                    HTML.Paragraph.Element { "Filler \(i)" }
-                }
-
-                HTML.Section.Element {
-                    HTML.H3.Element { "SECTION_WRAPPED_HEADER" }
+                    HTML.H3.Element { "ARTICLE_HEADER" }
                         .css.pageBreakAfter(.avoid)
 
-                    HTML.Paragraph.Element { "SECTION_WRAPPED_CONTENT" }
+                    HTML.H4.Element { "SECTION_HEADER" }
+                        .css.pageBreakAfter(.avoid)
+
+                    HTML.Paragraph.Element { "SECTION_CONTENT" }
                 }
             }
+
+            let pages = PDF.HTML.pages { TestView() }
+
+            let allContent = pages.flatMap { $0.contents }.flatMap { $0.data }
+            let contentString = String(decoding: allContent, as: UTF8.self)
+            #expect(contentString.contains("ARTICLE_HEADER"))
+            #expect(contentString.contains("SECTION_HEADER"))
+            #expect(contentString.contains("SECTION_CONTENT"))
         }
 
-        let pages = PDF.HTML.pages { TestView() }
+        @Test
+        func `Modern consecutive sticky headers chain together`() {
+            struct TestView: HTML.View {
+                var body: some HTML.View {
+                    for i in 1...40 {
+                        HTML.Paragraph.Element { "Filler \(i)" }
+                    }
 
-        let allContent = pages.flatMap { $0.contents }.flatMap { $0.data }
-        let contentString = String(decoding: allContent, as: UTF8.self)
-        #expect(contentString.contains("SECTION_WRAPPED_HEADER"))
-        #expect(contentString.contains("SECTION_WRAPPED_CONTENT"))
-    }
-
-    @Test
-    func `Modern sticky header inside Section wrapper works`() {
-        struct TestView: HTML.View {
-            var body: some HTML.View {
-                for i in 1...40 {
-                    HTML.Paragraph.Element { "Filler \(i)" }
-                }
-
-                HTML.Section.Element {
-                    HTML.H3.Element { "MODERN_SECTION_HEADER" }
+                    HTML.H3.Element { "MODERN_ARTICLE" }
                         .css.breakAfter(.avoid)
 
-                    HTML.Paragraph.Element { "MODERN_SECTION_CONTENT" }
+                    HTML.H4.Element { "MODERN_SECTION" }
+                        .css.breakAfter(.avoid)
+
+                    HTML.Paragraph.Element { "MODERN_CONTENT" }
                 }
             }
+
+            let pages = PDF.HTML.pages { TestView() }
+
+            let allContent = pages.flatMap { $0.contents }.flatMap { $0.data }
+            let contentString = String(decoding: allContent, as: UTF8.self)
+            #expect(contentString.contains("MODERN_ARTICLE"))
+            #expect(contentString.contains("MODERN_SECTION"))
+            #expect(contentString.contains("MODERN_CONTENT"))
         }
-
-        let pages = PDF.HTML.pages { TestView() }
-
-        let allContent = pages.flatMap { $0.contents }.flatMap { $0.data }
-        let contentString = String(decoding: allContent, as: UTF8.self)
-        #expect(contentString.contains("MODERN_SECTION_HEADER"))
-        #expect(contentString.contains("MODERN_SECTION_CONTENT"))
     }
 }
 
-@Suite
-struct `Sticky Header with Table Tests` {
+extension `BreakProperty Tests` {
+    @Suite
+    struct `Section Wrapper Tests` {
 
-    @Test
-    func `Sticky header with following table`() {
-        struct TestView: HTML.View {
-            var body: some HTML.View {
-                for i in 1...38 {
-                    HTML.Paragraph.Element { "Filler \(i)" }
-                }
-
-                HTML.H3.Element { "TABLE_HEADER" }
-                    .css.pageBreakAfter(.avoid)
-
-                HTML.Table.Element {
-                    HTML.TableHead.Element {
-                        HTML.TableRow.Element {
-                            HTML.TableHeader.Element { "Column A" }
-                            HTML.TableHeader.Element { "Column B" }
-                        }
+        @Test
+        func `Sticky header inside Section wrapper works`() {
+            struct TestView: HTML.View {
+                var body: some HTML.View {
+                    for i in 1...40 {
+                        HTML.Paragraph.Element { "Filler \(i)" }
                     }
-                    HTML.TableBody.Element {
-                        HTML.TableRow.Element {
-                            HTML.TableDataCell.Element { "DATA_A" }
-                            HTML.TableDataCell.Element { "DATA_B" }
+
+                    HTML.Section.Element {
+                        HTML.H3.Element { "SECTION_WRAPPED_HEADER" }
+                            .css.pageBreakAfter(.avoid)
+
+                        HTML.Paragraph.Element { "SECTION_WRAPPED_CONTENT" }
+                    }
+                }
+            }
+
+            let pages = PDF.HTML.pages { TestView() }
+
+            let allContent = pages.flatMap { $0.contents }.flatMap { $0.data }
+            let contentString = String(decoding: allContent, as: UTF8.self)
+            #expect(contentString.contains("SECTION_WRAPPED_HEADER"))
+            #expect(contentString.contains("SECTION_WRAPPED_CONTENT"))
+        }
+
+        @Test
+        func `Modern sticky header inside Section wrapper works`() {
+            struct TestView: HTML.View {
+                var body: some HTML.View {
+                    for i in 1...40 {
+                        HTML.Paragraph.Element { "Filler \(i)" }
+                    }
+
+                    HTML.Section.Element {
+                        HTML.H3.Element { "MODERN_SECTION_HEADER" }
+                            .css.breakAfter(.avoid)
+
+                        HTML.Paragraph.Element { "MODERN_SECTION_CONTENT" }
+                    }
+                }
+            }
+
+            let pages = PDF.HTML.pages { TestView() }
+
+            let allContent = pages.flatMap { $0.contents }.flatMap { $0.data }
+            let contentString = String(decoding: allContent, as: UTF8.self)
+            #expect(contentString.contains("MODERN_SECTION_HEADER"))
+            #expect(contentString.contains("MODERN_SECTION_CONTENT"))
+        }
+    }
+}
+
+extension `BreakProperty Tests` {
+    @Suite
+    struct `Sticky Header with Table Tests` {
+
+        @Test
+        func `Sticky header with following table`() {
+            struct TestView: HTML.View {
+                var body: some HTML.View {
+                    for i in 1...38 {
+                        HTML.Paragraph.Element { "Filler \(i)" }
+                    }
+
+                    HTML.H3.Element { "TABLE_HEADER" }
+                        .css.pageBreakAfter(.avoid)
+
+                    HTML.Table.Element {
+                        HTML.TableHead.Element {
+                            HTML.TableRow.Element {
+                                HTML.TableHeader.Element { "Column A" }
+                                HTML.TableHeader.Element { "Column B" }
+                            }
+                        }
+                        HTML.TableBody.Element {
+                            HTML.TableRow.Element {
+                                HTML.TableDataCell.Element { "DATA_A" }
+                                HTML.TableDataCell.Element { "DATA_B" }
+                            }
                         }
                     }
                 }
             }
+
+            let pages = PDF.HTML.pages { TestView() }
+
+            let allContent = pages.flatMap { $0.contents }.flatMap { $0.data }
+            let contentString = String(decoding: allContent, as: UTF8.self)
+            #expect(contentString.contains("TABLE_HEADER"))
+            #expect(contentString.contains("DATA_A"))
         }
-
-        let pages = PDF.HTML.pages { TestView() }
-
-        let allContent = pages.flatMap { $0.contents }.flatMap { $0.data }
-        let contentString = String(decoding: allContent, as: UTF8.self)
-        #expect(contentString.contains("TABLE_HEADER"))
-        #expect(contentString.contains("DATA_A"))
     }
 }

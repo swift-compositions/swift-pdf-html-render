@@ -338,129 +338,135 @@ struct `Height Tests` {
     }
 }
 
-@Suite
-struct `Combined Box Model Tests` {
+enum `BoxModel Tests` {}
 
-    @Test
-    func `margin and padding combine correctly`() {
-        struct TestView: HTML.View {
-            var body: some HTML.View {
-                HTML.ContentDivision.Element {
-                    HTML.Paragraph.Element { "MARGIN_AND_PADDING_CONTENT" }
-                }
-                .css.margin(.px(10))
-                .css.padding(.px(15))
-            }
-        }
+extension `BoxModel Tests` {
+    @Suite
+    struct `Combined Box Model Tests` {
 
-        let pages = PDF.HTML.pages { TestView() }
-
-        let allContent = pages.flatMap { $0.contents }.flatMap { $0.data }
-        let contentString = String(decoding: allContent, as: UTF8.self)
-        #expect(contentString.contains("MARGIN_AND_PADDING_CONTENT"))
-    }
-
-    @Test
-    func `nested elements with box model`() {
-        struct TestView: HTML.View {
-            var body: some HTML.View {
-                HTML.ContentDivision.Element {
+        @Test
+        func `margin and padding combine correctly`() {
+            struct TestView: HTML.View {
+                var body: some HTML.View {
                     HTML.ContentDivision.Element {
-                        HTML.Paragraph.Element { "DEEPLY_NESTED_CONTENT" }
+                        HTML.Paragraph.Element { "MARGIN_AND_PADDING_CONTENT" }
                     }
-                    .css.padding(.px(10))
+                    .css.margin(.px(10))
+                    .css.padding(.px(15))
                 }
-                .css.margin(.px(20))
             }
+
+            let pages = PDF.HTML.pages { TestView() }
+
+            let allContent = pages.flatMap { $0.contents }.flatMap { $0.data }
+            let contentString = String(decoding: allContent, as: UTF8.self)
+            #expect(contentString.contains("MARGIN_AND_PADDING_CONTENT"))
         }
 
-        let pages = PDF.HTML.pages { TestView() }
-
-        let allContent = pages.flatMap { $0.contents }.flatMap { $0.data }
-        let contentString = String(decoding: allContent, as: UTF8.self)
-        #expect(contentString.contains("DEEPLY_NESTED_CONTENT"))
-    }
-
-    @Test
-    func `width with padding computes content area correctly`() {
-        struct TestView: HTML.View {
-            var body: some HTML.View {
-                HTML.ContentDivision.Element {
-                    HTML.Paragraph.Element { "WIDTH_WITH_PADDING_CONTENT" }
+        @Test
+        func `nested elements with box model`() {
+            struct TestView: HTML.View {
+                var body: some HTML.View {
+                    HTML.ContentDivision.Element {
+                        HTML.ContentDivision.Element {
+                            HTML.Paragraph.Element { "DEEPLY_NESTED_CONTENT" }
+                        }
+                        .css.padding(.px(10))
+                    }
+                    .css.margin(.px(20))
                 }
-                .css.width(.px(300))
-                .css.padding(.px(20))
             }
+
+            let pages = PDF.HTML.pages { TestView() }
+
+            let allContent = pages.flatMap { $0.contents }.flatMap { $0.data }
+            let contentString = String(decoding: allContent, as: UTF8.self)
+            #expect(contentString.contains("DEEPLY_NESTED_CONTENT"))
         }
 
-        let pages = PDF.HTML.pages { TestView() }
-
-        let allContent = pages.flatMap { $0.contents }.flatMap { $0.data }
-        let contentString = String(decoding: allContent, as: UTF8.self)
-        #expect(contentString.contains("WIDTH_WITH_PADDING_CONTENT"))
-    }
-
-    @Test
-    func `margin with width centers element`() {
-        struct TestView: HTML.View {
-            var body: some HTML.View {
-                HTML.ContentDivision.Element {
-                    HTML.Paragraph.Element { "MARGIN_AUTO_CENTERED_CONTENT" }
+        @Test
+        func `width with padding computes content area correctly`() {
+            struct TestView: HTML.View {
+                var body: some HTML.View {
+                    HTML.ContentDivision.Element {
+                        HTML.Paragraph.Element { "WIDTH_WITH_PADDING_CONTENT" }
+                    }
+                    .css.width(.px(300))
+                    .css.padding(.px(20))
                 }
-                .css.width(.px(400))
-                .css.marginLeft(.auto)
-                .css.marginRight(.auto)
             }
+
+            let pages = PDF.HTML.pages { TestView() }
+
+            let allContent = pages.flatMap { $0.contents }.flatMap { $0.data }
+            let contentString = String(decoding: allContent, as: UTF8.self)
+            #expect(contentString.contains("WIDTH_WITH_PADDING_CONTENT"))
         }
 
-        let pages = PDF.HTML.pages { TestView() }
+        @Test
+        func `margin with width centers element`() {
+            struct TestView: HTML.View {
+                var body: some HTML.View {
+                    HTML.ContentDivision.Element {
+                        HTML.Paragraph.Element { "MARGIN_AUTO_CENTERED_CONTENT" }
+                    }
+                    .css.width(.px(400))
+                    .css.marginLeft(.auto)
+                    .css.marginRight(.auto)
+                }
+            }
 
-        let allContent = pages.flatMap { $0.contents }.flatMap { $0.data }
-        let contentString = String(decoding: allContent, as: UTF8.self)
-        #expect(contentString.contains("MARGIN_AUTO_CENTERED_CONTENT"))
+            let pages = PDF.HTML.pages { TestView() }
+
+            let allContent = pages.flatMap { $0.contents }.flatMap { $0.data }
+            let contentString = String(decoding: allContent, as: UTF8.self)
+            #expect(contentString.contains("MARGIN_AUTO_CENTERED_CONTENT"))
+        }
     }
 }
 
-@Suite
-struct `Box Model with Text Flow Tests` {
+extension `BoxModel Tests` {
+    @Suite
+    struct `Box Model with Text Flow Tests` {
 
-    @Test
-    func `padding affects text wrapping`() {
-        struct TestView: HTML.View {
-            var body: some HTML.View {
-                HTML.ContentDivision.Element {
-                    HTML.Paragraph.Element {
-                        "This is a longer paragraph that should wrap differently when padding is applied because the content area is reduced by the padding values on the left and right sides."
+        @Test
+        func `padding affects text wrapping`() {
+            struct TestView: HTML.View {
+                var body: some HTML.View {
+                    HTML.ContentDivision.Element {
+                        HTML.Paragraph.Element {
+                            "This is a longer paragraph that should wrap differently when padding is applied because the content area is reduced by the padding values on the left and right sides."
+                        }
                     }
+                    .css.padding(.px(50))
                 }
-                .css.padding(.px(50))
             }
+
+            let pages = PDF.HTML.pages { TestView() }
+
+            let allContent = pages.flatMap { $0.contents }.flatMap { $0.data }
+            let contentString = String(decoding: allContent, as: UTF8.self)
+            #expect(contentString.contains("longer paragraph"))
         }
 
-        let pages = PDF.HTML.pages { TestView() }
-
-        let allContent = pages.flatMap { $0.contents }.flatMap { $0.data }
-        let contentString = String(decoding: allContent, as: UTF8.self)
-        #expect(contentString.contains("longer paragraph"))
-    }
-
-    @Test
-    func `width constraint affects text wrapping`() {
-        struct TestView: HTML.View {
-            var body: some HTML.View {
-                HTML.ContentDivision.Element {
-                    HTML.Paragraph.Element {
-                        "This is content that will wrap more aggressively due to the narrow width constraint applied to its container."
+        @Test
+        func `width constraint affects text wrapping`() {
+            struct TestView: HTML.View {
+                var body: some HTML.View {
+                    HTML.ContentDivision.Element {
+                        HTML.Paragraph.Element {
+                            "This is content that will wrap more aggressively due to the narrow width constraint applied to its container."
+                        }
                     }
+                    .css.width(.px(150))
                 }
-                .css.width(.px(150))
             }
+
+            let pages = PDF.HTML.pages { TestView() }
+
+            let allContent = pages.flatMap { $0.contents }.flatMap { $0.data }
+            let contentString = String(decoding: allContent, as: UTF8.self)
+            #expect(contentString.contains("content"))
         }
-
-        let pages = PDF.HTML.pages { TestView() }
-
-        let allContent = pages.flatMap { $0.contents }.flatMap { $0.data }
-        let contentString = String(decoding: allContent, as: UTF8.self)
-        #expect(contentString.contains("content"))
     }
 }

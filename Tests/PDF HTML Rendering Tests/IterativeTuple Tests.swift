@@ -6,44 +6,48 @@ import Testing
 
 @testable import PDF_HTML_Rendering_Test_Support
 
-@Suite
-struct `Iterative Tuple Tests` {
+enum `IterativeTuple Tests` {}
 
-    private func render<V: HTML.View>(_ view: V) -> [Byte] {
-        let document = PDF.Document {
-            HTML.Document { view }
+extension `IterativeTuple Tests` {
+    @Suite
+    struct `Iterative Tuple Tests` {
+
+        private func render<V: HTML.View>(_ view: V) -> [Byte] {
+            let document = PDF.Document {
+                HTML.Document { view }
+            }
+            return [Byte](document)
         }
-        return [Byte](document)
-    }
 
-    @Test
-    func `10x10 table renders without stack overflow`() {
-        let bytes = render(Table10x10())
-        #expect(!bytes.isEmpty)
-    }
+        @Test
+        func `10x10 table renders without stack overflow`() {
+            let bytes = render(Table10x10())
+            #expect(!bytes.isEmpty)
+        }
 
-    @Test
-    func `10x30 table renders without stack overflow`() {
-        let bytes = render(Table10x30())
-        #expect(!bytes.isEmpty)
-    }
+        @Test
+        func `10x30 table renders without stack overflow`() {
+            let bytes = render(Table10x30())
+            #expect(!bytes.isEmpty)
+        }
 
-    @Test
-    func `5-column styled table renders without stack overflow`() {
-        let bytes = render(StyledTable5x10())
-        #expect(!bytes.isEmpty)
-    }
+        @Test
+        func `5-column styled table renders without stack overflow`() {
+            let bytes = render(StyledTable5x10())
+            #expect(!bytes.isEmpty)
+        }
 
-    @Test
-    func `30-element flat view body renders without stack overflow`() {
-        let bytes = render(FlatView30())
-        #expect(!bytes.isEmpty)
-    }
+        @Test
+        func `30-element flat view body renders without stack overflow`() {
+            let bytes = render(FlatView30())
+            #expect(!bytes.isEmpty)
+        }
 
-    @Test
-    func `50-element flat view body renders without stack overflow`() {
-        let bytes = render(FlatView50())
-        #expect(!bytes.isEmpty)
+        @Test
+        func `50-element flat view body renders without stack overflow`() {
+            let bytes = render(FlatView50())
+            #expect(!bytes.isEmpty)
+        }
     }
 }
 

@@ -5,8 +5,15 @@ import Test_Snapshot
 import Testing
 import Tests_Inline_Snapshot
 
-@Suite
-struct `PDFOutput Snapshot Tests` {
+enum `PDF.Output Snapshot Tests` {}
+
+extension `PDF.Output Snapshot Tests` {
+    @Suite
+    struct `PDFOutput Snapshot Tests` {
+    }
+}
+
+extension `PDF.Output Snapshot Tests`.`PDFOutput Snapshot Tests` {
     @Suite struct Snapshot {}
 }
 

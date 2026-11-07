@@ -122,145 +122,151 @@ struct `PDF.HTML.View Tests` {
     }
 }
 
-@Suite
-struct `Sticky Header Tests` {
+enum `Refactor Tests` {}
 
-    @Test
-    func `Basic sticky header document renders`() {
-        struct TestView: HTML.View {
-            var body: some HTML.View {
+extension `Refactor Tests` {
+    @Suite
+    struct `Sticky Header Tests` {
 
-                HTML.Paragraph.Element { "Filler 1" }
-                HTML.Paragraph.Element { "Filler 2" }
-                HTML.Paragraph.Element { "Filler 3" }
-                HTML.Paragraph.Element { "Filler 4" }
-                HTML.Paragraph.Element { "Filler 5" }
-                HTML.Paragraph.Element { "Filler 6" }
-                HTML.Paragraph.Element { "Filler 7" }
-                HTML.Paragraph.Element { "Filler 8" }
-                HTML.Paragraph.Element { "Filler 9" }
-                HTML.Paragraph.Element { "Filler 10" }
-                HTML.Paragraph.Element { "Filler 11" }
-                HTML.Paragraph.Element { "Filler 12" }
-                HTML.Paragraph.Element { "Filler 13" }
-                HTML.Paragraph.Element { "Filler 14" }
-                HTML.Paragraph.Element { "Filler 15" }
-                HTML.Paragraph.Element { "Filler 16" }
-                HTML.Paragraph.Element { "Filler 17" }
-                HTML.Paragraph.Element { "Filler 18" }
-                HTML.Paragraph.Element { "Filler 19" }
-                HTML.Paragraph.Element { "Filler 20" }
-                HTML.Paragraph.Element { "Filler 21" }
-                HTML.Paragraph.Element { "Filler 22" }
-                HTML.Paragraph.Element { "Filler 23" }
-                HTML.Paragraph.Element { "Filler 24" }
-                HTML.Paragraph.Element { "Filler 25" }
-                HTML.Paragraph.Element { "Filler 26" }
-                HTML.Paragraph.Element { "Filler 27" }
-                HTML.Paragraph.Element { "Filler 28" }
-                HTML.Paragraph.Element { "Filler 29" }
-                HTML.Paragraph.Element { "Filler 30" }
-                HTML.Paragraph.Element { "Filler 31" }
-                HTML.Paragraph.Element { "Filler 32" }
-                HTML.Paragraph.Element { "Filler 33" }
-                HTML.Paragraph.Element { "Filler 34" }
-                HTML.Paragraph.Element { "Filler 35" }
-                HTML.Paragraph.Element { "Filler 36" }
-                HTML.Paragraph.Element { "Filler 37" }
-                HTML.Paragraph.Element { "Filler 38" }
-                HTML.Paragraph.Element { "Filler 39" }
-                HTML.Paragraph.Element { "Filler 40" }
+        @Test
+        func `Basic sticky header document renders`() {
+            struct TestView: HTML.View {
+                var body: some HTML.View {
 
-                HTML.H2.Element { "STICKY_HEADER" }
-                    .css.pageBreakAfter(.avoid)
+                    HTML.Paragraph.Element { "Filler 1" }
+                    HTML.Paragraph.Element { "Filler 2" }
+                    HTML.Paragraph.Element { "Filler 3" }
+                    HTML.Paragraph.Element { "Filler 4" }
+                    HTML.Paragraph.Element { "Filler 5" }
+                    HTML.Paragraph.Element { "Filler 6" }
+                    HTML.Paragraph.Element { "Filler 7" }
+                    HTML.Paragraph.Element { "Filler 8" }
+                    HTML.Paragraph.Element { "Filler 9" }
+                    HTML.Paragraph.Element { "Filler 10" }
+                    HTML.Paragraph.Element { "Filler 11" }
+                    HTML.Paragraph.Element { "Filler 12" }
+                    HTML.Paragraph.Element { "Filler 13" }
+                    HTML.Paragraph.Element { "Filler 14" }
+                    HTML.Paragraph.Element { "Filler 15" }
+                    HTML.Paragraph.Element { "Filler 16" }
+                    HTML.Paragraph.Element { "Filler 17" }
+                    HTML.Paragraph.Element { "Filler 18" }
+                    HTML.Paragraph.Element { "Filler 19" }
+                    HTML.Paragraph.Element { "Filler 20" }
+                    HTML.Paragraph.Element { "Filler 21" }
+                    HTML.Paragraph.Element { "Filler 22" }
+                    HTML.Paragraph.Element { "Filler 23" }
+                    HTML.Paragraph.Element { "Filler 24" }
+                    HTML.Paragraph.Element { "Filler 25" }
+                    HTML.Paragraph.Element { "Filler 26" }
+                    HTML.Paragraph.Element { "Filler 27" }
+                    HTML.Paragraph.Element { "Filler 28" }
+                    HTML.Paragraph.Element { "Filler 29" }
+                    HTML.Paragraph.Element { "Filler 30" }
+                    HTML.Paragraph.Element { "Filler 31" }
+                    HTML.Paragraph.Element { "Filler 32" }
+                    HTML.Paragraph.Element { "Filler 33" }
+                    HTML.Paragraph.Element { "Filler 34" }
+                    HTML.Paragraph.Element { "Filler 35" }
+                    HTML.Paragraph.Element { "Filler 36" }
+                    HTML.Paragraph.Element { "Filler 37" }
+                    HTML.Paragraph.Element { "Filler 38" }
+                    HTML.Paragraph.Element { "Filler 39" }
+                    HTML.Paragraph.Element { "Filler 40" }
 
-                HTML.Paragraph.Element { "FOLLOWING_CONTENT" }
+                    HTML.H2.Element { "STICKY_HEADER" }
+                        .css.pageBreakAfter(.avoid)
+
+                    HTML.Paragraph.Element { "FOLLOWING_CONTENT" }
+                }
             }
+
+            let pages = PDF.HTML.pages { TestView() }
+
+            #expect(pages.count >= 1)
+
+            let allContent = pages.flatMap { $0.contents }.flatMap { $0.data }
+            let contentString = String(decoding: allContent, as: UTF8.self)
+            #expect(contentString.contains("STICKY_HEADER"))
+            #expect(contentString.contains("FOLLOWING_CONTENT"))
         }
 
-        let pages = PDF.HTML.pages { TestView() }
+        @Test
+        func `Sticky header at document end renders`() {
+            struct TestView: HTML.View {
+                var body: some HTML.View {
+                    HTML.Paragraph.Element { "Some content" }
 
-        #expect(pages.count >= 1)
-
-        let allContent = pages.flatMap { $0.contents }.flatMap { $0.data }
-        let contentString = String(decoding: allContent, as: UTF8.self)
-        #expect(contentString.contains("STICKY_HEADER"))
-        #expect(contentString.contains("FOLLOWING_CONTENT"))
-    }
-
-    @Test
-    func `Sticky header at document end renders`() {
-        struct TestView: HTML.View {
-            var body: some HTML.View {
-                HTML.Paragraph.Element { "Some content" }
-
-                HTML.H2.Element { "ORPHAN_HEADER" }
-                    .css.pageBreakAfter(.avoid)
+                    HTML.H2.Element { "ORPHAN_HEADER" }
+                        .css.pageBreakAfter(.avoid)
+                }
             }
+
+            let pages = PDF.HTML.pages { TestView() }
+
+            let allContent = pages.flatMap { $0.contents }.flatMap { $0.data }
+            let contentString = String(decoding: allContent, as: UTF8.self)
+            #expect(contentString.contains("ORPHAN_HEADER"), "Orphan sticky header should be rendered")
         }
-
-        let pages = PDF.HTML.pages { TestView() }
-
-        let allContent = pages.flatMap { $0.contents }.flatMap { $0.data }
-        let contentString = String(decoding: allContent, as: UTF8.self)
-        #expect(contentString.contains("ORPHAN_HEADER"), "Orphan sticky header should be rendered")
     }
 }
 
-@Suite
-struct `Comprehensive PDF.HTML.View Tests` {
+extension `Refactor Tests` {
+    @Suite
+    struct `Comprehensive PDF.HTML.View Tests` {
 
-    @Test
-    func `document showing all elements and properties with outline`() throws {
-        let doc = PDF.Document(
-            info: .init(
-                title: "All Elements Demo",
-                author: "Test Suite"
-            ),
-            generateOutline: true
-        ) {
-            ComplexView()
+        @Test
+        func `document showing all elements and properties with outline`() throws {
+            let doc = PDF.Document(
+                info: .init(
+                    title: "All Elements Demo",
+                    author: "Test Suite"
+                ),
+                generateOutline: true
+            ) {
+                ComplexView()
+            }
+
+            let bytes = [Byte](doc)
+
+            #expect(!bytes.isEmpty)
+
+            #expect(doc.pages.count >= 1)
+            #expect(bytes.count > 1000, "Complex document should have substantial content")
+
+            #expect(doc.outline != nil, "Document should have outline/bookmarks")
+            if let outline = doc.outline {
+                #expect(!outline.items.isEmpty, "Outline should have items from H1-H6 headings")
+            }
         }
 
-        let bytes = [Byte](doc)
+        @Test
+        func `document with nested collapsible outline structure`() throws {
+            let doc = PDF.Document(
+                info: .init(
+                    title: "Technical Specification",
+                    author: "Test Suite"
+                ),
+                generateOutline: true
+            ) {
+                TechnicalSpecificationView()
+            }
 
-        #expect(!bytes.isEmpty)
+            let bytes = [Byte](doc)
 
-        #expect(doc.pages.count >= 1)
-        #expect(bytes.count > 1000, "Complex document should have substantial content")
+            #expect(!bytes.isEmpty)
 
-        #expect(doc.outline != nil, "Document should have outline/bookmarks")
-        if let outline = doc.outline {
-            #expect(!outline.items.isEmpty, "Outline should have items from H1-H6 headings")
-        }
-    }
+            #expect(doc.pages.count >= 1)
 
-    @Test
-    func `document with nested collapsible outline structure`() throws {
-        let doc = PDF.Document(
-            info: .init(
-                title: "Technical Specification",
-                author: "Test Suite"
-            ),
-            generateOutline: true
-        ) {
-            TechnicalSpecificationView()
-        }
+            #expect(doc.outline != nil, "Document should have outline/bookmarks")
 
-        let bytes = [Byte](doc)
+            if let outline = doc.outline {
 
-        #expect(!bytes.isEmpty)
+                print("Outline structure:")
+                printOutline(outline.items, indent: 0)
 
-        #expect(doc.pages.count >= 1)
-
-        #expect(doc.outline != nil, "Document should have outline/bookmarks")
-
-        if let outline = doc.outline {
-
-            print("Outline structure:")
-            printOutline(outline.items, indent: 0)
-
-            #expect(!outline.items.isEmpty, "Outline should have top-level items")
+                #expect(!outline.items.isEmpty, "Outline should have top-level items")
+            }
         }
     }
 }
