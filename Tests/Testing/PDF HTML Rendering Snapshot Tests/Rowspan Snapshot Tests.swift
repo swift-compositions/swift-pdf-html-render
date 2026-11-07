@@ -5,13 +5,11 @@ import Test_Snapshot
 import Testing
 import Tests_Inline_Snapshot
 
-extension `Rowspan Snapshot Tests`.`Rowspan Snapshot Tests` {
-    @Suite
-    struct `Rowspan Snapshot Tests` {
-    }
+@Suite
+struct `Rowspan Snapshot Tests` {
 }
 
-extension `Rowspan Snapshot Tests`.`Rowspan Snapshot Tests`.`Rowspan Snapshot Tests` {
+extension `Rowspan Snapshot Tests` {
     @Suite struct Snapshot {}
 }
 
