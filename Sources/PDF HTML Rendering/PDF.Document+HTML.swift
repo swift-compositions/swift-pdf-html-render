@@ -5,11 +5,11 @@ import PDF_Standard
 
 extension PDF.Document {
 
-    public init<H: HTML_Rendering_Core.HTML.View>(
+    public init<H: HTML_Rendering_Core::HTML.View>(
         info: ISO_32000.Document.Info? = nil,
         configuration: PDF.HTML.Configuration = .init(),
         generateOutline: Bool = false,
-        @HTML_Rendering_Core.HTML.Builder _ html: () -> H
+        @HTML_Rendering_Core::HTML.Builder _ html: () -> H
     ) {
 
         let viewer = ISO_32000.Viewer(

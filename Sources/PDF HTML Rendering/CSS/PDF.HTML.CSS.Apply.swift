@@ -40,7 +40,7 @@ extension PDF.HTML.CSS.Apply {
     ) {
         let trimmed = String(value.trimming(where: \.isWhitespace))
         if trimmed == "normal" {
-            W3C_CSS_Text.LineHeight.normal.apply(
+            W3C_CSS_Text::LineHeight.normal.apply(
                 to: &context.pdf,
                 configuration: configuration
             )
@@ -49,14 +49,14 @@ extension PDF.HTML.CSS.Apply {
         if trimmed.hasSuffix("%") {
             let raw = String(trimmed.dropLast())
             if let v = Double(raw) {
-                let pct = W3C_CSS_Values.Percentage(v)
-                let modifier = W3C_CSS_Text.LineHeight.lengthPercentage(.percentage(pct))
+                let pct = W3C_CSS_Values::Percentage(v)
+                let modifier = W3C_CSS_Text::LineHeight.lengthPercentage(.percentage(pct))
                 modifier.apply(to: &context.pdf, configuration: configuration)
             }
             return
         }
         if let v = Double(trimmed) {
-            W3C_CSS_Text.LineHeight.multiple(v).apply(
+            W3C_CSS_Text::LineHeight.multiple(v).apply(
                 to: &context.pdf,
                 configuration: configuration
             )
@@ -74,7 +74,7 @@ extension PDF.HTML.CSS.Apply {
         modifier.apply(to: &context.pdf, configuration: configuration)
     }
 
-    internal static func parseFontSize(_ value: String) -> W3C_CSS_Fonts.FontSize? {
+    internal static func parseFontSize(_ value: String) -> W3C_CSS_Fonts::FontSize? {
         let trimmed = String(value.trimming(where: \.isWhitespace))
 
         switch trimmed {
@@ -96,7 +96,7 @@ extension PDF.HTML.CSS.Apply {
         if trimmed.hasSuffix("%") {
             let raw = String(trimmed.dropLast())
             if let v = Double(raw) {
-                return .lengthPercentage(.percentage(W3C_CSS_Values.Percentage(v)))
+                return .lengthPercentage(.percentage(W3C_CSS_Values::Percentage(v)))
             }
             return nil
         }
@@ -104,7 +104,7 @@ extension PDF.HTML.CSS.Apply {
         return parseLengthAsFontSize(trimmed)
     }
 
-    private static func parseLengthAsFontSize(_ s: String) -> W3C_CSS_Fonts.FontSize? {
+    private static func parseLengthAsFontSize(_ s: String) -> W3C_CSS_Fonts::FontSize? {
 
         var idx = s.startIndex
         if idx < s.endIndex, s[idx] == "+" || s[idx] == "-" {
@@ -118,7 +118,7 @@ extension PDF.HTML.CSS.Apply {
         let numStr = String(s[s.startIndex..<idx])
         let unitStr = String(s[idx..<s.endIndex]).lowercased()
         guard let num = Double(numStr) else { return nil }
-        guard let unit = W3C_CSS_Values.Length.Unit(rawValue: unitStr) else { return nil }
+        guard let unit = W3C_CSS_Values::Length.Unit(rawValue: unitStr) else { return nil }
         return .lengthPercentage(.length(.length(num, unit)))
     }
 
@@ -128,7 +128,7 @@ extension PDF.HTML.CSS.Apply {
         configuration: PDF.HTML.Configuration
     ) {
         let trimmed = String(value.trimming(where: \.isWhitespace))
-        let modifier: W3C_CSS_Fonts.FontWeight?
+        let modifier: W3C_CSS_Fonts::FontWeight?
         switch trimmed {
         case "normal": modifier = .normal
         case "bold": modifier = .bold
