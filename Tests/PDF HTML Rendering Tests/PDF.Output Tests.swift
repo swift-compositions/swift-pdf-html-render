@@ -113,7 +113,7 @@ struct `PDFOutput Tests` {
                 HTML.ContentDivision.Element {
                     HTML.H1.Element { "Multi-Page Document" }
 
-                    (1...30).forEach { i in
+                    for i in 1...30 {
                         HTML.Paragraph.Element {
                             "Paragraph \(i): This is some sample content that helps fill the page. When enough paragraphs accumulate, the content will flow onto subsequent pages. This tests the page break handling in the HTML to PDF renderer."
                         }
