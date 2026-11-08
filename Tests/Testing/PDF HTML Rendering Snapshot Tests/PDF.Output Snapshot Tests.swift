@@ -108,7 +108,7 @@ extension PDFOutputSnapshotTests.Snapshot {
             var body: some HTML.View {
                 HTML.ContentDivision.Element {
                     HTML.H1.Element { "Multi-Page Document" }
-                    for i in 1...30 {
+                    (1...30).forEach { i in
                         HTML.Paragraph.Element {
                             "Paragraph \(i): This is some sample content that helps fill the page. When enough paragraphs accumulate, the content will flow onto subsequent pages. This tests the page break handling in the HTML to PDF renderer."
                         }

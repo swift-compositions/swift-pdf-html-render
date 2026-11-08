@@ -15,7 +15,7 @@ struct `PageBreakAfter Tests` {
         struct TestView: HTML.View {
             var body: some HTML.View {
 
-                for i in 1...40 {
+                (1...40).forEach { i in
                     HTML.Paragraph.Element { "Filler \(i)" }
                 }
 
@@ -110,7 +110,7 @@ struct `PageBreakInside Tests` {
         struct TestView: HTML.View {
             var body: some HTML.View {
 
-                for i in 1...35 {
+                (1...35).forEach { i in
                     HTML.Paragraph.Element { "Filler \(i)" }
                 }
 
@@ -139,7 +139,7 @@ struct `BreakAfter Tests` {
         struct TestView: HTML.View {
             var body: some HTML.View {
 
-                for i in 1...40 {
+                (1...40).forEach { i in
                     HTML.Paragraph.Element { "Filler \(i)" }
                 }
 
@@ -162,7 +162,7 @@ struct `BreakAfter Tests` {
     func `breakAfter avoidPage keeps header with following content`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                for i in 1...40 {
+                (1...40).forEach { i in
                     HTML.Paragraph.Element { "Filler \(i)" }
                 }
 
@@ -272,7 +272,7 @@ struct `BreakInside Tests` {
     func `breakInside avoid keeps element together`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                for i in 1...35 {
+                (1...35).forEach { i in
                     HTML.Paragraph.Element { "Filler \(i)" }
                 }
 
@@ -296,7 +296,7 @@ struct `BreakInside Tests` {
     func `breakInside avoidPage keeps element together`() {
         struct TestView: HTML.View {
             var body: some HTML.View {
-                for i in 1...35 {
+                (1...35).forEach { i in
                     HTML.Paragraph.Element { "Filler \(i)" }
                 }
 
@@ -327,7 +327,7 @@ extension `BreakProperty Tests` {
         func `Consecutive sticky headers chain together`() {
             struct TestView: HTML.View {
                 var body: some HTML.View {
-                    for i in 1...40 {
+                    (1...40).forEach { i in
                         HTML.Paragraph.Element { "Filler \(i)" }
                     }
 
@@ -354,7 +354,7 @@ extension `BreakProperty Tests` {
         func `Modern consecutive sticky headers chain together`() {
             struct TestView: HTML.View {
                 var body: some HTML.View {
-                    for i in 1...40 {
+                    (1...40).forEach { i in
                         HTML.Paragraph.Element { "Filler \(i)" }
                     }
 
@@ -387,7 +387,7 @@ extension `BreakProperty Tests` {
         func `Sticky header inside Section wrapper works`() {
             struct TestView: HTML.View {
                 var body: some HTML.View {
-                    for i in 1...40 {
+                    (1...40).forEach { i in
                         HTML.Paragraph.Element { "Filler \(i)" }
                     }
 
@@ -412,7 +412,7 @@ extension `BreakProperty Tests` {
         func `Modern sticky header inside Section wrapper works`() {
             struct TestView: HTML.View {
                 var body: some HTML.View {
-                    for i in 1...40 {
+                    (1...40).forEach { i in
                         HTML.Paragraph.Element { "Filler \(i)" }
                     }
 
@@ -443,7 +443,7 @@ extension `BreakProperty Tests` {
         func `Sticky header with following table`() {
             struct TestView: HTML.View {
                 var body: some HTML.View {
-                    for i in 1...38 {
+                    (1...38).forEach { i in
                         HTML.Paragraph.Element { "Filler \(i)" }
                     }
 

@@ -55,9 +55,9 @@ extension PDF.HTML.Context.Table.Grid {
                 )
             }
 
-            for c in originColumn..<(originColumn + colspan) {
+            (originColumn..<(originColumn + colspan)).forEach { c in
 
-                if r == originRow && c == originColumn { continue }
+                if r == originRow && c == originColumn { return }
                 if c < grid[r].count {
                     grid[r][c] = span
                 }
