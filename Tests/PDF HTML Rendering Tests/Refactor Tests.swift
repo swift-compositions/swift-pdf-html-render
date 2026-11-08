@@ -413,7 +413,7 @@ private struct TechnicalSpecificationView: HTML.View {
     }
 }
 
-struct ComplexView: HTML.View {
+fileprivate struct ComplexView: HTML.View {
     var body: some HTML.View {
         TextStylingDemo()
         LinksDemo()
