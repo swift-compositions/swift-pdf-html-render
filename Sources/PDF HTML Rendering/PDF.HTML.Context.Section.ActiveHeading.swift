@@ -1,4 +1,3 @@
-
 extension PDF.HTML.Context.Section {
     public struct ActiveHeading: Sendable {
         public let level: Int

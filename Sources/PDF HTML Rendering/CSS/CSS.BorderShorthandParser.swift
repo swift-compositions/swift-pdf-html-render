@@ -57,11 +57,12 @@ extension W3C_CSS_Backgrounds.BorderLeft: BorderSideProperty {
     ) {
 
         let widthKeyword: W3C_CSS_Backgrounds.BorderWidth.Width?
-        widthKeyword = if case .values(let values) = width {
-            values.top
-        } else {
-            nil
-        }
+        widthKeyword =
+            if case .values(let values) = width {
+                values.top
+            } else {
+                nil
+            }
         Self.properties(
             width: widthKeyword,
             style: style,

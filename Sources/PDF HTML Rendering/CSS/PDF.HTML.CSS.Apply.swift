@@ -136,11 +136,12 @@ extension PDF.HTML.CSS.Apply {
         case "lighter": modifier = .lighter
 
         default:
-            modifier = if let n = Int(trimmed) {
-                .number(n)
-            } else {
-                nil
-            }
+            modifier =
+                if let n = Int(trimmed) {
+                    .number(n)
+                } else {
+                    nil
+                }
         }
         modifier?.apply(to: &context.pdf, configuration: configuration)
     }

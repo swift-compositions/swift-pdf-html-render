@@ -2,23 +2,23 @@ import Buffer
 import Buffer_Linear_Bounded_Primitive
 public import Buffer_Linear_Primitive
 import Buffer_Ring_Primitive
+public import Byte
 import Copy_on_Write_Macro
 import Dictionary
 public import Dictionary_Ordered
+import Dictionary_Ordered_Primitive
 public import HTML_Rendering_Core
 import Hash_Indexed_Primitive
+import Layout
 import Memory
 import Memory_Allocator
 import Memory_Allocator_Pool
 import Memory_Pool
 import Ownership_Shared_Primitive
+import PDF_Rendering
 import Renderer
 import Storage
 import Store
-import PDF_Rendering
-public import Byte
-import Dictionary_Ordered_Primitive
-import Layout
 
 extension PDF.HTML {
 
