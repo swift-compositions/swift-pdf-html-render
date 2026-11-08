@@ -17,10 +17,10 @@ extension W3C_CSS_Backgrounds.Border: PDF.HTML.Style.Context.Modifier {
                 )
             }
             let effectiveWidth: PDF.UserSpace.Size<1>?
-            if let style, style == .none || style == .hidden {
-                effectiveWidth = .init(0)
+            effectiveWidth = if let style, style == .none || style == .hidden {
+                .init(0)
             } else {
-                effectiveWidth = declaredWidth
+                declaredWidth
             }
 
             if context.table != nil {
