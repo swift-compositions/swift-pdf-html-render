@@ -55,7 +55,8 @@ extension PDF.HTML {
 
         pass1State.value.pdf.flush.inline()
 
-        let totalPages = pass1State.value.pdf.pages.count
+        let contentPages = resolvedPages(context: pass1State.value)
+        let totalPages = contentPages.count
         let pageSectionTitles = pass1State.value.section.pageTitles
 
         var finalPages: [PDF.Page] = []
@@ -107,7 +108,7 @@ extension PDF.HTML {
             footerRenderCtx.render(footer(pageInfo))
             footerState.value.pdf.flush.inline()
 
-            let contentPage = pass1State.value.pdf.pages[pageNumber - 1]
+            let contentPage = contentPages[pageNumber - 1]
 
             var mergedContents: [PDF.ContentStream] = []
             if let headerPage = headerState.value.pdf.pages.first {

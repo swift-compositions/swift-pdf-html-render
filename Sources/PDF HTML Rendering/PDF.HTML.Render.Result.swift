@@ -31,17 +31,25 @@ extension PDF.HTML {
     ) -> PDF.HTML.Render.Result {
         context.pdf.flush.inline()
 
-        let resolvedPages = PDF.Context.resolveInternalLinks(
+        return PDF.HTML.Render.Result(
+            pages: resolvedPages(context: context),
+            headings: context.section.headings,
+            namedDestinations: context.link.destinations
+        )
+    }
+}
+
+extension PDF.HTML {
+
+    static func resolvedPages(
+        context: PDF.HTML.Context
+    ) -> [PDF.Page] {
+        PDF.Context.resolveInternalLinks(
             pages: context.pdf.pages,
             pendingLinks: context.pdf.link.pending,
             namedDestinations: context.link.destinations.mapValues { dest in
                 (pageNumber: dest.pageNumber, yPosition: dest.yPosition)
             }
-        )
-        return PDF.HTML.Render.Result(
-            pages: resolvedPages,
-            headings: context.section.headings,
-            namedDestinations: context.link.destinations
         )
     }
 }

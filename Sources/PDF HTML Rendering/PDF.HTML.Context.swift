@@ -325,7 +325,6 @@ extension PDF.HTML.Context {
         }
         section.activeHeading?.text += copy
 
-        let linkURL = link.currentURL ?? link.currentInternalId.map { "#\($0)" }
         let runs = PDF.Context.Text.Run.runsWithSymbolSupport(
             text: copy,
             font: pdf.style.font,
@@ -333,7 +332,8 @@ extension PDF.HTML.Context {
             color: pdf.style.color,
             textDecoration: pdf.style.textMarkup,
             verticalOffset: pdf.style.verticalOffset,
-            linkURL: linkURL
+            linkURL: link.currentURL,
+            internalLinkId: link.currentInternalId
         )
         for run in runs {
             pdf.append(inline: run)
@@ -799,8 +799,10 @@ extension PDF.HTML.Context {
             if let href = context.attributes["href"] {
                 if href.hasPrefix("#") {
                     context.link.currentInternalId = String(href.dropFirst())
+                    context.link.currentURL = nil
                 } else {
                     context.link.currentURL = href
+                    context.link.currentInternalId = nil
                 }
             }
         }
