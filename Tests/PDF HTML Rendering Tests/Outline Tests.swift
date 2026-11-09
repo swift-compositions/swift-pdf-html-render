@@ -152,7 +152,7 @@ extension `Outline Tests` {
                 }
             }
 
-            let bytes = [Byte](doc)
+            let bytes = try [Byte](doc)
 
             #expect(!bytes.isEmpty)
 
@@ -238,7 +238,7 @@ extension `Outline Tests` {
                 }
             }
 
-            let bytes = [Byte](doc)
+            let bytes = try [Byte](doc)
 
             #expect(!bytes.isEmpty)
 
@@ -316,7 +316,7 @@ extension `Outline Tests` {
                 }
             }
 
-            #expect(![Byte](doc).isEmpty)
+            #expect(try ![Byte](doc).isEmpty)
 
             if let outline = doc.outline {
                 print("Single H1 outline structure:")
@@ -357,7 +357,7 @@ extension `Outline Tests` {
                 }
             }
 
-            #expect(![Byte](doc).isEmpty)
+            #expect(try ![Byte](doc).isEmpty)
 
             if let outline = doc.outline {
                 print("Multiple H1 outline structure:")

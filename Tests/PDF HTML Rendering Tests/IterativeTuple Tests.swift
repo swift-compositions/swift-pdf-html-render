@@ -16,7 +16,7 @@ extension `IterativeTuple Tests` {
             let document = PDF.Document {
                 HTML.Document { view }
             }
-            return [Byte](document)
+            return try [Byte](document)
         }
 
         @Test

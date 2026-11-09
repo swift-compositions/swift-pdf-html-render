@@ -87,7 +87,7 @@ struct `PDF.HTML.View Tests` {
     }
 
     @Test
-    func `PDF bytes can be generated from HTML`() {
+    func `PDF bytes can be generated from HTML`() throws {
         struct TestView: HTML.View {
             var body: some HTML.View {
                 HTML.Paragraph.Element { "Hello PDF" }
@@ -95,7 +95,7 @@ struct `PDF.HTML.View Tests` {
         }
 
         let doc = PDF.Document { TestView() }
-        let bytes = [Byte](doc)
+        let bytes = try [Byte](doc)
 
         #expect(!bytes.isEmpty)
         #expect(bytes.starts(with: [.ascii.percentSign, .ascii.P, .ascii.D, .ascii.F]))
@@ -227,7 +227,7 @@ extension `Refactor Tests` {
                 ComplexView()
             }
 
-            let bytes = [Byte](doc)
+            let bytes = try [Byte](doc)
 
             #expect(!bytes.isEmpty)
 
@@ -252,7 +252,7 @@ extension `Refactor Tests` {
                 TechnicalSpecificationView()
             }
 
-            let bytes = [Byte](doc)
+            let bytes = try [Byte](doc)
 
             #expect(!bytes.isEmpty)
 

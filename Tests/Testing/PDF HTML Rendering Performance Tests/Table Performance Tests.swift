@@ -13,7 +13,7 @@ private func render<V: HTML.View>(_ view: V) {
     let document = PDF.Document {
         HTML.Document { view }
     }
-    let _ = [Byte](document)
+    _ = try? [Byte](document)
 }
 
 extension PDF.Test.Performance {

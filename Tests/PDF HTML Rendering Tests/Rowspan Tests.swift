@@ -35,7 +35,7 @@ struct `Rowspan Tests` {
             }
         }
 
-        #expect(![Byte](document).isEmpty)
+        #expect(try ![Byte](document).isEmpty)
     }
 
     @Test
@@ -84,7 +84,7 @@ struct `Rowspan Tests` {
             }
         }
 
-        #expect(![Byte](document).isEmpty)
+        #expect(try ![Byte](document).isEmpty)
     }
 
     @Test
@@ -112,7 +112,7 @@ struct `Rowspan Tests` {
             }
         }
 
-        #expect(![Byte](document).isEmpty)
+        #expect(try ![Byte](document).isEmpty)
     }
 
     @Test
@@ -171,6 +171,6 @@ struct `Rowspan Tests` {
             }
         }
 
-        #expect(![Byte](document).isEmpty)
+        #expect(try ![Byte](document).isEmpty)
     }
 }

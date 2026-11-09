@@ -14,7 +14,7 @@ extension `ConditionalTable Tests` {
     struct `Conditional Table Tests` {
 
         @Test
-        func `Conditional TableRow inside TableBody`() {
+        func `Conditional TableRow inside TableBody`() throws {
             struct TestTable: HTML.View {
                 let showExtraRow = true
                 var body: some HTML.View {
@@ -36,11 +36,11 @@ extension `ConditionalTable Tests` {
             let document = PDF.Document {
                 HTML.Document { TestTable() }
             }
-            let _ = [Byte](document)
+            let _ = try [Byte](document)
         }
 
         @Test
-        func `Conditional content inside TableDataCell`() {
+        func `Conditional content inside TableDataCell`() throws {
             struct TestTable: HTML.View {
                 let useAlternateText = true
                 var body: some HTML.View {
@@ -63,11 +63,11 @@ extension `ConditionalTable Tests` {
             let document = PDF.Document {
                 HTML.Document { TestTable() }
             }
-            let _ = [Byte](document)
+            let _ = try [Byte](document)
         }
 
         @Test
-        func `Conditional TableRow with styled content inside TableBody`() {
+        func `Conditional TableRow with styled content inside TableBody`() throws {
             struct TestChecklist: HTML.View {
                 let showSCorpRow = true
                 var body: some HTML.View {
@@ -110,11 +110,11 @@ extension `ConditionalTable Tests` {
             let document = PDF.Document {
                 HTML.Document { TestChecklist() }
             }
-            let _ = [Byte](document)
+            let _ = try [Byte](document)
         }
 
         @Test
-        func `Conditional styled content inside TableDataCell`() {
+        func `Conditional styled content inside TableDataCell`() throws {
             struct TestTable: HTML.View {
                 let isSCorp = true
                 var body: some HTML.View {
@@ -142,11 +142,11 @@ extension `ConditionalTable Tests` {
             let document = PDF.Document {
                 HTML.Document { TestTable() }
             }
-            let _ = [Byte](document)
+            let _ = try [Byte](document)
         }
 
         @Test
-        func `Multiple conditional sections in table`() {
+        func `Multiple conditional sections in table`() throws {
             struct TestTable: HTML.View {
                 let showSection1 = true
                 let showSection2 = false
@@ -186,11 +186,11 @@ extension `ConditionalTable Tests` {
             let document = PDF.Document {
                 HTML.Document { TestTable() }
             }
-            let _ = [Byte](document)
+            let _ = try [Byte](document)
         }
 
         @Test
-        func `Optional TableRow inside HTML.TableBody.Element (if without else)`() {
+        func `Optional TableRow inside HTML.TableBody.Element (if without else)`() throws {
             struct TestChecklist: HTML.View {
                 let showSCorpRow = true
                 var body: some HTML.View {
@@ -235,11 +235,11 @@ extension `ConditionalTable Tests` {
             let document = PDF.Document {
                 HTML.Document { TestChecklist() }
             }
-            let _ = [Byte](document)
+            let _ = try [Byte](document)
         }
 
         @Test
-        func `Optional TableRow with false condition (nil case)`() {
+        func `Optional TableRow with false condition (nil case)`() throws {
             struct TestTable: HTML.View {
                 let showOptionalRow = false
                 var body: some HTML.View {
@@ -266,7 +266,7 @@ extension `ConditionalTable Tests` {
             let document = PDF.Document {
                 HTML.Document { TestTable() }
             }
-            let _ = [Byte](document)
+            let _ = try [Byte](document)
         }
     }
 }

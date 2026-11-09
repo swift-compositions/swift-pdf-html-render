@@ -55,7 +55,7 @@ struct `PDFOutput Tests` {
             }
         }
 
-        let bytes = [Byte](document)
+        let bytes = try [Byte](document)
         #expect(!bytes.isEmpty)
     }
 
@@ -102,7 +102,7 @@ struct `PDFOutput Tests` {
             }
         }
 
-        let bytes = [Byte](document)
+        let bytes = try [Byte](document)
         #expect(!bytes.isEmpty)
     }
 
@@ -128,7 +128,7 @@ struct `PDFOutput Tests` {
             }
         }
 
-        let bytes = [Byte](document)
+        let bytes = try [Byte](document)
         #expect(!bytes.isEmpty)
     }
 
@@ -165,7 +165,7 @@ struct `PDFOutput Tests` {
             }
         }
 
-        let bytes = [Byte](document)
+        let bytes = try [Byte](document)
         #expect(!bytes.isEmpty)
     }
 }
