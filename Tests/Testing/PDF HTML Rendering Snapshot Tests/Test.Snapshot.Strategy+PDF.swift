@@ -6,6 +6,12 @@ import Test_Snapshot
 extension Test.Snapshot.Strategy where Value == PDF.Document, Format == [Byte] {
     static var pdf: Self {
         Test.Snapshot.Strategy<[Byte], [Byte]>(pathExtension: "pdf", diffing: .data)
-            .pullback { (doc: PDF.Document) -> [Byte] in ((try? [Byte](doc)) ?? []) }
+            .pullback { (doc: PDF.Document) -> [Byte] in
+                do throws(PDF.Writer.Error) {
+                    return try [Byte](doc)
+                } catch {
+                    fatalError("PDF document could not be written: \(error)")
+                }
+            }
     }
 }

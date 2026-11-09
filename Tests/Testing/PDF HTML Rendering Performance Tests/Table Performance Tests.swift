@@ -9,73 +9,73 @@ extension PDF {
     #Tests
 }
 
-private func render<V: HTML.View>(_ view: V) {
+private func render<V: HTML.View>(_ view: V) throws(PDF.Writer.Error) {
     let document = PDF.Document {
         HTML.Document { view }
     }
-    _ = try? [Byte](document)
+    _ = try [Byte](document)
 }
 
 extension PDF.Test.Performance {
 
     @Test(.timed(iterations: 20, warmup: 3))
-    func `simple table 5x10`() {
-        render(SimpleTable5x10())
+    func `simple table 5x10`() throws {
+        try render(SimpleTable5x10())
     }
 
     @Test(.timed(iterations: 10, warmup: 2))
-    func `simple table 10x50`() {
-        render(SimpleTable10x50())
+    func `simple table 10x50`() throws {
+        try render(SimpleTable10x50())
     }
 
     @Test(.timed(iterations: 5, warmup: 1))
-    func `simple table 10x100`() {
-        render(SimpleTable10x100())
+    func `simple table 10x100`() throws {
+        try render(SimpleTable10x100())
     }
 
     @Test(.timed(iterations: 20, warmup: 3))
-    func `simple table 10x1`() {
-        render(SimpleTable10x1())
+    func `simple table 10x1`() throws {
+        try render(SimpleTable10x1())
     }
 
     @Test(.timed(iterations: 20, warmup: 3))
-    func `simple table 10x2`() {
-        render(SimpleTable10x2())
+    func `simple table 10x2`() throws {
+        try render(SimpleTable10x2())
     }
 
     @Test(.timed(iterations: 20, warmup: 3))
-    func `simple table 10x5`() {
-        render(SimpleTable10x5())
+    func `simple table 10x5`() throws {
+        try render(SimpleTable10x5())
     }
 
     @Test(.timed(iterations: 20, warmup: 3))
-    func `simple table 10x10`() {
-        render(SimpleTable10x10())
+    func `simple table 10x10`() throws {
+        try render(SimpleTable10x10())
     }
 
     @Test(.timed(iterations: 10, warmup: 2))
-    func `simple table 10x25`() {
-        render(SimpleTable10x25())
+    func `simple table 10x25`() throws {
+        try render(SimpleTable10x25())
     }
 
     @Test(.timed(iterations: 10, warmup: 2))
-    func `table with rowspan 30 rows`() {
-        render(RowspanTable30())
+    func `table with rowspan 30 rows`() throws {
+        try render(RowspanTable30())
     }
 
     @Test(.timed(iterations: 5, warmup: 1))
-    func `complex table mixed spans`() {
-        render(ComplexTable30())
+    func `complex table mixed spans`() throws {
+        try render(ComplexTable30())
     }
 
     @Test(.timed(iterations: 500, warmup: 50))
-    func `throughput single table 5x10`() {
-        render(SimpleTable5x10())
+    func `throughput single table 5x10`() throws {
+        try render(SimpleTable5x10())
     }
 
     @Test(.timed(iterations: 10, warmup: 2))
-    func `simple table 5x30`() {
-        render(SimpleTable5x30())
+    func `simple table 5x30`() throws {
+        try render(SimpleTable5x30())
     }
 }
 
