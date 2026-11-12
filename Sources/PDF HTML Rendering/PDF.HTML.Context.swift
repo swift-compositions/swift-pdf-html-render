@@ -242,6 +242,9 @@ extension PDF.HTML.Context {
 
             case .style:
                 Self._pushStyle(&self)
+
+            case .identity:
+                break
             }
 
         case .pop(let pop):
@@ -254,6 +257,7 @@ extension PDF.HTML.Context {
             case .attributes: Self._popAttributes(&self)
             case .element(let isBlock): Self._popElement(&self, isBlock: isBlock)
             case .style: Self._popStyle(&self)
+            case .identity: break
             }
         }
     }
