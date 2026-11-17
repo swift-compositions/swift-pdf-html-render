@@ -3,6 +3,7 @@ import Layout
 public import Ownership
 import PDF_Rendering
 import Renderer
+import Renderer_Document
 
 extension Renderer.Document.Context {
 

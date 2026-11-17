@@ -17,6 +17,7 @@ import Memory_Pool
 import Ownership_Shared_Primitive
 import PDF_Rendering
 import Renderer
+import Renderer_Document
 import Storage
 import Store
 

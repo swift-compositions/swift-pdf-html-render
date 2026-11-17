@@ -2,6 +2,7 @@ import HTML_Rendering_Core
 import Ownership
 import PDF_Rendering
 import Renderer
+import Renderer_Document
 
 extension PDF {
 

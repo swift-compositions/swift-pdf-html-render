@@ -4,6 +4,7 @@ import Foundation
 import HTML_Rendering
 import Ownership
 import Renderer
+import Renderer_Document
 import Testing
 
 @testable import PDF_HTML_Rendering

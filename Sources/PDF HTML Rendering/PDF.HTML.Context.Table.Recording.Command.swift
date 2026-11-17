@@ -1,5 +1,6 @@
 import Byte
 import Renderer
+import Renderer_Document
 
 extension PDF.HTML.Context.Table.Recording {
 
